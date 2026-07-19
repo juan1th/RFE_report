@@ -1,0 +1,413 @@
+\section{S-Parameters}
+\subsection{Coaxial Filters}
+
+\subsubsection{Task Description}
+The task is to calibrate the network analyser (transmission and reflection for all 4 ports) and measure the 2-port parameters for coaxial filters. Based on these measurements, the order of the filters and their characteristics must be determined. Finally, the reflection coefficients are to be displayed as a Smith chart, and the transmission parameters must be displayed as logarithmic magnitude and phase.
+
+\vspace{0.5em}
+\noindent\textit{(Note: Section 3.1.2 Schematic is excluded as the measurement involves connecting the coaxial filters directly to the network analyser, which cannot be represented by a unique standard symbol and does not require a complex circuit diagram. Section 3.1.3 Formulas and Calculations is also excluded because no derivations or manual calculation steps are required for this specific measurement.)}
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: We will insert the measurement table here once you provide the data. As per the guidelines, the columns must be arranged from left to right containing adjusted, measured, and calculated values, separated clearly. Variables will be written in italics, constants and units upright, and units will not be put in square brackets.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measured 2-port S-parameters for the coaxial filters}
+    \label{tab:sparams}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & $S_{11}$, $S_{21}$, etc. & [Any calculated derivations if applicable] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: We will insert your network analyser plots here. Remember that the screen images must not be copied with the snipping tool; they should be high-resolution vector images or direct PNG exports. The names of the students must be inserted on the instrument pictures, and trace labels with self-explanatory names should be used.)}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the chart
+    % \includegraphics[width=0.8\textwidth]{smith_chart_placeholder.png}
+    \caption{Reflection coefficients of the coaxial filters displayed in a Smith chart. [Insert Smith chart plot here showing $S_{11}$ and/or $S_{22}$]}
+    \label{fig:smith_chart}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the plot
+    % \includegraphics[width=0.8\textwidth]{bode_plot_placeholder.png}
+    \caption{Transmission parameters of the coaxial filters displayed as logarithmic magnitude and phase. [Insert Bode plot here showing $S_{21}$ and/or $S_{12}$]}
+    \label{fig:bode_plot}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): Considering the measured transmission parameters (logarithmic magnitude and phase), the filter exhibits a [insert characteristic: e.g., low-pass, high-pass, band-pass] characteristic. The order of the filter can be determined by observing the roll-off rate (attenuation slope) in the stopband of the logarithmic magnitude plot. [Insert specific roll-off rate, e.g., -40 dB/decade, and conclude the order, e.g., 2nd order]. Furthermore, the Smith chart displaying the reflection coefficients indicates [insert observations about impedance matching, e.g., the filter is well-matched to 50 $\Omega$ in the passband as the curve approaches the center of the Smith chart, but highly reflective in the stopband].
+
+\subsection{Microstrip Lines}
+
+\subsubsection{Task Description}
+The task is to measure the transmission coefficient ($S_{21}$) and the reflection coefficient ($S_{11}$) for different microstrip lines using a network analyser.
+
+\subsubsection{Schematic}
+\textit{(Placeholder: Insert your measurement setup or marked measuring points here. The network analyser does not need to be drawn in detail, but the measuring points must be clearly marked.)}
+
+\vspace{0.5em}
+\noindent\textit{(Note: Section 3.2.3 Formulas and Calculations is excluded as the task relies purely on direct network analyser measurements, and no specific analytical derivations are required.)}
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data for the microstrip lines here. Ensure the columns are ordered as adjusted, measured, and calculated from left to right, clearly separated.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measured transmission and reflection coefficients for the microstrip lines}
+    \label{tab:microstrip_sparams}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & $S_{11}$ / dB or linear & [Calculated Impedance or VSWR if applicable] \\
+        Frequency / Hz & $S_{21}$ / dB or linear & [Any calculated derivations] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert your high-resolution vector graphics or PNGs of the reflection and transmission coefficients here. Ensure trace labels have self-explanatory names and the axes are properly labeled.)}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the plot
+    % \includegraphics[width=0.8\textwidth]{microstrip_plot_placeholder.png}
+    \caption{Measured reflection ($S_{11}$) and transmission ($S_{21}$) coefficients of the microstrip lines over frequency. [Insert Plot Here]}
+    \label{fig:microstrip_plot}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): Considering the plotted diagrams, one can observe the different reflection and transmission coefficients for all the measured microstrip lines. The reflection coefficient curves exhibit [insert number] minima, indicating that at these specific frequencies the impedance is approximately [insert impedance value, e.g., 50 $\Omega$]. Furthermore, the transmission coefficients change [describe behavior, e.g., linearly/non-linearly] with the frequency, showing a decrease of approximately [insert value] dB per [insert frequency range], which illustrates the frequency-dependent losses of the specific microstrip lines. [Insert any error estimation or explanations for deviations here].
+
+\subsection{3-Port Circulator}
+
+\subsubsection{Task Description}
+The objective of this task is to measure the complete S-parameter matrix of a 3-port circulator using a network analyser and compare the measured characteristics against the ideal theoretical behaviour of a circulator.
+
+\subsubsection{Schematic}
+\textit{(Placeholder: Insert the block diagram or standard symbol of the 3-port circulator with its ports clearly labeled 1, 2, and 3. As per the guidelines, the network analyser itself does not need to be drawn, but the measuring points connecting to the circulator ports must be marked clearly.)}
+
+\subsubsection{Formulas and Calculations}
+A circulator is an asymmetric, non-reciprocal component. According to the laboratory manual, the ideal scattering matrix (S-matrix) of a perfectly matched, lossless 3-port circulator is defined as:
+
+\begin{equation}
+    S = \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+    \end{bmatrix}
+\end{equation}
+
+Network analysers typically measure and display S-parameters in decibels (dB), defined by the relationship:
+
+\begin{equation}
+    S_{\text{dB}} = 20\log(|S|)
+\end{equation}
+
+To compare the measured results with the linear voltage ratios of the ideal S-matrix, the measured dB values must be converted back to linear magnitudes using the following calculation:
+
+\begin{equation}
+    |S_{\text{linear}}| = 10^{\frac{S_{\text{dB}}}{20}}
+\end{equation}
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data here. The columns must be clearly separated and ordered as adjusted, measured, and calculated. Variables must be in italics, units upright, and units must not be in square brackets.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measured and calculated S-parameters of the 3-port circulator at optimal frequency}
+    \label{tab:circulator_sparams}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & $S_{11}$ / dB & $|S_{11}|$ linear magnitude \\
+        Frequency / Hz & $S_{21}$ / dB & $|S_{21}|$ linear magnitude \\
+        Frequency / Hz & [... Continue for all 9 S-parameters] & [... Continue for linear calculations] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert the high-resolution vector images or PNG exports from the network analyser here. Ensure the images show the S-parameters over the measured frequency span to illustrate the frequency dependency. The names of the students must be inserted on the instrument pictures, and trace labels with self-explanatory names must be used.)}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the plot
+    % \includegraphics[width=0.8\textwidth]{circulator_plot_placeholder.png}
+    \caption{Measured S-parameters of the 3-port circulator over frequency. [Insert Plot Here]}
+    \label{fig:circulator_plot}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): Considering the ideal S-matrix, the main diagonal entries ($S_{11}$, $S_{22}$, $S_{33}$) represent the reflection coefficients at each port, which should ideally be 0. The off-diagonal entries represent the transmission coefficients (e.g., $S_{21}$ represents the wave transmitted from port 1 to port 2). In the ideal matrix, elements $S_{13}$, $S_{21}$, and $S_{32}$ are 1, dictating that power flows in a specific clockwise or counter-clockwise circle between the ports.
+
+Based on the measured curves, the circulator is highly frequency-dependent and exhibits its optimal characteristic at a frequency of approximately [insert frequency] Hz. At this frequency, the linear S-matrix was calculated to be: 
+
+\vspace{1em}
+\noindent [Insert your calculated 3x3 linear matrix here]
+\vspace{1em}
+
+While the measured matrix does not perfectly match the ideal theoretical matrix—exhibiting an insertion loss of approximately [insert value] dB in the forward direction and a finite isolation of [insert value] dB in the reverse direction—the characteristic circular power flow of the component is clearly visible. [Insert an error estimation or explanation regarding any specific deviations from the ideal behaviour, component tolerances, or limits of the measurement setup here as required by the guidelines].
+
+\subsection{3-Port Resistive Power Divider}
+
+\subsubsection{Task Description}
+The task is to measure the S-parameters of a 3-port resistive power divider using a network analyser. The objective is to verify that the power divider matches all three ports to the characteristic impedance and exhibits a total loss of 6 dB. Furthermore, the measurement should determine whether there is any isolation between output ports 2 and 3.
+
+\subsubsection{Schematic}
+\textit{(Placeholder: Insert the circuit diagram or block symbol of the 3-port resistive power divider here. Ensure the three ports are clearly marked as Port 1, Port 2, and Port 3. As per the guidelines, measuring points must be clearly marked.)}
+
+\subsubsection{Formulas and Calculations}
+A completely matched, reciprocal 3-port network cannot be lossless. A resistive power divider uses resistors to match all three ports simultaneously to the characteristic impedance ($Z_0$). Because of the reciprocal and symmetrical nature of this specific resistive network, the theoretical linear S-parameter matrix is expected to be:
+
+\begin{equation}
+    S = \frac{1}{2} \begin{bmatrix}
+    0 & 1 & 1 \\
+    1 & 0 & 1 \\
+    1 & 1 & 0
+    \end{bmatrix}
+\end{equation}
+
+Network analysers display these values in decibels (dB). The theoretical transmission loss of $\frac{1}{2}$ corresponds to:
+
+\begin{equation}
+    S_{\text{dB}} = 20\log(0.5) \approx -6 \text{ dB}
+\end{equation}
+
+This explains the theoretical 6 dB total loss between the input and any output port.
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data here. The columns must be arranged to contain adjusted, measured, and calculated values from left to right, with a clear visible separation.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measured S-parameters of the 3-port resistive power divider}
+    \label{tab:power_divider_sparams}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & $S_{11}, S_{22}, S_{33}$ / dB & Linear reflection coefficients \\
+        Frequency / Hz & $S_{21}, S_{31}, S_{12}, S_{13}$ / dB & Linear transmission coefficients \\
+        Frequency / Hz & $S_{23}, S_{32}$ / dB & Linear isolation coefficients \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert high-resolution vector images or PNG exports from the network analyser showing the S-parameters. Ensure main and auxiliary grids are switched on, and trace labels are self-explanatory.)}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the plot
+    % \includegraphics[width=0.8\textwidth]{power_divider_plot_placeholder.png}
+    \caption{Measured S-parameters (transmission, reflection, and isolation) of the 3-port resistive power divider. [Insert Plot Here]}
+    \label{fig:power_divider_plot}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): Based on the measurement results, the reflection coefficients ($S_{11}$, $S_{22}$, $S_{33}$) are approximately [insert value] dB, which confirms that all three ports are [well-matched / poorly matched] to the characteristic impedance. The forward transmission coefficients ($S_{21}$ and $S_{31}$) were measured at approximately [insert value] dB, which [confirms / deviates from] the theoretical total loss of 6 dB.
+
+Regarding the relationship between ports 2 and 3, the measured parameters $S_{23}$ and $S_{32}$ are approximately [insert value] dB. This demonstrates that there is [no isolation / high isolation] between port 2 and port 3, as the signal is [freely transmitted / blocked] between these two output ports. [Insert an error estimation regarding the component tolerances of the internal resistors or measurement accuracy to explain any slight deviations from the ideal 6 dB or 0 dB values].
+
+\subsection{Antenna Reflection Coefficients}
+
+\subsubsection{Task Description}
+The task is to measure the reflection coefficient ($S_{11}$) of two different antennas (specifically a 2.4 GHz antenna and a 915 MHz antenna) using a network analyser. The measurement results must be displayed both as a Smith chart and as a logarithmic magnitude plot over frequency.
+
+\subsubsection{Schematic}
+\textit{(Note: As the measurement simply involves connecting the antennas directly to the network analyser's port, a full circuit diagram is not strictly necessary as the network analyser cannot be represented by a unique standard symbol. If you have a photograph of the physical antennas or a block diagram marking the measuring point at the antenna feed, it can be inserted here.)}
+
+\subsubsection{Formulas and Calculations}
+The reflection factor $\rho$ (which corresponds to the $S_{11}$ parameter measured by the network analyser) at the point of the load is defined as the ratio of the backward to the forward voltage wave. It relates the antenna's input impedance ($Z_L$) to the characteristic impedance of the measurement system ($Z_w$, typically 50 $\Omega$):
+
+\begin{equation}
+    \rho = \frac{Z_L - Z_w}{Z_L + Z_w}
+\end{equation}
+
+The network analyser typically displays the logarithmic magnitude of the reflection coefficient in decibels, which is calculated as:
+
+\begin{equation}
+    S_{11} [\text{dB}] = 20\log(|S_{11}|)
+\end{equation}
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data for both antennas here. Remember to clearly separate the columns for adjusted, measured, and calculated values.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measured reflection coefficients at the target resonance frequencies of the antennas}
+    \label{tab:antenna_sparams}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & 2.4 GHz Antenna $S_{11}$ / dB & Calculated VSWR or Impedance $Z_L$ / $\Omega$ \\
+        Frequency / Hz & 915 MHz Antenna $S_{11}$ / dB & Calculated VSWR or Impedance $Z_L$ / $\Omega$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert high-resolution vector images or PNG exports from the network analyser here. Ensure you have one plot showing the Smith chart and one showing the logarithmic magnitude (Bode plot) for the measured frequency spans. Trace labels with self-explanatory names must be used.)}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the chart
+    % \includegraphics[width=0.8\textwidth]{antenna_smith_placeholder.png}
+    \caption{Measured reflection coefficients of the 2.4 GHz and 915 MHz antennas displayed as a Smith chart. [Insert Smith Chart Plot Here]}
+    \label{fig:antenna_smith}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    % Uncomment the line below and add your image path to display the plot
+    % \includegraphics[width=0.8\textwidth]{antenna_bode_placeholder.png}
+    \caption{Measured reflection coefficients (logarithmic magnitude) of the 2.4 GHz and 915 MHz antennas. [Insert Log Magnitude Plot Here]}
+    \label{fig:antenna_bode}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): Based on the logarithmic magnitude plot, the 2.4 GHz antenna exhibits its minimum reflection coefficient of approximately [insert value] dB at exactly [insert measured optimal frequency] GHz. Similarly, the 915 MHz antenna shows its optimal matching with an $S_{11}$ of [insert value] dB at [insert measured optimal frequency] MHz. This indicates that at these specific frequencies, the antennas are [well-matched / poorly matched] to the 50 $\Omega$ system impedance, minimizing the reflected wave.
+
+By analyzing the Smith chart, the normalized input impedance of the antennas at their respective resonance frequencies can be read directly. At resonance, the imaginary part (reactance) should ideally be zero. The Smith chart shows that at the target frequencies, the curves pass [close to / far from] the matching point in the center ($r=1, x=0$). [Insert any error estimation or commentary regarding the usable bandwidth (e.g., the frequency range where $S_{11} < -10 \text{ dB}$) or deviations caused by the surrounding environment/measurement setup here].
+
+\subsection{Unmatched Antenna and Matching Network}
+
+\subsubsection{Task Description}
+The first objective of this task is to measure the reflection coefficient (magnitude and phase) of an unmatched antenna at a given frequency. Based on this measurement, an impedance matching network consisting of a transmission line and a series capacitor must be calculated to match the antenna to the 50 $\Omega$ system. The solution must be derived using two methods: an analytical calculation and a graphical solution using the Smith chart. Finally, the calculated matching network is to be implemented (if applicable) or verified to observe the final matched reflection coefficient.
+
+\subsubsection{Schematic}
+\textit{(Placeholder: Insert two block diagrams here. The first should show the unmatched antenna connected to the network analyser port. The second should show the equivalent circuit of the matching network: the antenna ($Z_A$) connected to a transmission line of length $l_e$, followed by a series capacitor $C$ connecting to the 50 $\Omega$ measurement port.)}
+
+\subsubsection{Formulas and Calculations}
+The unmatched antenna presents a load impedance $Z_A$ which can be determined from the measured reflection coefficient $\rho_A = |\rho_A|e^{j\delta}$. The normalized load impedance is $z_A = Z_A/Z_w$.
+
+\textbf{a) Analytical Solution:} 
+To match the antenna using a lossless transmission line (length $l_e$) and a series reactive element ($jX_s$), the reflection coefficient is transformed along the line towards the generator:
+\begin{equation}
+    \rho_+(-l_e) = \rho_A e^{-j\frac{4\pi}{\lambda}l_e}
+\end{equation}
+The normalized impedance at this point is $z_+(-l_e) = \frac{1 - \rho_+(-l_e)}{1 + \rho_+(-l_e)}$. Adding the series reactance $jx_s$, the total normalized impedance must equal the matching condition ($1 + j0$):
+\begin{equation}
+    jx_s + z_+(-l_e) - 1 \stackrel{!}{=} 0
+\end{equation}
+By separating this equation into real and imaginary parts, the two unknown quantities ($x_s$ and $l_e$) can be calculated. The normalized reactance $x_s$ is found via:
+\begin{equation}
+    x_s = \pm \sqrt{\frac{1 - |\rho_A|^2}{|\rho_A|^2}}
+\end{equation}
+Since the matching network specifically requires a capacitor, the negative solution for $x_s$ must be chosen. The actual capacitance $C$ is then calculated from the denormalized reactance $X_s = Z_w x_s$:
+\begin{equation}
+    X_s = -\frac{1}{\omega C} \implies C = -\frac{1}{\omega X_s}
+\end{equation}
+
+\textbf{b) Smith Chart Solution:} 
+In the Smith chart, the initial normalized impedance $z_A$ is plotted. Moving along the transmission line corresponds to rotating clockwise (towards the generator) along the constant $|\rho_A|$ circle. The rotation stops when this circle intersects the matching circle (the $r=1$ circle). The distance rotated along the outer wavelength scale determines the required line length $l_e$. At this intersection, the impedance has the form $1+jx$. To achieve perfect matching, a series capacitor providing a normalized reactance of $-jx$ must be added to move the point to the centre of the Smith chart ($1+j0$).
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data here. The table should clearly contrast the unmatched state with the calculated matching network values.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Measurement of the unmatched antenna and calculated matching network parameters}
+    \label{tab:matching_network}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & Unmatched $\rho_A$ Mag / dB & Unmatched $Z_A$ / $\Omega$ \\
+        Frequency / Hz & Unmatched $\rho_A$ Phase / $^\circ$ & Required line length $l_e$ / m \\
+        Frequency / Hz & Matched $S_{11}$ / dB (if measured) & Required Capacitance $C$ / F \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert your Smith chart construction here showing the graphical matching process. Additionally, insert a logarithmic magnitude plot from the network analyser comparing the $S_{11}$ of the antenna before and after matching.)}
+
+\begin{figure}[htpb]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{smith_matching_placeholder.png}
+    \caption{Graphical solution of the matching network (line + capacitor) constructed in the Smith chart.}
+    \label{fig:smith_matching}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{bode_matching_placeholder.png}
+    \caption{Measured reflection coefficient (logarithmic magnitude) of the antenna before and after applying the matching network.}
+    \label{fig:bode_matching}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): The initial measurement of the unmatched antenna at [insert frequency] yielded a reflection coefficient of [insert magnitude] dB and a phase of [insert phase]$^\circ$, corresponding to an input impedance of $Z_A$ = [insert impedance] $\Omega$. This indicates a [high/low] degree of mismatch.
+
+Using both the analytical formulas and the graphical Smith chart method, the required matching network was determined. The graphical and analytical results [perfectly aligned / showed slight deviations due to reading inaccuracies], yielding a required transmission line length of $l_e$ = [insert length] m and a series capacitance of $C$ = [insert capacitance] pF. [If you physically implement or simulate the match: Upon applying the matching network, the reflection coefficient dropped significantly to [insert value] dB at the target frequency, successfully validating the calculated impedance matching network].
+
+\subsection{Slide-Screw Tuner}
+
+\subsubsection{Task Description}
+The final task is to use a mechanical slide-screw tuner to match the previously unmatched antenna and to measure the final reflection coefficient using the network analyser.
+
+\subsubsection{Schematic}
+\textit{(Placeholder: Insert the block diagram showing the network analyser connected to the slide-screw tuner, which is then connected to the antenna. You should also insert the mechanical construction and electrical equivalent circuit of the slide-screw tuner (as shown in Figure 3-1 of the lab manual) to illustrate how the device operates.)}
+
+\subsubsection{Formulas and Calculations}
+A mechanical slide-screw tuner consists of a 50 $\Omega$ slabline and a movable capacitive/reflective probe, known as a slug. The impedance matching is achieved mechanically rather than through analytical calculations:
+
+\begin{itemize}
+    \item When the slug is fully retracted, the tuner presents an ideal 50 $\Omega$ impedance.
+    \item As the slug is lowered into the slabline (Y-direction), it interrupts the electric field and introduces a capacitance, which increases the magnitude of the reflection.
+    \item As the slug travels longitudinally along the slabline (X-direction), it rotates the phase of the reflection.
+\end{itemize}
+
+By adjusting both the X and Y positions, it is possible to re-create arbitrary impedances to perfectly match the antenna without requiring discrete lumped components or fixed transmission lines.
+
+\subsubsection{Table(s) with measurement results}
+\textit{(Placeholder: Insert your tabulated data here comparing the unmatched and matched state. Ensure columns are ordered as adjusted, measured, and calculated.)}
+
+\begin{table}[htpb]
+    \centering
+    \caption{Reflection coefficient of the antenna before and after applying the slide-screw tuner}
+    \label{tab:slide_screw_tuner}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \midrule
+        Frequency / Hz & Unmatched $S_{11}$ / dB & Calculated VSWR before \\
+        Frequency / Hz & Matched $S_{11}$ / dB & Calculated VSWR after \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+\textit{(Placeholder: Insert your network analyser plots here. Include a Smith chart demonstrating the movement of the reflection coefficient during the tuning process, and a logarithmic magnitude plot showing the final matched $S_{11}$ minimum at the target frequency. Trace labels must be self-explanatory.)}
+
+\begin{figure}[htpb]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{smith_tuner_placeholder.png}
+    \caption{Smith chart illustrating the impedance matching process using the slide-screw tuner.}
+    \label{fig:smith_tuner}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{bode_tuner_placeholder.png}
+    \caption{Measured final reflection coefficient (logarithmic magnitude) of the antenna matched with the slide-screw tuner.}
+    \label{fig:bode_tuner}
+\end{figure}
+
+\subsubsection{Short discussion of measurement results}
+(Placeholder text to be updated with your actual results): The unmatched antenna initially exhibited a high reflection coefficient, indicating poor matching to the 50 $\Omega$ system. By observing the Smith chart on the network analyser in real-time, the slide-screw tuner was adjusted. Lowering the slug (Y-direction) altered the magnitude of the reflection, while sliding it along the line (X-direction) rotated the phase, steering the impedance curve directly toward the matching point in the center of the Smith chart ($r=1, x=0$).
+
+The final measurement yielded a reflection coefficient of [insert matched value] dB at the target frequency of [insert frequency]. This demonstrates that the mechanical slide-screw tuner successfully matched the antenna to the system, practically validating the theoretical matching principles without the need for fixed capacitors or inductors. [Insert any error estimation regarding the mechanical sensitivity of the tuner or measurement stability here].
+\end{document}

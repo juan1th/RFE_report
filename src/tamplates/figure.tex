@@ -1,0 +1,25 @@
+%gezeichneter Schaltplan
+\begin{figure}[hpt]
+    \centering
+    \begin{circuitikz}[european, scale = 0.8]
+        \draw (5,8) to [short, -o](5,8.5)node[anchor=south]{$U_{Rampe}$};
+        \draw (5,7.5) to [short, *-o](6,7.5)node[anchor=west]{Probe $I_c$};
+        \draw (5,8) to [R, l_= $R_c$](5,3.9);
+        \draw (5,4.5) to [short, *-o](6,4.5)node[anchor=west]{Probe $GND$};
+        \draw (5,2.5) to (5,0);
+        \draw (4.1,3) to (3.5,3) to [R, l_= $R_b$](1.5,3) to [short, -o](-0.5,3);
+        \draw (5,3)node[npn]{};
+        \draw (-0.5,3) to (-0.5,3)node[anchor=east]{$U_{Treppe}$};
+        \draw (5,0) to (5,0) node[rground]{};
+        \draw (5,0.5) to [short, *-o](6,0.5)node[anchor=west]{Probe $U_{ce}$};
+    \end{circuitikz}
+    \caption{\centering Beschreibung}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{%Pfad zum Bild}
+    \caption{\label{abb-2} \centering Beschriftung}
+\end{figure}
+\FloatBarrier
