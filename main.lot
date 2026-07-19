@@ -1,0 +1,19 @@
+\babel@toc {english}{}\relax 
+\contentsline {table}{\numberline {1.1}{\ignorespaces \centering Values corresponding to the OpAmp noise model check at 10\,Hz and 1.0\,kHz (Gain = +1).}}{2}{table.caption.6}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces Rise and fall times of the signal generator and line driver.}}{4}{table.caption.10}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Reflection characteristics and calculated parameters for various loads.}}{6}{table.caption.11}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Determination of the unknown RG58 cable length.}}{7}{table.caption.12}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Measured 2-port S-parameters for the coaxial filters}}{8}{table.caption.13}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Measured transmission and reflection coefficients for the microstrip lines}}{9}{table.caption.16}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Measured and calculated S-parameters of the 3-port circulator at optimal frequency}}{10}{table.caption.18}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Measured S-parameters of the 3-port resistive power divider}}{12}{table.caption.20}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Measured reflection coefficients at the target resonance frequencies of the antennas}}{13}{table.caption.22}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Measurement of the unmatched antenna and calculated matching network parameters}}{15}{table.caption.25}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Reflection coefficient of the antenna before and after applying the slide-screw tuner}}{16}{table.caption.28}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces \centering Measured values for the resistors and capacitors use for the switched capacitor filter, the pre-amplification stage, and the two inverting amplifier stages.}}{20}{table.caption.33}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces \centering Measured values for total noise voltage of the switched capacitor filter for 2 values of $R_g$.}}{20}{table.caption.34}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Measured frequency response of the 2nd order active band pass filter}}{26}{table.caption.40}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Measured frequency response of the single-ended to differential driver}}{27}{table.caption.41}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Measured frequency response of the switched capacitor filter at 1MHz.}}{28}{table.caption.42}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Measured frequency response of the switched capacitor filter at 500kHz.}}{29}{table.caption.43}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Instrument device list}}{29}{table.caption.44}%

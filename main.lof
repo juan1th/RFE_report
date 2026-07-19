@@ -1,0 +1,25 @@
+\babel@toc {english}{}\relax 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces \centering PSpice Schematic of a single stage emitter circuit with BC574C.}}{1}{figure.caption.3}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces \centering Schematic of a non-inverting amplifier with LM4562 (Gain = +10).}}{1}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces \centering Schematic of an inverting amplifier with LM4562 (Gain = -10).}}{2}{figure.caption.5}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces \centering Simulation of the noise spectral voltage density of the emitter circuit ($\hat {u}$=1mV).}}{2}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces \centering Simulation result showing the Noise spectral voltage density of a non-inverting amplifier circuit.}}{3}{figure.caption.8}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces \centering Simulation result showing the Noise spectral voltage density of an inverting amplifier circuit.}}{3}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Reflection coefficients of the coaxial filters displayed in a Smith chart. [Insert Smith chart plot here showing $S_{11}$ and/or $S_{22}$]}}{8}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Transmission parameters of the coaxial filters displayed as logarithmic magnitude and phase. [Insert Bode plot here showing $S_{21}$ and/or $S_{12}$]}}{8}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Measured reflection ($S_{11}$) and transmission ($S_{21}$) coefficients of the microstrip lines over frequency. [Insert Plot Here]}}{9}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Measured S-parameters of the 3-port circulator over frequency. [Insert Plot Here]}}{11}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Measured S-parameters (transmission, reflection, and isolation) of the 3-port resistive power divider. [Insert Plot Here]}}{12}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Measured reflection coefficients of the 2.4 GHz and 915 MHz antennas displayed as a Smith chart. [Insert Smith Chart Plot Here]}}{13}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Measured reflection coefficients (logarithmic magnitude) of the 2.4 GHz and 915 MHz antennas. [Insert Log Magnitude Plot Here]}}{13}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Graphical solution of the matching network (line + capacitor) constructed in the Smith chart.}}{15}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Measured reflection coefficient (logarithmic magnitude) of the antenna before and after applying the matching network.}}{15}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Smith chart illustrating the impedance matching process using the slide-screw tuner.}}{16}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Measured final reflection coefficient (logarithmic magnitude) of the antenna matched with the slide-screw tuner.}}{17}{figure.caption.30}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \centering Schematic of the switched capacitor filter with pre-amplifier stage with LM4562}}{18}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \centering Schematic of the two-stage inverting amplifiers for RMS noise measurement.}}{19}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \centering Magnitude response of the switched capacitor filter ($U_{in}$=20mVpp).}}{21}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \centering Output plot of the switched capacitor filter ($U_{in}$=20mVpp, $f$=998kHz)}}{21}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces \centering Resultant waveform depicting the switching frequency ($U_{in}$=20mVpp, $f$=5kHz)}}{22}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces \centering Resultant graph showing the output noise with $R_g$=100k$\Omega $.}}{22}{figure.caption.38}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces \centering computing factor $\alpha $}}{25}{figure.caption.39}%
