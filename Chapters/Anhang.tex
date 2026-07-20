@@ -56,10 +56,11 @@ Further necessary values for the calculations are:\\
 The chosen real solutions is $\alpha = 1.0826$
 \FloatBarrier
 \newpage
-\subsection{Measurement data for the active band pass filter}
-The following table shows the frequency response of the active band pass filter.
-\input{src/assets/tabel/Messermunt_1}
-\newpage
+\subsection{Measurement data}
+The following tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} show the measured signal power along the coaxial RF line.
+\input{src/assets/tabel/sim_1}
+\input{src/assets/tabel/sim_2}
+
 \subsection{Calculations for the ADC-Driver and anti-aliasing filter}
 These formulas can be found in the chapter \textit{Active 2nd Order Low Pass (Multifeedback)} of \cite{ASV}. From these equations the equations for the component values can be constructed.
 \begin{gather}
@@ -67,6 +68,20 @@ These formulas can be found in the chapter \textit{Active 2nd Order Low Pass (Mu
     a = \omega_C C_1 \Biggl[R_2+R_3+\frac{R_2R_3}{R_1}\Biggr]\\
     b =\omega_C^2 C_1C_2R_2R_3
 \end{gather}
+
+
+
+
+\subsection{Resultant plots from measurement data}
+The following figure~\ref{fig:chart3} shows the resultant plot of the measured signal power values along the coaxial transmission line.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=0.9\linewidth]{src/diagrams/RF_1/Chart_3}
+	\caption{\centering Measured power values for every termination load.}
+	\label{fig:chart3}
+\end{figure}
+
+
 
 \subsection{Measurement data for the ADC-Driver and anti-aliasing filter}
 The following table shows the frequency response of the ADC-Driver and anti-aliasing filter.

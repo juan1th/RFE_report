@@ -1,55 +1,78 @@
 \section{COAXIAL RF LINE}
 \subsection{Task description}
-This task introduces noise analysis of transistor and operational‑amplifier circuits using Cadence PSpice. Following were the main sub-objectives:
+The objective of this task is to measure the standing wave ratio and the reflection coefficient of different loads connected to a coaxial transmission line using a signal analyzer\cite{CXA_SA}, the loads to be used are: 
+
 \begin{itemize}
-\item Noise analysis of a single stage emitter circuit
-\item An OpAmp noise model check (where Gain = +1)
-\item Noise analysis of inverting and non-inverting amplifier circuits (with Gain = 10)
+	\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item Open
+	\item Short
+	\item 50$\Omega$
+	\item 100$\Omega$
+	\item 25$\Omega$
+	\item Capacitive load
 \end{itemize}
-\subsection{Schematics}
-Figure~\ref{fig:5} shows the circuit configuration of a single stage emitter circuit.
+
+The transmission line is fed with a sine wave signal of +10dBm at 310 MHz from an RF signal generator\cite{RF_SG}.
+\subsection{Schematic}
+Figure~\ref{fig:5} shows the measurement configuration of the coaxial transmission line and a movable E-field probe.
 \begin{figure}[ht!]
     \centering
-    \includegraphics[page=1,width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering PSpice Schematic of a single stage emitter circuit with BC574C.}
+    \includegraphics[page=1,width=0.8\linewidth]{src/diagrams/RF_1/Schematic_1.png}
+    \caption{\centering Schematic of the measurement setup used, with RF coaxial line, E-field probe and the load.}
     \label{fig:5}
-\end{figure}\\
-Figure~\ref{fig:circuit_0} shows the circuit configuration of a non-inverting amplifier circuit.
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[page=2,width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering Schematic of a non-inverting amplifier with LM4562 (Gain = +10).}
-    \label{fig:circuit_0}
-\end{figure}\\
-Figure~\ref{fig:circuit_11} shows the circuit configuration of an inverting amplifier circuit.
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[page=3,width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering Schematic of an inverting amplifier with LM4562 (Gain = -10).}
-    \label{fig:circuit_11}
 \end{figure}
+\\
+The schematic above shows the four components used in this measurement setup. The main components are the RF signal generator, which provides the excitation signal, and the spectrum analyzer with the movable E-field probe. The probe scans along the coaxial transmission line, which is surrounded by air as the dielectric medium. The load at the end of the line can be replaced by any of the six terminations described earlier.
+
+\newpage
+\subsection{Formulas and calculations}
+\textbf{1. Calculation of the wave velocity:} \\
+The following formula (\ref{eq:1_CO}) is used to calculate the wave velocity$v$. \\
+\begin{gather}
+	v = f \cdot \lambda \label{eq:1_CO}
+\end{gather}
+$f$ (frequency) = 310MHz\\
+$\lambda$ (wavelength) = $2 \cdot \Delta d $\\
+
+The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from the tables \ref{tab:chart1} and \ref{tab:chart2}) is:
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item Open: 48.3cm
+	\item Short: 48.2cm
+	\item Capacitive load: 48.5cm
+\end{itemize} 
+
+Averaging these values, we obtain $\Delta d$ = 48.33cm.\\
+Hence, \\
+$\lambda$ (wavelength) = 96.67cm and wave velocity (in m/s) is:
+\begin{gather}
+	v = 310 \times 10^6 \cdot 0.9667 			\nonumber \\
+	v = 2.9967 \times 10^8						\label{eq:2_CO}
+\end{gather}
+
+\textbf{2. Calculation of the VSWR:} \\
+The following formula (\ref{eq:1_CO}) is used to calculate the wave velocity$v$. \\
+
 \subsection{Table with measurement results}
-Table \ref{tab:sim_2} shows the value of the simulated Input Noise Density and the value in the data sheet for the same.
-\input{src/assets/tabel/sim_2}
+Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
+
 \subsection{Simulation curves and diagrams}
+Illustrated in Figures~\ref{fig:chart1} and~\ref{fig:chart2} are the measured location dependent signal power values obtained with the RF signal analyzer for different termination loads, along the coaxial transmission line. The measurements were taken over a distance range from 35.0cm to 167.0cm, measured from the termination load. 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[page=4,width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering Simulation of the noise spectral voltage density of the emitter circuit ($\hat{u}$=1mV).}
-    \label{fig:6}
+    \includegraphics[page=4,width=0.9\linewidth]{src/diagrams/RF_1/Chart_1}
+    \caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
+    \label{fig:chart1}
 \end{figure}
 \begin{figure}[ht!]
-    \centering
-    \includegraphics[page=6, width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering Simulation result showing the Noise spectral voltage density of a non-inverting amplifier circuit.}
-    \label{fig:8}
+	\centering
+	\includegraphics[page=4,width=0.9\linewidth]{src/diagrams/RF_1/Chart_2}
+	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
+	\label{fig:chart2}
 \end{figure}
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[page=7, width=0.7\linewidth]{src/diagrams/1_1_PSpice_noise_python.pdf}
-    \caption{\centering Simulation result showing the Noise spectral voltage density of an inverting amplifier circuit.}
-    \label{fig:112}
-\end{figure} 
+\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix~\ref{fig:6curves}
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
