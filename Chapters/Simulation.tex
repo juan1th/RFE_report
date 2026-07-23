@@ -23,19 +23,27 @@ Figure~\ref{fig:5} shows the measurement configuration of the coaxial transmissi
     \label{fig:5}
 \end{figure}
 \\
-The schematic above shows the four components used in this measurement setup. The main components are the RF signal generator, which provides the excitation signal, and the spectrum analyzer with the movable E-field probe. The probe scans along the coaxial transmission line, which is surrounded by air as the dielectric medium. The load at the end of the line can be replaced by any of the six terminations described earlier.
+The schematic above shows the four main components used in this measurement setup. These are:
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item The RF signal generator\cite{RF_SG}, which provides the excitation signal.
+	\item The spectrum analyzer\cite{CXA_SA} with the movable E-field probe.
+	\item The coaxial transmission line which is traced by the probe.
+	\item The load at the end of the line can be replaced by any of the six terminations described earlier.
+\end{itemize}
 
 \newpage
 \subsection{Formulas and calculations}
 \textbf{1. Calculation of the wave velocity:} \\
-The following formula (\ref{eq:1_CO}) is used to calculate the wave velocity$v$. \\
+The following formula \ref{eq:1_CO} is used to calculate the wave velocity$v$. \\
 \begin{gather}
 	v = f \cdot \lambda \label{eq:1_CO}
 \end{gather}
 $f$ (frequency) = 310MHz\\
 $\lambda$ (wavelength) = $2 \cdot \Delta d $\\
 
-The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from the tables \ref{tab:chart1} and \ref{tab:chart2}) is:
+The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from correlating the chart \ref{fig:chart3}, and the tables \ref{tab:power_plots_1} \& \ref{tab:power_plots_2}) is:
 \begin{itemize}
 	\setlength{\itemsep}{0pt}
 	\setlength{\parskip}{0pt}
@@ -44,25 +52,41 @@ The term $\Delta d$ is given by the difference between the points of two adjacen
 	\item Capacitive load: 48.5cm
 \end{itemize} 
 
-Averaging these values, we obtain $\Delta d$ = 48.33cm.\\
-Hence, \\
-$\lambda$ (wavelength) = 96.67cm and wave velocity (in m/s) is:
+Averaging these values to minimize tiny individual measurement errors, we obtain $\Delta d$ = 48.33cm.\\
+
+Inferred wavelength: This measured value for wavelength is obtained using the formula \ref{eq:4_CO} : 
 \begin{gather}
-	v = 310 \times 10^6 \cdot 0.9667 			\nonumber \\
-	v = 2.9967 \times 10^8						\label{eq:2_CO}
+	\lambda = 2 \cdot \Delta d \label{eq:4_CO} \\
+	\lambda = 96.667cm
+\end{gather}
+
+Hence, \\
+Wave velocity (in m/s) is:
+\begin{gather}
+	v = 310 \times 10^6 \cdot 0.96451 			\nonumber \\
+	v = 2.9966 \times 10^8						\label{eq:3_CO}
 \end{gather}
 
 \textbf{2. Calculation of the VSWR:} \\
-The following formula (\ref{eq:1_CO}) is used to calculate the wave velocity$v$. \\
+The following formula (\ref{eq:1_CO}) is used to calculate the VSWR. \\
 
 \subsection{Table with measurement results}
 Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
 
-\subsection{Simulation curves and diagrams}
+\newpage
+\subsection{Simulation curves and diagrams} 
+Figures~\ref{fig:chart4} shows the spectrum analyzer output after being connected to the RF signal generator, and setting of center, span, magnitude, sweep time, and residual bandwidth. 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=0.8\linewidth]{src/diagrams/RF_1/Screen1}
+	\caption{\centering Spectrum analyzer output on proper setting of required parameters.}
+	\label{fig:screen1}
+\end{figure}
+
 Illustrated in Figures~\ref{fig:chart1} and~\ref{fig:chart2} are the measured location dependent signal power values obtained with the RF signal analyzer for different termination loads, along the coaxial transmission line. The measurements were taken over a distance range from 35.0cm to 167.0cm, measured from the termination load. 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[page=4,width=0.9\linewidth]{src/diagrams/RF_1/Chart_1}
+    \includegraphics[page=4,width=0.8\linewidth]{src/diagrams/RF_1/Chart_1}
     \caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
     \label{fig:chart1}
 \end{figure}
@@ -72,7 +96,7 @@ Illustrated in Figures~\ref{fig:chart1} and~\ref{fig:chart2} are the measured lo
 	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
 	\label{fig:chart2}
 \end{figure}
-\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix~\ref{fig:6curves}
+\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix~\ref{fig:chart3}
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
