@@ -1,141 +1,241 @@
 \section{Time Domain Reflectometry}
+
 \subsection{Measurement A: Rise- and fall time of the line driver}
 
 \subsubsection{Task Description}
-The objective of this task is to measure the rise and fall times of a signal generator and the open output of a line driver. The line driver (LM5134 and LMG1025) is supplied with +5V, and the function generator is set to output a rectangular signal with 5Vpp and a 2.5V DC offset.
+The objective of this task is to measure the rise and fall times of a signal generator and the open output of a line driver. The line driver (LM5134 and LMG1025) is supplied with +5 V, and the function generator is set to output a rectangular signal with 5 V$_{\text{pp}}$ and a 2.5 V DC offset.
 
 \subsubsection{Schematic}
-The measurement configuration consists of an Arbitrary Waveform Generator connected to the input of the line driver. The output of the driver is connected to an SMA connector via two 2.7 $\Omega$ series resistors, providing a total of 5.4 $\Omega$ series resistance. The voltage is detected using a 1 k$\Omega$ resistor connected to a second SMA connector, which alongside the 50 $\Omega$ input of the oscilloscope and a 50 $\Omega$ coaxial transmission line, forms a 1:21 voltage divider. 
+The measurement configuration consists of an Arbitrary Waveform Generator connected to the input of the line driver. The output of the driver is connected to an SMA connector via two 2.7 $\Omega$ series resistors, providing a total of 5.4 $\Omega$ series resistance. The voltage is detected using a 1 k$\Omega$ resistor connected to a second SMA connector, which alongside the 50 $\Omega$ input of the oscilloscope and a 50 $\Omega$ coaxial transmission line, forms a 1:21 voltage divider.
 
-\textit{(Placeholder: Recreate or insert Figure 2-1 from the lab manual showing the block diagram of the measuring arrangement).}
+\textit{(Note: Insert the block diagram of the measuring arrangement here, recreating or importing Figure 2-1 from the lab script as required by the guidelines).}
 
 \subsubsection{Formulas and Calculations}
-For this specific measurement, the rise and fall times are evaluated directly from the oscilloscope's transient voltage curves using the instrument's automatic measurement functions or cursors (typically measuring the transition from 10\% to 90\% of the signal amplitude). No additional complex mathematical derivations are required for this step.
+
+For this specific measurement, the rise and fall times are evaluated directly from the oscilloscope's transient voltage curves using the instrument's automatic measurement functions (measuring the transition from 10\% to 90\% of the signal amplitude). No additional formulas or complex mathematical derivations are required for this step.
 
 \subsubsection{Table(s) with measurement results}
-\textit{(Placeholder: Insert table here. Example format below)}
 
-\begin{table}[htpb]
+\begin{table}[ht!]
     \centering
-    \caption{Rise and fall times of the signal generator and line driver.}
-    \label{tab:rise_fall_times}
-    \begin{tabular}{lll}
-        \toprule
-        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        \midrule
-        \textbf{Test Point} & \textbf{Rise Time $t_r$ (ns)} & \textbf{Fall Time $t_f$ (ns)} \\
-        Signal Generator & [Result] & [Result] \\
-        Line Driver (Open Output) & [Result] & [Result] \\
-        \bottomrule
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Measured} & \textbf{Calculated} \\
+        \hline
+        Test Point & Rise Time $t_r$ / ns & Fall Time $t_f$ / ns & - \\
+        \hline
+        Signal Generator & 8.354 & 4.374 & - \\
+        \hline
+        Line Driver (Open Output) & 1.282 & Not measured* & - \\
+        \hline
     \end{tabular}
-    \begin{flushleft}
-    \textit{Notes: Function generator set to 5Vpp, 2.5V DC offset.}
-    \end{flushleft}
+    \caption{\centering Rise and fall times of the signal generator and line driver. Notes: Function generator set to 5 V$_{\text{pp}}$, 2.5 V DC offset. *Fall time for the line driver could not be evaluated.}
+    \label{tab:rise_fall_times}
 \end{table}
 
 \subsubsection{Curves \& diagrams}
-\textit{(Placeholder: Insert high-resolution vector images of the oscilloscope plots showing the rise and fall times. Ensure cursor values and/or automatic measurement functions are visible in the plot as per guidelines).}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/sinewave.png}
+    \caption{Rectangular input signal from the Arbitrary Waveform Generator (5 V$_{\text{pp}}$, 2.5 V DC offset).}
+    \label{fig:awg_input}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/risetime_sinewave.png}
+    \caption{Transient voltage curve showing the rise and fall time measurements of the signal generator.}
+    \label{fig:risetime_generator}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/risetime_gatedrivers.png}
+    \caption{Transient voltage curve showing the much steeper rise time at the open output of the line driver.}
+    \label{fig:risetime_driver}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Short discussion of measurement results}
-\textit{(Placeholder: Insert a short discussion comparing the rise and fall times of the signal generator versus the line driver. Include an error estimation and explain any deviations from the expected behavior without using general phrases).}
+
+The measurements demonstrate a significant decrease in the rise time when the signal is passed through the line driver. The signal generator alone exhibits a relatively slow rise time of 8.354 ns and a fall time of 4.374 ns. After passing through the LM5134 and LMG1025 gate drivers, the rising edge is sharpened considerably to a rise time of 1.282 ns. This fast transition is essential for Time Domain Reflectometry, as a steeper edge allows for higher spatial resolution when distinguishing incident waves from reflected waves on the transmission line.
+
+It must be noted that the fall time for the line driver could not be captured. The input signal was a $\sim$1 kHz rectangular wave, meaning the falling edge occurred approximately 500 $\mu$s after the rising edge. Because the oscilloscope timebase was set to a very fine resolution of 2.00 ns/div to accurately measure the nanosecond rise time, the subsequent falling edge was completely off-screen and not captured within the instrument's acquisition memory for this specific measurement. The overall measurement uncertainty for the captured rise times is primarily dictated by the sampling rate and the horizontal cursor resolution of the oscilloscope.
 
 \subsection{Measurement B: Reflections of a coax cable with different loads}
 
 \subsubsection{Task Description}
-An RG142 coaxial cable with a minimum length of 1 m is connected to the line driver output. The task is to terminate the end of the cable with different loads (Open, Short, 50 $\Omega$, 100 $\Omega$, 25 $\Omega$, 10 nF capacitor, and 1 mH inductor) and measure the resulting line reflections. The transient voltage curve must be recorded to determine the time delay between reflection minima, the maximum voltage, and the steady-state asymptotic voltage. Using the measured propagation delay and physical cable length, the relative dielectric constant ($\epsilon_r$) of the cable must be calculated.
+An RG142 coaxial cable is connected to the line driver output. The task is to terminate the end of the cable with different loads (Open, Short, 50 $\Omega$, 100 $\Omega$, 25 $\Omega$, 100 pF capacitor, and 1 nH inductor) and measure the resulting line reflections. The transient voltage curve is recorded to determine the time delay between reflection minima, the maximum voltage, and the steady-state asymptotic voltage. Using the measured propagation delay and the physical cable length, the relative dielectric constant ($\epsilon_r$) of the cable must be calculated.
 
 \subsubsection{Schematic}
-The basic schematic is identical to Measurement A, but the open end of the RG142 coaxial line is now terminated with various load impedances ($Z_L$).
+The measurement configuration is identical to Measurement A, but the open end of the RG142 coaxial transmission line is now terminated with various load impedances ($Z_L$).
 
-\textit{(Placeholder: Insert the circuit diagram indicating the transmission line and the variable load attached at the far end).}
+\textit{(Note: Insert the circuit diagram here, indicating the transmission line and the variable load $Z_L$ attached at the far end, similar to the setup described in the lab manual).}
 
 \subsubsection{Formulas and Calculations}
+
 The reflection factor $\rho_0$ at the load is determined by the load impedance $Z_L$ and the characteristic impedance $Z_w$ of the transmission line:
+
 \begin{equation}
     \rho_0 = \frac{Z_L - Z_w}{Z_L + Z_w}
 \end{equation}
 
-The phase velocity $v_p$ of the signal propagating through the transmission line is related to the speed of light in a vacuum ($c = 2.9979 \times 10^8$ m/s) and the relative dielectric constant $\epsilon_r$:
+The phase velocity $v_p$ of the signal propagating through the transmission line depends on the speed of light in a vacuum ($c = 2.9979 \times 10^8$ m/s) and the relative dielectric constant $\epsilon_r$:
+
 \begin{equation}
     v_p = \frac{c}{\sqrt{\epsilon_r}}
 \end{equation}
 
-The time delay $t$ measured between the incident wave and the reflected wave represents the round trip of the signal along the length of the cable $l$. The delay is:
+The time delay $t$ measured between the incident wave and the reflected wave represents the round trip of the signal along the length of the cable $l$:
+
 \begin{equation}
     t = \frac{2l}{v_p}
 \end{equation}
 
-By substituting the phase velocity formula into the time delay formula, the dielectric constant $\epsilon_r$ can be calculated from the measured physical length and measured time delay:
+By substituting the phase velocity formula into the time delay formula, the dielectric constant $\epsilon_r$ can be calculated from the physical length and the measured time delay:
+
 \begin{equation}
-    \epsilon_r = \left( \frac{2l}{c \cdot t} \right)^2
+    \epsilon_r = \left( \frac{c \cdot t}{2l} \right)^2
 \end{equation}
 
 \subsubsection{Table(s) with measurement results}
-\textit{(Placeholder: Insert table here. Example format below)}
 
-\begin{table}[htpb]
+\begin{table}[ht!]
     \centering
-    \caption{Reflection characteristics and calculated parameters for various loads.}
-    \label{tab:cable_reflections}
-    \begin{tabular}{llllll}
-        \toprule
-        \textbf{Load} & \textbf{$t$ (ns)} & \textbf{$V_{max}$ (V)} & \textbf{$V_{steady}$ (V)} & \textbf{$\rho_0$} & \textbf{$\epsilon_r$} \\
-        \midrule
-        Open & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        Short & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        50 $\Omega$ & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        100 $\Omega$ & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        25 $\Omega$ & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        10 nF & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        1 mH & [Result] & [Result] & [Result] & [Result] & [Result] \\
-        \bottomrule
-    \end{tabular}
-    \begin{flushleft}
-    \textit{Notes: Physical length of RG142 cable $l$ = [Measured Length] m.}
-    \end{flushleft}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Measured} & \textbf{Measured} & \textbf{Calculated} & \textbf{Calculated} \\
+        \hline
+        Load $Z_L$ & Time Delay $t$ / ns & Max Voltage $V_{\text{max}}$ / mV & Steady-state Voltage $V_{\text{steady}}$ / mV & Reflection Factor $\rho_0$ & Dielectric Const. $\epsilon_r$ \\
+        \hline
+        Open & 19.6 & 300 & 300 & +1 & [Result] \\
+        \hline
+        Short & 19.6 & 150 & 0 & -1 & [Result] \\
+        \hline
+        50 $\Omega$ & 19.5 & 150 & 150 & 0 & [Result] \\
+        \hline
+        100 $\Omega$ & 19.5 & 200 & 200 & 0.33 & [Result] \\
+        \hline
+        25 $\Omega$ & 19.5 & 150 & 100 & -0.33 & [Result] \\
+        \hline
+        100 pF & 19.7 & 300 & 300 & $\rightarrow$ +1 (transient) & [Result] \\
+        \hline
+        1 nH & 21.3 & 300 & 0 & $\rightarrow$ -1 (transient) & [Result] \\
+        \hline
+    \end{tabular}%
+    }
+    \caption{\centering Reflection characteristics and calculated parameters for various loads. Notes: Physical length of RG142 cable $l$ = [Insert Measured Length here] m. Characteristic impedance $Z_w = 50\ \Omega$. Voltage values represent the raw oscilloscope readings measured via the 1:21 voltage divider (incident wave $V_{\text{inc}} \approx 150$ mV). For reactive loads, $\rho_0$ denotes the final steady-state reflection factor.}
+    \label{tab:reflections_different_loads}
 \end{table}
 
 \subsubsection{Curves \& diagrams}
-\textit{(Placeholder: Insert oscilloscope plots for each of the 7 loads tested. Ensure trace averaging is used, and the time delay between reflection minima is clearly shown using cursors).}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_open.png}
+    \caption{Transient voltage curve for an open-ended transmission line.}
+    \label{fig:refl_open}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_short.png}
+    \caption{Transient voltage curve for a short-circuited transmission line.}
+    \label{fig:refl_short}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_50ohm.png}
+    \caption{Transient voltage curve for a matched 50 $\Omega$ load.}
+    \label{fig:refl_50ohm}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_100ohm.png}
+    \caption{Transient voltage curve for a 100 $\Omega$ load.}
+    \label{fig:refl_100ohm}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_25ohm.png}
+    \caption{Transient voltage curve for a 25 $\Omega$ load.}
+    \label{fig:refl_25ohm}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_100pF_cap.png}
+    \caption{Transient voltage curve for a 100 pF capacitive load.}
+    \label{fig:refl_100pF_cap}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_1nH_inductor.png}
+    \caption{Transient voltage curve for a 1 nH inductive load.}
+    \label{fig:refl_1nH_inductor}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Short discussion of measurement results}
-\textit{(Placeholder: Analyze the transient responses. Discuss how the different terminations (resistive, capacitive, inductive) affected the reflection coefficient and the steady-state voltage. Provide error estimation for the calculated dielectric constant).}
+
+The measured transient responses align exceptionally well with transmission line theory. The incident voltage step ($V_{\text{inc}}$) was visually evaluated at approximately 150 mV on the oscilloscope (representing a 3.15 V line voltage prior to the 1:21 divider). For the open circuit, the reflection factor is +1, resulting in a positive reflection that effectively doubled the incident voltage to a maximum of 300 mV. Conversely, the short circuit yielded a reflection factor of -1, causing a negative reflection that canceled the voltage at the load, dropping it back to 0 mV. The 50 $\Omega$ termination demonstrated a matched condition where $\rho_0 = 0$, meaning no backward wave was generated and the voltage remained constant at 150 mV. The 100 $\Omega$ and 25 $\Omega$ loads behaved as expected, showing partial positive (+50 mV) and partial negative (-50 mV) reflections, reaching steady states of 200 mV and 100 mV respectively.
+
+For the reactive loads, it must be noted that the laboratory guidelines specified a 10 nF capacitor and a 1 mH inductor, but the available laboratory components utilized for the measurement were a 100 pF capacitor and a 1 nH inductor. Despite this deviation, the characteristic transient behaviors are clearly visible: the capacitor initially acted as a short circuit before charging up towards an open circuit steady-state ($\rho_0 \rightarrow +1$), while the inductor initially resisted the current change (acting as an open circuit with a positive 300 mV peak) before settling into a short circuit steady-state ($\rho_0 \rightarrow -1$).
+
+The time delay across the purely resistive and open/short loads was highly consistent, averaging approximately 19.55 ns. The minor variance in the time delay measurement for the 1 nH inductor ($\Delta X = 21.3$ ns) is attributed to the difficulty of manually placing cursors on the rounded, transient slope of the inductive response compared to a sharp resistive edge. The primary source of error for the calculated relative dielectric constant ($\epsilon_r$) stems from the horizontal cursor resolution of the oscilloscope (10.0 ns/div timebase), the visual estimation of the voltage levels from the 50.0 mV/div vertical scale, and the physical measurement tolerance of the cable length.
 
 \subsection{Measurement C: Determine cable length}
 
 \subsubsection{Task Description}
-The goal is to determine the unknown physical length of a provided RG58 coaxial cable. This is achieved using Time Domain Reflectometry by measuring the propagation delay of a reflection and utilizing the relative dielectric constant ($\epsilon_r$) determined in Measurement B.
+The goal is to determine the unknown physical length of a provided RG58 coaxial cable. This is achieved using Time Domain Reflectometry by measuring the propagation delay of a reflection and utilizing the relative dielectric constant ($\epsilon_r$) determined in Measurement B, as instructed by the laboratory manual.
 
 \subsubsection{Schematic}
-The measurement setup is the same as the previous reflectometry setups, but the standard RG142 cable is replaced with the RG58 coaxial cable of unknown length. The end of the cable is left open or shorted to ensure a strong reflection can be measured.
+The measurement setup is identical to Measurement B, but the standard RG142 cable is replaced with the RG58 coaxial cable of unknown length. The end of the cable is left open to ensure a strong, positive voltage reflection can be measured.
 
-\textit{(Placeholder: Insert a brief schematic or block diagram showing the line driver connected to the "Unknown Length RG58 Cable").}
+\textit{(Note: Insert a brief schematic or block diagram here showing the line driver connected to the "Unknown Length RG58 Cable").}
 
 \subsubsection{Formulas and Calculations}
-Using the time delay $t$ measured from the oscilloscope and the phase velocity $v_p$ (derived from the $\epsilon_r$ calculated in Measurement B), the unknown length $l$ of the cable can be calculated by rearranging the delay formula:
+Using the time delay $t$ measured from the oscilloscope and the phase velocity $v_p$ (derived from the $\epsilon_r$ calculated in Measurement B), the unknown length $l$ of the cable can be calculated by rearranging the time delay formula:
 
 \begin{equation}
     l = \frac{v_p \cdot t}{2} = \frac{c \cdot t}{2\sqrt{\epsilon_r}}
 \end{equation}
 
 \subsubsection{Table(s) with measurement results}
-\textit{(Placeholder: Insert table here. Example format below)}
 
-\begin{table}[htpb]
+\begin{table}[ht!]
     \centering
-    \caption{Determination of the unknown RG58 cable length.}
-    \label{tab:cable_length}
-    \begin{tabular}{lll}
-        \toprule
-        \textbf{Assumed $\epsilon_r$} & \textbf{Time Delay $t$ (ns)} & \textbf{Calculated Length $l$ (m)} \\
-        \midrule
-        {Value from B} & {Result} & {Result} \\
-        \bottomrule
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
+        \hline
+        Assumed $\epsilon_r$ & Time Delay $t$ / ns & Calculated Length $l$ / m \\
+        \hline
+        [Insert $\epsilon_r$ from Table 2.2] & 12.0 & [Result] \\
+        \hline
     \end{tabular}
+    \caption{\centering Determination of the unknown RG58 cable length. Notes: The relative dielectric constant $\epsilon_r$ is adopted from the RG142 measurement as per lab instructions.}
+    \label{tab:rg58_length}
 \end{table}
 
 \subsubsection{Curves \& diagrams}
-\textit{(Placeholder: Insert the oscilloscope plot showing the incident and reflected wave used to measure the time delay for the unknown RG58 cable).}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_cable_len.png}
+    \caption{Transient voltage curve showing the time delay measurement for the unknown RG58 coaxial cable.}
+    \label{fig:refl_cable_len}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Short discussion of measurement results}
-\textit{(Placeholder: Discuss the calculated length. Estimate the uncertainty in the measurement based on the cursor resolution of the oscilloscope and the potential error carried over from the $\epsilon_r$ calculated in Measurement B).}
+
+A clear positive reflection was captured, indicating the unknown RG58 cable was left open at its far end. The round-trip time delay was measured at 12.0 ns using the oscilloscope cursors. The accuracy of the calculated physical length is heavily dependent on the validity of the relative dielectric constant ($\epsilon_r$) derived in Measurement B.
+
+A systematic error is inherently introduced by the laboratory manual's instruction to use the $\epsilon_r$ from Measurement B. Measurement B utilized an RG142 cable, which typically employs a PTFE dielectric ($\epsilon_r \approx 2.1$). However, standard RG58 cables utilize a solid polyethylene dielectric, which has a nominal relative permittivity of $\epsilon_r = 2.26$. Applying the lower dielectric constant of the RG142 cable results in a slightly overestimated phase velocity, which consequently leads to an overestimation of the RG58 cable's physical length. Additional measurement uncertainty is contributed by the 10.0 ns/div horizontal timebase setting of the oscilloscope, which limits the precision of the manual cursor placement to approximately $\pm$0.1 ns.
