@@ -28,22 +28,22 @@ The schematic above shows the four main components used in this measurement setu
 	\setlength{\itemsep}{0pt}
 	\setlength{\parskip}{0pt}
 	\item The RF signal generator\cite{RF_SG}, which provides the excitation signal.
-	\item The spectrum analyzer\cite{CXA_SA} with the movable E-field probe.
+	\item The spectrum analyzer\cite{CXA_SA} with a movable E-field probe.
 	\item The coaxial transmission line which is traced by the probe.
-	\item The load at the end of the line can be replaced by any of the six terminations described earlier.
+	\item The load at the end of the line; this can be replaced by any of the six terminations described earlier.
 \end{itemize}
 
 \newpage
 \subsection{Formulas and calculations}
-\textbf{1. Calculation of the wave velocity:} \\
+\subsubsection{\textbf{Calculation of the wave velocity:}}
 The following formula \ref{eq:1_CO} is used to calculate the wave velocity$v$. \\
 \begin{gather}
-	v = f \cdot \lambda \label{eq:1_CO}
+	v = f \cdot \lambda 							\label{eq:1_CO}
 \end{gather}
 $f$ (frequency) = 310MHz\\
 $\lambda$ (wavelength) = $2 \cdot \Delta d $\\
 
-The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from correlating the chart \ref{fig:chart3}, and the tables \ref{tab:power_plots_1} \& \ref{tab:power_plots_2}) is:
+The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from correlating the chart \ref{fig:chart1}, and the tables \ref{tab:power_plots_1} \& \ref{tab:power_plots_2}) is:
 \begin{itemize}
 	\setlength{\itemsep}{0pt}
 	\setlength{\parskip}{0pt}
@@ -52,51 +52,133 @@ The term $\Delta d$ is given by the difference between the points of two adjacen
 	\item Capacitive load: 48.5cm
 \end{itemize} 
 
-Averaging these values to minimize tiny individual measurement errors, we obtain $\Delta d$ = 48.33cm.\\
+Averaging these values to minimize tiny individual measurement errors, obtained $\Delta d$ = 48.33cm.\\
 
 Inferred wavelength: This measured value for wavelength is obtained using the formula \ref{eq:4_CO} : 
 \begin{gather}
-	\lambda = 2 \cdot \Delta d \label{eq:4_CO} \\
+	\lambda = 2 \cdot \Delta d 						\label{eq:4_CO} \\
 	\lambda = 96.667cm
 \end{gather}
 
 Hence, \\
 Wave velocity (in m/s) is:
 \begin{gather}
-	v = 310 \times 10^6 \cdot 0.96451 			\nonumber \\
-	v = 2.9966 \times 10^8						\label{eq:3_CO}
+	v = 310 \times 10^6 \cdot 0.96451 				\nonumber \\
+	v = 2.9966 \times 10^8							\label{eq:3_CO}
 \end{gather}
 
-\textbf{2. Calculation of the VSWR:} \\
-The following formula (\ref{eq:1_CO}) is used to calculate the VSWR. \\
+\subsubsection{\textbf{Calculation of the Voltage Standing Wave Ratio (VSWR) and reflection coefficient metrics:}}
+
+Equation~\ref{eq:vswr_voltage} gives the definition of VSWR. Since the spectrum analyzer provides power values, VSWR can also be expressed in terms of the measured power ratio:
+\begin{gather}
+	\mathrm{VSWR} = \frac{V_{\max}}{V_{\min}} \label{eq:vswr_voltage} \\
+	\mathrm{VSWR} = \sqrt{\frac{P_{\max}}{P_{\min}}} \nonumber
+\end{gather}
+
+Since $P_{\max}$ and $P_{\min}$ must be in linear units, the measured values in dBm are converted using:
+\begin{gather}
+	\frac{P_{\max}}{P_{\min}} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{10}} \nonumber
+\end{gather}
+
+Finally, VSWR for each termination is calculated as:
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}} \label{eq:vswr_power}
+\end{gather}
+
+Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR, and subsequently the magnitude of it's reflection coefficient (using the relation~\ref{eq:rho_mag}), is made possible:
+\begin{gather}
+	|\mathrm{\underline{\rho_0}}| = \frac{\mathrm{VSWR}-1}{\mathrm{VSWR}+1} \label{eq:rho_mag} \\
+	\angle \rho = \text{from the position of the minima on the line} \label{eq:rho_phase}
+\end{gather}
+
+\subitem{\textbf{VSWR for Open load:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-17.0 - (-73.0)}{20}}
+	= 10^{\frac{56.0}{20}}
+	= 10^{2.8}
+	\approx 630.96 \label{eq:vswr_open}\\
+	|\rho| = \frac{629.96}{631.96}
+	\approx 0.997 \label{eq:mag_open}
+\end{gather}
+
+\subitem{\textbf{VSWR for Short:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-18.7 - (-64.0)}{20}}
+	= 10^{\frac{45.3}{20}}
+	= 10^{2.265}
+	\approx 184.29 \label{eq:vswr_short} \\
+	|\rho| = \frac{183.29}{185.29}
+	\approx 0.989 \label{eq:mag_short}
+\end{gather}
+
+\subitem{\textbf{VSWR for 100$\Omega$ load:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-20.8 - (-27.3)}{20}}
+	= 10^{\frac{6.5}{20}}
+	= 10^{0.325}
+	\approx 2.11 \label{eq:vswr_100} \\
+	|\rho| = \frac{1.11}{3.11}
+	\approx 0.357 \label{eq:mag_100}
+\end{gather}
+
+\subitem{\textbf{VSWR for 25$\Omega$ load:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-18.0 - (-28.7)}{20}}
+	= 10^{\frac{10.7}{20}}
+	= 10^{0.535}
+	\approx 3.43 \label{eq:vswr_25} \\
+	|\rho| = \frac{2.43}{4.43}
+	\approx 0.549 \label{eq:mag_25}
+\end{gather}
+
+\subitem{\textbf{VSWR for 50$\Omega$ load:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-22.9 - (-24.0)}{20}}
+	= 10^{\frac{1.1}{20}}
+	= 10^{0.055}
+	\approx 1.13 \label{eq:vswr_50} \\
+	|\rho| = \frac{0.13}{2.13}
+	\approx 0.061 \label{eq:mag_50}
+\end{gather}
+
+\subitem{\textbf{VSWR for Capacitive load:}}
+\begin{gather}
+	\mathrm{VSWR} = 10^{\frac{-18.3 - (-53.8)}{20}}
+	= 10^{\frac{35.5}{20}}
+	= 10^{1.775}
+	\approx 59.57 \label{eq:vswr_cap} \\
+	|\rho| = \frac{58.57}{60.57}
+	\approx 0.967 \label{eq:mag_cap}
+\end{gather}
 
 \subsection{Table with measurement results}
 Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
 
 \newpage
 \subsection{Simulation curves and diagrams} 
-Figures~\ref{fig:chart4} shows the spectrum analyzer output after being connected to the RF signal generator, and setting of center, span, magnitude, sweep time, and residual bandwidth. 
+Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[page=4,width=0.8\linewidth]{src/diagrams/RF_1/Screen1}
+	\includegraphics[page=4,width=0.7\linewidth]{src/diagrams/RF_1/Screen1}
 	\caption{\centering Spectrum analyzer output on proper setting of required parameters.}
 	\label{fig:screen1}
 \end{figure}
 
-Illustrated in Figures~\ref{fig:chart1} and~\ref{fig:chart2} are the measured location dependent signal power values obtained with the RF signal analyzer for different termination loads, along the coaxial transmission line. The measurements were taken over a distance range from 35.0cm to 167.0cm, measured from the termination load. 
+Illustrated in Figure~\ref{fig:chart1} is the measured location-dependent signal power values obtained along the coaxial transmission line with the RF Spectrum Analyzer for termination loads: Open, Short and 100$\Omega$ loads. \\The measurements were taken over a range of 35.0cm to 167.0cm, measured from the termination load.
 \begin{figure}[ht!]
     \centering
-    \includegraphics[page=4,width=0.8\linewidth]{src/diagrams/RF_1/Chart_1}
+    \includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_1}
     \caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
     \label{fig:chart1}
 \end{figure}
+\\Similar to \ref{fig:chart1}, illustrated in Figure~\ref{fig:chart2} is the measured location-dependent signal power values obtained along the coaxial transmission line with the RF Spectrum Analyzer for termination loads: 25$\Omega$, 50$\Omega$ and purely capacitive loads.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[page=4,width=0.9\linewidth]{src/diagrams/RF_1/Chart_2}
+	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_2}
 	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
 	\label{fig:chart2}
 \end{figure}
-\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix~\ref{fig:chart3}
+\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix Figure~\ref{fig:chart3}
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
