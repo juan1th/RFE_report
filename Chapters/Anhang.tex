@@ -82,12 +82,61 @@ The following figure~\ref{fig:chart3} shows the resultant plot of the measured s
 	\label{fig:chart3}
 \end{figure}
 
-
-
-\subsection{Measurement data for the ADC-Driver and anti-aliasing filter}
-The following table shows the frequency response of the ADC-Driver and anti-aliasing filter.
-\input{src/assets/tabel/Messermunt_2}
 \newpage
+\subsection{Code snippets used for calculations}
+
+\lstdefinestyle{mystyle}{
+	basicstyle=\ttfamily\small,
+	breaklines=true,
+	columns=fullflexible
+}
+
+\begin{lstlisting}[style=mystyle, language=Python, label={lst:vswr-code}]
+import math
+
+def calculate_vswr_from_dbm(p_max_dbm, p_min_dbm):
+return 10 ** ((p_max_dbm - p_min_dbm) / 20.0)
+
+def calculate_gamma_magnitude(vswr):
+return (vswr - 1) / (vswr + 1)
+
+def calculate_phase_deg(z_min, wavelength, n=0):
+return 180.0 - 720.0 * (z_min / wavelength) - 360.0 * n
+
+def normalize_angle_deg(angle):
+while angle <= -180:
+angle += 360
+while angle > 180:
+angle -= 360
+return angle
+
+p_max_dbm = float(input("Enter maximum power (dBm): "))
+p_min_dbm = float(input("Enter minimum power (dBm): "))
+
+vswr = calculate_vswr_from_dbm(p_max_dbm, p_min_dbm)
+gamma_mag = calculate_gamma_magnitude(vswr)
+
+print(f"\nVSWR = {vswr:.4f}")
+print(f"|Gamma| = {gamma_mag:.4f}")
+
+
+wavelength = 96.667 # in cm
+z_min = float(input("Enter distance from load to the minimum z_min: "))
+n = 0
+
+phase_deg = calculate_phase_deg(z_min, wavelength, n)
+phase_deg_norm = normalize_angle_deg(phase_deg)
+
+print(f"\nPhase of Gamma = {phase_deg:.4f} degrees")
+print(f"Normalized phase = {phase_deg_norm:.4f} degrees")
+
+phase_rad = math.radians(phase_deg_norm)
+gamma_real = gamma_mag * math.cos(phase_rad)
+gamma_imag = gamma_mag * math.sin(phase_rad)
+
+print(f"Gamma = {gamma_real:.4f} + j{gamma_imag:.4f}")
+\end{lstlisting}
+
 \subsection{Measurement data for the switched capacitor filter}
 Table ~\ref{tab:Messermunt_4} show the magnitude response of the filter at 1MHz. The phase values were observed shifting around 0 in minimal quantities and hence this measurement has been excluded. 
 \input{src/assets/tabel/Messermunt_4}

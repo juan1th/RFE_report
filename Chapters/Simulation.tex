@@ -67,7 +67,7 @@ Wave velocity (in m/s) is:
 	v = 2.9966 \times 10^8							\label{eq:3_CO}
 \end{gather}
 
-\subsubsection{\textbf{Calculation of the Voltage Standing Wave Ratio (VSWR) and reflection coefficient metrics:}}
+\subsubsection{\textbf{Calculation of the voltage standing wave ratio and reflection coefficient magnitude:}}
 
 Equation~\ref{eq:vswr_voltage} gives the definition of VSWR. Since the spectrum analyzer provides power values, VSWR can also be expressed in terms of the measured power ratio:
 \begin{gather}
@@ -80,82 +80,113 @@ Since $P_{\max}$ and $P_{\min}$ must be in linear units, the measured values in 
 	\frac{P_{\max}}{P_{\min}} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{10}} \nonumber
 \end{gather}
 
-Finally, VSWR for each termination is calculated as:
+Finally, VSWR for each termination is obtained by computing the square root of this term as:
 \begin{gather}
 	\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}} \label{eq:vswr_power}
 \end{gather}
 
-Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR, and subsequently the magnitude of it's reflection coefficient (using the relation~\ref{eq:rho_mag}), is made possible:
+Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR (using the relation~\ref{eq:vswr_power}), and subsequently the magnitude of it's reflection coefficient ($|\mathrm{\underline{\rho_0}}|$) (using the relation below), is made possible:
 \begin{gather}
 	|\mathrm{\underline{\rho_0}}| = \frac{\mathrm{VSWR}-1}{\mathrm{VSWR}+1} \label{eq:rho_mag} \\
 	\angle \rho = \text{from the position of the minima on the line} \label{eq:rho_phase}
 \end{gather}
 
-\subitem{\textbf{VSWR for Open load:}}
+\subitem{\textbf{For Open load:}}
 \begin{gather}
 	\mathrm{VSWR} = 10^{\frac{-17.0 - (-73.0)}{20}}
 	= 10^{\frac{56.0}{20}}
 	= 10^{2.8}
 	\approx 630.96 \label{eq:vswr_open}\\
-	|\rho| = \frac{629.96}{631.96}
+	|\mathrm{\underline{\rho_0}}| = \frac{629.96}{631.96}
 	\approx 0.997 \label{eq:mag_open}
 \end{gather}
 
-\subitem{\textbf{VSWR for Short:}}
+\subitem{\textbf{For a Short:}}
 \begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.7 - (-64.0)}{20}}
-	= 10^{\frac{45.3}{20}}
+	\mathrm{VSWR} = 10^{\frac{-18.0 - (-64.0)}{20}}
+	= 10^{\frac{46}{20}}
 	= 10^{2.265}
-	\approx 184.29 \label{eq:vswr_short} \\
-	|\rho| = \frac{183.29}{185.29}
-	\approx 0.989 \label{eq:mag_short}
+	\approx 199.52 \label{eq:vswr_short} \\
+	|\mathrm{\underline{\rho_0}}| = \frac{198.52}{200.52}
+	\approx 0.99 \label{eq:mag_short}
 \end{gather}
 
-\subitem{\textbf{VSWR for 100$\Omega$ load:}}
+\subitem{\textbf{For 100$\Omega$ load:}}
 \begin{gather}
 	\mathrm{VSWR} = 10^{\frac{-20.8 - (-27.3)}{20}}
 	= 10^{\frac{6.5}{20}}
 	= 10^{0.325}
 	\approx 2.11 \label{eq:vswr_100} \\
-	|\rho| = \frac{1.11}{3.11}
+	|\mathrm{\underline{\rho_0}}| = \frac{1.11}{3.11}
 	\approx 0.357 \label{eq:mag_100}
 \end{gather}
 
-\subitem{\textbf{VSWR for 25$\Omega$ load:}}
+\subitem{\textbf{For 25$\Omega$ load:}}
 \begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.0 - (-28.7)}{20}}
-	= 10^{\frac{10.7}{20}}
-	= 10^{0.535}
-	\approx 3.43 \label{eq:vswr_25} \\
-	|\rho| = \frac{2.43}{4.43}
-	\approx 0.549 \label{eq:mag_25}
+	\mathrm{VSWR} = 10^{\frac{-20.6 - (-28.7)}{20}}
+	= 10^{\frac{8.1}{20}}
+	= 10^{0.395}
+	\approx 2.54 \label{eq:vswr_25} \\
+	|\mathrm{\underline{\rho_0}}| = \frac{1.54}{3.54}
+	\approx 0.435 \label{eq:mag_25}
 \end{gather}
 
-\subitem{\textbf{VSWR for 50$\Omega$ load:}}
+\subitem{\textbf{For 50$\Omega$ load:}}
 \begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-22.9 - (-24.0)}{20}}
-	= 10^{\frac{1.1}{20}}
-	= 10^{0.055}
-	\approx 1.13 \label{eq:vswr_50} \\
-	|\rho| = \frac{0.13}{2.13}
-	\approx 0.061 \label{eq:mag_50}
+	\mathrm{VSWR} = 10^{\frac{-22.9 - (-24.4)}{20}}
+	= 10^{\frac{1.5}{20}}
+	= 10^{0.075}
+	\approx 1.19 \label{eq:vswr_50} \\
+	|\mathrm{\underline{\rho_0}}| = \frac{0.19}{2.19}
+	\approx 0.086	 \label{eq:mag_50}
 \end{gather}
 
-\subitem{\textbf{VSWR for Capacitive load:}}
+\subitem{\textbf{For Capacitive load:}}
 \begin{gather}
 	\mathrm{VSWR} = 10^{\frac{-18.3 - (-53.8)}{20}}
 	= 10^{\frac{35.5}{20}}
 	= 10^{1.775}
 	\approx 59.57 \label{eq:vswr_cap} \\
-	|\rho| = \frac{58.57}{60.57}
+	|\mathrm{\underline{\rho_0}}| = \frac{58.57}{60.57}
 	\approx 0.967 \label{eq:mag_cap}
 \end{gather}
 
-\subsection{Table with measurement results}
-Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
+\subsubsection{\textbf{Calculation of the reflection coefficient phase, and load impedances:}}
+In order to obtain the angle of the reflection coefficient ($\delta_0$), one must use the following relation\cite{script} as laid out in the lab script: 
+\begin{gather}
+	\delta_0 = (2n+1)\pi - 2\beta \mathrm{z_{min}} 		\label{eq:phase_refl} \\
+	\mathrm{where, \quad}\beta = \frac{2\pi}{\lambda} 	\nonumber
+\end{gather}
 
 \newpage
-\subsection{Simulation curves and diagrams} 
+Simplifying equation~\ref{eq:phase_refl}:
+\begin{gather}
+	\delta_0 = (2\cdot0+1)\pi - 2\beta \mathrm{z_{min}} 	\nonumber \\
+	\delta_0 = \pi - 2 \cdot \frac{2\pi}{\lambda} \cdot \mathrm{z_{min}} \nonumber \\
+	\delta_0 = \pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda} \label{eq:phase_refl_simplified}
+\end{gather}
+
+For the load impedances ($Z_L$), one can use the following formula\cite{script}:
+\begin{gather}
+	\mathrm{\underline{\rho_0}} = \frac{Z_L - Z_0}{Z_L + Z_0} 	\nonumber \\[4pt]
+	\mathrm{\underline{\rho_0}} (Z_L + Z_0) = Z_L - Z_0 	\nonumber \\[4pt]
+	Z_L = Z_0 \frac{1+\mathrm{\underline{\rho_0}}}{1-\mathrm{\underline{\rho_0}}} 	\label{eq:load_imp}\\
+	\mathrm{where, \quad}\mathrm{\underline{\rho_0}} = |\mathrm{\underline{\rho_0}}|\cdot e^{j\delta_0} 	\nonumber
+\end{gather}
+
+Using the tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the distance from the load to the position corresponding to the $0^{th}$ minima is obtained and used in the equation~\ref{eq:phase_refl_simplified} to obtain the angle of the reflection coefficient, and equation~\ref{eq:load_imp} is used for the load impedance calculation.
+\vspace{2mm}
+
+The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
+
+\subsection{Table with measurement results}
+Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
+\vspace{3mm}
+\\The following table~\ref{tab:refl_phase_n_load} shows calculated phase of the reflection coefficients for all 6 loads as well as their corresponding load impedances:
+\input{src/assets/tabel/refl_phase_load}
+
+\newpage
+\subsection{Measurement curve and diagrams} 
 Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth.
 \begin{figure}[ht!]
 	\centering
@@ -178,7 +209,18 @@ Illustrated in Figure~\ref{fig:chart1} is the measured location-dependent signal
 	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
 	\label{fig:chart2}
 \end{figure}
-\\A consolidated figure with all 6 measurements curves on the same chart is present in the appendix Figure~\ref{fig:chart3}
+\\A consolidated figure~\ref{fig:chart3} with all 6 measurements curves on the same chart is present in the appendix. \\
+Illustrated in Figure~\ref{fig:chart_voltages} is the calculated location-dependent voltage values along the coaxial transmission line.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_voltages}
+	\caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
+	\label{fig:chart_voltages}
+\end{figure}
+
+\subsection{Homework}
+\subsubsection{Calculation of location-dependent voltages}
+
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
