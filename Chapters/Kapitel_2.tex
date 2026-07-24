@@ -15,26 +15,27 @@ The task is to calibrate the network analyser (transmission and reflection for a
 \begin{table}[htpb]
     \centering
     \label{tab:measured_sparams}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & S-Parameters / dB & Filter Type \& Characteristic \\
-        \midrule
+        \hline
+        \textbf{Frequency / Hz} & \textbf{S-Parameters / dB} & \textbf{Filter Type \& Characteristic} \\
+        \hline
         2.025 GHz & $S_{11}$: -0.2646 dB & Lowpass Filter (SLP-100) \\
                   & $S_{21}$: -56.1171 dB & \\
                   & $S_{12}$: -53.6925 dB & \\
                   & $S_{22}$: -0.2646 dB & \\
-        \midrule
+        \hline
         2.025 GHz & $S_{11}$: -26.9644 dB & Highpass Filter (SHP-100) \\
                   & $S_{21}$: -0.2971 dB & \\
                   & $S_{12}$: -0.3061 dB & \\
                   & $S_{22}$: -26.1382 dB & \\
-        \midrule
+        \hline
         2.025 GHz & $S_{11}$: -2.0490 dB & Bandpass Filter (SIF-70) \\
                   & $S_{21}$: -13.3333 dB & \\
                   & $S_{12}$: -13.3577 dB & \\
                   & $S_{22}$: -4.1921 dB & \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measured 2-port S-parameters for the coaxial filters at marker frequency (2.025 GHz)}
 \end{table}
@@ -120,17 +121,22 @@ The Voltage Standing Wave Ratio (VSWR) is calculated from the measured $S_{11}$ 
 \begin{table}[htpb]
     \centering
     \label{tab:microstrip_vswr}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & $S_{11}$ / dB & VSWR \\
-        \midrule
+        \hline
+        \textbf{Frequency / Hz} & \textbf{$S_{11}$ / dB} & \textbf{VSWR} \\
+        \hline
         2.025 GHz & Line 1 (Green Trace): -24.2573 dB & 1.13 \\
+        \hline
         2.025 GHz & Line 2 (Cyan Trace): -16.9885 dB & 1.33 \\
+        \hline
         2.025 GHz & Line 3 (Orange Trace): -23.9754 dB & 1.13 \\
+        \hline
         2.025 GHz & Line 4 (Red Trace): -14.3692 dB & 1.47 \\
+        \hline
         2.025 GHz & Line 5 (Yellow Trace): -20.9835 dB & 1.20 \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measured reflection coefficients and calculated VSWR for the microstrip lines at marker M1 (2.025 GHz)}
 \end{table}
@@ -190,29 +196,30 @@ Network analysers display the measured transmission and reflection coefficients 
 \begin{table}[htpb]
     \centering
     \label{tab:circulator_results}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & S-Parameters / dB & Linear Magnitude $|S_{\text{linear}}|$ \\
-        \midrule
-        901.327 MHz & \textbf{Bigger Circulator (Forward Transmission)} & \\
+        \hline
+        \textbf{Frequency / Hz} & \textbf{S-Parameters / dB} & \textbf{Linear Magnitude $|S_{\text{linear}}|$} \\
+        \hline
+        901.327 MHz & Bigger Circulator (Forward Transmission) & \\
                     & $S_{21}$: -0.1956 dB & $|S_{21}|$: 0.9777 \\
                     & $S_{32}$: -0.1992 dB & $|S_{32}|$: 0.9773 \\
                     & $S_{13}$: -0.1919 dB & $|S_{13}|$ : 0.9781 \\
-        \midrule
-        901.327 MHz & \textbf{Bigger Circulator (Reflection \& Isolation)} & \\
+        \hline
+        901.327 MHz & Bigger Circulator (Reflection \& Isolation) & \\
                     & $S_{11}$: -35.9381 dB, $S_{22}$: -32.7119 dB, $S_{33}$: -38.2485 dB & $|S_{11}|$: 0.0160, $|S_{22}|$: 0.0231, $|S_{33}|$: 0.0122 \\
                     & $S_{12}$: -32.7563 dB, $S_{23}$: -33.7612 dB, $S_{31}$: -30.5914 dB & $|S_{12}|$: 0.0230, $|S_{23}|$: 0.0205, $|S_{31}|$: 0.0295 \\
-        \midrule
-        2.436 GHz   & \textbf{Small Circulator (Forward Transmission)} & \\
+        \hline
+        2.436 GHz   & Small Circulator (Forward Transmission) & \\
                     & $S_{21}$: -0.1491 dB & $|S_{21}|$: 0.9830 \\
                     & $S_{32}$: -0.1557 dB & $|S_{32}|$: 0.9822 \\
                     & $S_{13}$: -0.1704 dB & $|S_{13}|$: 0.9806 \\
-        \midrule
-        2.436 GHz   & \textbf{Small Circulator (Reflection \& Isolation)} & \\
+        \hline
+        2.436 GHz   & Small Circulator (Reflection \& Isolation) & \\
                     & $S_{11}$: -46.7460 dB, $S_{22}$: -36.3968 dB, $S_{33}$: -31.3121 dB & $|S_{11}|$: 0.0046, $|S_{22}|$: 0.0151, $|S_{33}|$: 0.0272 \\
                     & $S_{12}$: -37.0203 dB, $S_{23}$: -40.5446 dB, $S_{31}$: -35.8733 dB & $|S_{12}|$: 0.0141, $|S_{23}|$: 0.0094, $|S_{31}|$: 0.0161 \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measured S-parameters and calculated linear magnitudes for the two circulators at their optimal frequencies}
 \end{table}
@@ -290,23 +297,24 @@ To directly compare the measured decibel results with the ideal linear voltage r
 \begin{table}[htpb]
     \centering
     \label{tab:power_divider_results}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & S-Parameters / dB & Linear Magnitude $|S_{\text{linear}}|$ \\
-        \midrule
-        2.109886 GHz & \textbf{Reflection Coefficients} & \\
+        \hline
+        \textbf{Frequency / Hz} & \textbf{S-Parameters / dB} & \textbf{Linear Magnitude $|S_{\text{linear}}|$} \\
+        \hline
+        2.109886 GHz & Reflection Coefficients & \\
                      & $S_{11}$: -33.2039 dB & $|S_{11}|$ : 0.0219 \\
                      & $S_{22}$: -36.1822 dB & $|S_{22}|$: 0.0155 \\
                      & $S_{33}$: -37.5277 dB & $|S_{33}|$: 0.0133 \\
-        \midrule
-        2.109886 GHz & \textbf{Transmission Coefficients} & \\
+        \hline
+        2.109886 GHz & Transmission Coefficients & \\
                      & $S_{21}$: -6.0411 dB, $S_{12}$: -6.0452 dB & $|S_{21}|$: 0.4988, $|S_{12}|$: 0.4986 \\
                      & $S_{31}$: -6.0823 dB, $S_{13}$: -6.0846 dB & $|S_{31}|$: 0.4965, $|S_{13}|$: 0.4963 \\
-        \midrule
-        2.109886 GHz & \textbf{Isolation Coefficients} & \\
+        \hline
+        2.109886 GHz & Isolation Coefficients & \\
                      & $S_{23}$: -6.0447 dB, $S_{32}$: -6.0488 dB & $|S_{23}|$: 0.4986, $|S_{32}|$: 0.4984 \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measured S-parameters of the 3-port resistive power divider at marker frequency (2.109 GHz)}
 \end{table}
@@ -370,19 +378,20 @@ To assess the matching quality, the Voltage Standing Wave Ratio (VSWR) is calcul
 \begin{table}[htpb]
     \centering
     \label{tab:antenna_results}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & Reflection Coefficient $S_{11}$ / dB & Impedance $Z_L$ / $\Omega$ and VSWR \\
-        \midrule
-        3.049430 GHz & \textbf{Antenna 1 (Corrected)} & \\
+        \hline
+        \textbf{Frequency / Hz} & \textbf{Reflection Coefficient $S_{11}$ / dB} & \textbf{Impedance $Z_L$ / $\Omega$ and VSWR} \\
+        \hline
+        3.049430 GHz & Antenna 1 (Corrected) & \\
                      & $S_{11}$: -9.6100 dB & $Z_L$: 38.34 $\Omega$ - j28.07 $\Omega$ \\
                      & & VSWR: 1.99 \\
-        \midrule
-        2.512917 GHz & \textbf{Antenna 2 (with Ground Plane)} & \\
+        \hline
+        2.512917 GHz & Antenna 2 (with Ground Plane) & \\
                      & $S_{11}$: -27.2397 dB & $Z_L$: 47.76 $\Omega$ + j3.44 $\Omega$ (at 2.525 GHz) \\
                      & & VSWR: 1.09 \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measured reflection coefficients and calculated VSWR at the resonance frequencies of the antennas}
 \end{table}
@@ -467,21 +476,22 @@ In the Smith chart, the initial normalized impedance $z_A$ is plotted. Moving al
 \begin{table}[htpb]
     \centering
     \label{tab:unmatched_antenna_results}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & Unmatched $\rho_A$ Mag / dB & Unmatched $Z_A$ / $\Omega$ \\
-        \midrule
+        \hline
+        \textbf{Frequency / Hz} & \textbf{Unmatched $\rho_A$ Mag / dB} & \textbf{Unmatched $Z_A$ / $\Omega$} \\
+        \hline
         2.400000 GHz & $S_{11}$: -5.32 dB & $Z_A$: 113.76 $\Omega$ - j73.63 $\Omega$ \\
-        \midrule
-        Frequency / Hz & Unmatched $\rho_A$ Phase / $^\circ$ & Required line length $l_e$ / m \\
-        \midrule
+        \hline
+        \textbf{Frequency / Hz} & \textbf{Unmatched $\rho_A$ Phase / $^\circ$} & \textbf{Required line length $l_e$ / m} \\
+        \hline
         2.400000 GHz & Phase: -24.9$^\circ$ & $l_e$: 0.0483 m (4.83 cm) \\
-        \midrule
-        Frequency / Hz & Matched $S_{11}$ / dB & Required Capacitance $C$ / F \\
-        \midrule
+        \hline
+        \textbf{Frequency / Hz} & \textbf{Matched $S_{11}$ / dB} & \textbf{Required Capacitance $C$ / F} \\
+        \hline
         2.400000 GHz & $S_{11}$: -40.42 dB & $C$: 1.03 pF \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Measurement of the unmatched antenna and calculated matching network parameters}
 \end{table}
@@ -548,17 +558,18 @@ Then, the VSWR is determined:
 \begin{table}[htpb]
     \centering
     \label{tab:slide_screw_results}
-    \begin{tabular}{lll}
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Adjusted} & \textbf{Measured} & \textbf{Calculated} \\
-        Frequency / Hz & $S_{11}$ Magnitude / dB & Calculated VSWR \\
-        \midrule
-        2.400000 GHz & \textbf{Unmatched Antenna} & \\
+        \hline
+        \textbf{Frequency / Hz} & \textbf{$S_{11}$ Magnitude / dB} & \textbf{Calculated VSWR} \\
+        \hline
+        2.400000 GHz & Unmatched Antenna & \\
                      & $S_{11}$: -5.2699 dB & VSWR before: 3.40 \\
-        \midrule
-        2.400000 GHz & \textbf{Matched with Slide-Screw Tuner} & \\
+        \hline
+        2.400000 GHz & Matched with Slide-Screw Tuner & \\
                      & $S_{11}$: -40.4259 dB & VSWR after: 1.02 \\
-        \bottomrule
+        \hline
     \end{tabular}
     \caption{Reflection coefficient of the antenna before and after applying the slide-screw tuner}
 \end{table}
