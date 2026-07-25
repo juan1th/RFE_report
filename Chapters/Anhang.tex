@@ -110,6 +110,37 @@ print(f"\nGamma = {Gamma.real:.6f} + j{Gamma.imag:.6f}")
 print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 \end{lstlisting}
 
+
+\begin{lstlisting}[style=mystyle, language=Python, label={lst:smith-code}]
+	import matplotlib.pyplot as plt
+	import pysmithchart
+	
+	Z0 = 50
+	
+	Z = [
+	1e9 + 0j,   # Open
+	0 + 0j,     # Short
+	100 + 0j,   # 100 ohm
+	25 + 0j,    # 25 ohm
+	50 + 0j,    # 50 ohm
+	0 - 50j     # Capacitive load
+	]
+	
+	labels = ["Open", "Short", "100Ω", "25Ω", "50Ω", "Capacitive"]
+	colors = ["red", "blue", "green", "orange", "purple", "brown"]
+	
+	plt.figure(figsize=(9, 9))
+	ax = plt.subplot(111, projection="smith", Z0=Z0)
+	
+	for z, label, color in zip(Z, labels, colors):
+	ax.plot([z], marker="o", markersize=10, color=color, ls="")
+	ax.text(z, label, color=color)
+	
+	ax.set_title("Smith Chart of 6 Load Impedances")
+	plt.tight_layout()
+	plt.show()
+\end{lstlisting}
+
 \subsection{Measurement data for the switched capacitor filter}
 Table ~\ref{tab:Messermunt_4} show the magnitude response of the filter at 1MHz. The phase values were observed shifting around 0 in minimal quantities and hence this measurement has been excluded. 
 \input{src/assets/tabel/Messermunt_4}

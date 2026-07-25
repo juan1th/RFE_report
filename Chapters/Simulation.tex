@@ -194,16 +194,18 @@ The value of $Z_0$ is 50$\Omega$; the complex reflection coefficient must be com
 Carrying out this computation using Python \ref{lst:load-code}, the values for complex reflection coefficient phase and load impedance for each of the 6 terminations can be represented as: \\
 \input{src/assets/tabel/load_impedances}
 
-\newpage
+The representation of these Load impedance values has been done on a smith chart in  figure \ref{fig:smith_chart1}.
+
 \subsection{Measurement curve and diagrams} 
 Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth. The signal principal frequency is 310MHz and power is 10dBm.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[page=4,width=0.7\linewidth]{src/diagrams/RF_1/Screen1}
+	\includegraphics[page=4,width=0.7\linewidth]{src/diagrams/RF_1/Screen1_inv}
 	\caption{\centering Spectrum analyzer output on proper setting of required parameters.}
 	\label{fig:screen1}
 \end{figure}
 
+\newpage
 Illustrated in Figure~\ref{fig:chart1} is the measured location-dependent signal power values obtained along the coaxial transmission line with the RF Spectrum Analyzer for termination loads: Open, Short and 100$\Omega$ loads. \\The measurements were taken over a range of 35.0cm to 167.0cm, measured from the termination load.
 \begin{figure}[ht!]
     \centering
@@ -218,8 +220,10 @@ Illustrated in Figure~\ref{fig:chart1} is the measured location-dependent signal
 	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
 	\label{fig:chart2}
 \end{figure}
-\\A consolidated figure~\ref{fig:chart3} with all 6 measurements curves on the same chart is present in the appendix. \\
-Illustrated in Figure~\ref{fig:chart_voltages} is the calculated location-dependent voltage values along the coaxial transmission line.
+\\A consolidated figure~\ref{fig:chart3} with all 6 measurements curves on the same chart is present in the appendix. 
+
+\newpage
+Illustrated in figure~\ref{fig:chart_voltages} is the calculated location-dependent voltage values along the coaxial transmission line.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_voltages}
@@ -227,8 +231,29 @@ Illustrated in Figure~\ref{fig:chart_voltages} is the calculated location-depend
 	\label{fig:chart_voltages}
 \end{figure}
 
-\subsection{Homework}
-\subsubsection{Calculation of location-dependent voltages}
+Using the values obtained, a Smith chart was created as can be seen in the below figure~\ref{fig:smith_chart1}. 
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=0.6\linewidth]{src/diagrams/RF_1/smith_chart}
+	\caption{\centering The representation of reflection coefficients for all 6 loads on the Smith chart.}
+	\label{fig:smith_chart1}
+\end{figure}
+
+\newpage
+\subsection{Additional questions}
+\textbf{Q. Is it possible to match all loads with an additional passive impedance matching
+	network, consisting of transmission line and Capacitor?}\\
+A. Analyzing this question from the perspective of individual loads and their ideal effects on a transmission line, stating once again that the line impedance is 50$\Omega$ and the objective is to match each load impedance to this value:
+\begin{itemize}
+	\item \textbf{50$\Omega$ load}: This load is already matched, nothing to do. \textbf{Possible}.
+	\item \textbf{25$\Omega$ and 100$\Omega$ loads}: These are not matched, there are considerable reflections but it is rather simple to match them to the 50$\Omega$ load. \textbf{Possible}.
+	\item \textbf{Open and short loads}: These loads represent extreme cases since for a short, one must compensate for theoretically zero impedance and for an open load, it is theoretically infinite, so matching them is highly challenging when having access to only a simple passive network. However, with great precision and small allowance for reflections, in theory, \textbf{it is possible}.
+	\item \textbf{Capacitive load}: The negative reactance part can be cancelled out using a capacitor and the remaining part can be matched in most cases. \textbf{Possible}.
+\end{itemize} 
+
+\textbf{Q. Calculate an impedance matching network (by using a transmission line + capacitor)
+	for a load given by the supervisor.}\\
+A. Matching the impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
 
 \FloatBarrier
 \subsection{Discussion} 
