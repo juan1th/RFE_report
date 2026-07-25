@@ -91,50 +91,23 @@ The following figure~\ref{fig:chart3} shows the resultant plot of the measured s
 	columns=fullflexible
 }
 
-\begin{lstlisting}[style=mystyle, language=Python, label={lst:vswr-code}]
+\begin{lstlisting}[style=mystyle, language=Python, label={lst:load-code}]
+import cmath
 import math
 
-def calculate_vswr_from_dbm(p_max_dbm, p_min_dbm):
-return 10 ** ((p_max_dbm - p_min_dbm) / 20.0)
+Z0 = 50  # characteristic impedance in ohms
 
-def calculate_gamma_magnitude(vswr):
-return (vswr - 1) / (vswr + 1)
+mag = float(input("Enter reflection coefficient magnitude |Gamma|: "))
+phase_deg = float(input("Enter reflection coefficient phase in degrees: "))
 
-def calculate_phase_deg(z_min, wavelength, n=0):
-return 180.0 - 720.0 * (z_min / wavelength) - 360.0 * n
+phase_rad = math.radians(phase_deg)
 
-def normalize_angle_deg(angle):
-while angle <= -180:
-angle += 360
-while angle > 180:
-angle -= 360
-return angle
+Gamma = mag * cmath.exp(1j * phase_rad)
 
-p_max_dbm = float(input("Enter maximum power (dBm): "))
-p_min_dbm = float(input("Enter minimum power (dBm): "))
+ZL = Z0 * (1 + Gamma) / (1 - Gamma)
 
-vswr = calculate_vswr_from_dbm(p_max_dbm, p_min_dbm)
-gamma_mag = calculate_gamma_magnitude(vswr)
-
-print(f"\nVSWR = {vswr:.4f}")
-print(f"|Gamma| = {gamma_mag:.4f}")
-
-
-wavelength = 96.667 # in cm
-z_min = float(input("Enter distance from load to the minimum z_min: "))
-n = 0
-
-phase_deg = calculate_phase_deg(z_min, wavelength, n)
-phase_deg_norm = normalize_angle_deg(phase_deg)
-
-print(f"\nPhase of Gamma = {phase_deg:.4f} degrees")
-print(f"Normalized phase = {phase_deg_norm:.4f} degrees")
-
-phase_rad = math.radians(phase_deg_norm)
-gamma_real = gamma_mag * math.cos(phase_rad)
-gamma_imag = gamma_mag * math.sin(phase_rad)
-
-print(f"Gamma = {gamma_real:.4f} + j{gamma_imag:.4f}")
+print(f"\nGamma = {Gamma.real:.6f} + j{Gamma.imag:.6f}")
+print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 \end{lstlisting}
 
 \subsection{Measurement data for the switched capacitor filter}

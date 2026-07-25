@@ -174,20 +174,29 @@ For the load impedances ($Z_L$), one can use the following formula\cite{script}:
 	\mathrm{where, \quad}\mathrm{\underline{\rho_0}} = |\mathrm{\underline{\rho_0}}|\cdot e^{j\delta_0} 	\nonumber
 \end{gather}
 
-Using the tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the distance from the load to the position corresponding to the $0^{th}$ minima is obtained and used in the equation~\ref{eq:phase_refl_simplified} to obtain the angle of the reflection coefficient, and equation~\ref{eq:load_imp} is used for the load impedance calculation.
-\vspace{2mm}
+% Using the tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the distance from the load to the position corresponding to the $0^{th}$ minima is obtained and used in the equation~\ref{eq:phase_refl_simplified} to obtain the angle of the reflection coefficient, and equation~\ref{eq:load_imp} is used for the load impedance calculation.
 
-The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
+% The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
 
 \subsection{Table with measurement results}
 Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
 \vspace{3mm}
-\\The following table~\ref{tab:refl_phase_n_load} shows calculated phase of the reflection coefficients for all 6 loads as well as their corresponding load impedances:
-\input{src/assets/tabel/refl_phase_load}
+\\The following table~\ref{tab:minimas} shows all the minima points on each of the 6 termination loads:
+\input{src/assets/tabel/minimas}
+%\input{src/assets/tabel/refl_phase_load}
+
+These values are used to calculate the normalized phase of reflection coefficient (using formula~\ref{eq:phase_refl_simplified}).
+\input{src/assets/tabel/refl_phase_values}
+
+\newpage
+Formula \ref{eq:load_imp} can be made use of to obtain the load impedance values. \\
+The value of $Z_0$ is 50$\Omega$; the complex reflection coefficient must be computed to obtain the required load impedances. \\
+Carrying out this computation using Python \ref{lst:load-code}, the values for complex reflection coefficient phase and load impedance for each of the 6 terminations can be represented as: \\
+\input{src/assets/tabel/load_impedances}
 
 \newpage
 \subsection{Measurement curve and diagrams} 
-Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth.
+Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth. The signal principal frequency is 310MHz and power is 10dBm.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=0.7\linewidth]{src/diagrams/RF_1/Screen1}
@@ -214,7 +223,7 @@ Illustrated in Figure~\ref{fig:chart_voltages} is the calculated location-depend
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_voltages}
-	\caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
+	\caption{\centering Calculated voltage over distance figures for all 6 load terminations.}
 	\label{fig:chart_voltages}
 \end{figure}
 
@@ -224,7 +233,7 @@ Illustrated in Figure~\ref{fig:chart_voltages} is the calculated location-depend
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
-  \item \textbf{Noise analysis of a single stage emitter circuit}:\\
+  \item \textbf{Noise a105.411208j24.069960nalysis of a single stage emitter circuit}:\\
   Noise analysis of the single stage emitter circuit (figure~\ref{fig:6}) reveals that $R_g$ contributes most to the total noise (brown trace).
   \item \textbf{OpAmp noise model check}:\\
   A simple voltage follower circuit was built with LM4562 and using cursors, the simulated noise density $e_n$ was read at 10\,Hz as well as 1.0\,kHz and compared to the datasheet values (see table~\ref{tab:sim_2}).
