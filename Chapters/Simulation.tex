@@ -1,5 +1,6 @@
-\section{COAXIAL RF LINE}
-\subsection{Task description}
+\section{Laboratory Exercise 5}
+\subsection{Spectrum Analyzer measurements}
+\subsubsection{Task description}
 The objective of this task is to measure the standing wave ratio and the reflection coefficient of different loads connected to a coaxial transmission line using a signal analyzer\cite{CXA_SA}, the loads to be used are: 
 
 \begin{itemize}
@@ -14,7 +15,7 @@ The objective of this task is to measure the standing wave ratio and the reflect
 \end{itemize}
 
 The transmission line is fed with a sine wave signal of +10dBm at 310 MHz from an RF signal generator\cite{RF_SG}.
-\subsection{Schematic}
+\subsubsection{Schematic}
 Figure~\ref{fig:5} shows the measurement configuration of the coaxial transmission line and a movable E-field probe.
 \begin{figure}[ht!]
     \centering
@@ -34,7 +35,7 @@ The schematic above shows the four main components used in this measurement setu
 \end{itemize}
 
 \newpage
-\subsection{Formulas and calculations}
+\subsubsection{Formulas and calculations}
 \subsubsection{\textbf{Calculation of the wave velocity:}}
 The following formula \ref{eq:1_CO} is used to calculate the wave velocity$v$. \\
 \begin{gather}
@@ -178,7 +179,7 @@ For the load impedances ($Z_L$), one can use the following formula\cite{script}:
 
 % The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
 
-\subsection{Table with measurement results}
+\subsubsection{Table with measurement results}
 Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
 \vspace{3mm}
 \\The following table~\ref{tab:minimas} shows all the minima points on each of the 6 termination loads:
@@ -196,7 +197,7 @@ Carrying out this computation using Python \ref{lst:load-code}, the values for c
 
 The representation of these Load impedance values has been done on a smith chart in  figure \ref{fig:smith_chart1}.
 
-\subsection{Measurement curve and diagrams} 
+\subsubsection{Measurement curve and diagrams} 
 Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth. The signal principal frequency is 310MHz and power is 10dBm.
 \begin{figure}[ht!]
 	\centering
@@ -240,7 +241,7 @@ Using the values obtained, a Smith chart was created as can be seen in the below
 \end{figure}
 
 \newpage
-\subsection{Additional questions}
+\subsubsection{Additional questions}
 \textbf{Q. Is it possible to match all loads with an additional passive impedance matching
 	network, consisting of transmission line and Capacitor?}\\
 A. Analyzing this question from the perspective of individual loads and their ideal effects on a transmission line, stating once again that the line impedance is 50$\Omega$ and the objective is to match each load impedance to this value:
@@ -256,12 +257,11 @@ A. Analyzing this question from the perspective of individual loads and their id
 A. Matching the impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
 
 \FloatBarrier
-\subsection{Discussion} 
+\subsubsection{Discussion} 
 \begin{itemize}
-  \item \textbf{Noise a105.411208j24.069960nalysis of a single stage emitter circuit}:\\
-  Noise analysis of the single stage emitter circuit (figure~\ref{fig:6}) reveals that $R_g$ contributes most to the total noise (brown trace).
-  \item \textbf{OpAmp noise model check}:\\
-  A simple voltage follower circuit was built with LM4562 and using cursors, the simulated noise density $e_n$ was read at 10\,Hz as well as 1.0\,kHz and compared to the datasheet values (see table~\ref{tab:sim_2}).
-  \item \textbf{Noise analysis of inverting and non-inverting amplifier circuits}:\\
-  The simulated output noise spectral density for these circuits with gain-10 amplifiers is shown in (figures~\ref{fig:8} and~\ref{fig:112}). The spectrum shows the expected behaviour: increased low-frequency noise due to flicker noise and an approximately flat mid-band (white) noise floor. The change in slope marks the 1/f corner frequency.
+  \item \textbf{105.411208 + j24.069960}
 \end{itemize}
+
+\subsection{Vector Network Analyzer measurements}
+\subsection{Balanced Power Amplifier (PA) analysis}
+\subsection{Radio Link analysis}
