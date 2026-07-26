@@ -1,267 +1,372 @@
-\section{Laboratory Exercise 5}
-\subsection{Spectrum Analyzer measurements}
-\subsubsection{Task description}
-The objective of this task is to measure the standing wave ratio and the reflection coefficient of different loads connected to a coaxial transmission line using a signal analyzer\cite{CXA_SA}, the loads to be used are: 
+\section{Part 1: Become familiar with the Spectrum Analyzer}
 
-\begin{itemize}
-	\setlength{\itemsep}{0pt}
-	\setlength{\parskip}{0pt}
-	\item Open
-	\item Short
-	\item 50$\Omega$
-	\item 100$\Omega$
-	\item 25$\Omega$
-	\item Capacitive load
-\end{itemize}
+\subsection{Task 1: Analyze the VCO ZOS-100 Oscillator}
 
-The transmission line is fed with a sine wave signal of +10dBm at 310 MHz from an RF signal generator\cite{RF_SG}.
+\subsubsection{Task Description}
+The objective of this task is to analyze the performance of the VCO ZOS-100+ Oscillator. This involves determining its frequency range, measuring the VCO tuning sensitivity (in Hz/V), identifying the minimum and maximum frequencies within the valid control voltage range, and recording the power levels delivered at its outputs.
+
 \subsubsection{Schematic}
-Figure~\ref{fig:5} shows the measurement configuration of the coaxial transmission line and a movable E-field probe.
-\begin{figure}[ht!]
+(Note: As per the guidelines, you should insert a standard block diagram of your measuring circuit here. It should show the Keysight Fieldfox Spectrum Analyser connected to the VCO, along with the DC power supply providing the control voltage.)
+
+\subsubsection{Formulas and Calculations}
+To determine the tuning sensitivity of the oscillator, the following formula is used:
+
+\begin{equation}
+    K_v = \frac{\Delta f}{\Delta V} = \frac{f_{\max} - f_{\min}}{V_{\max} - V_{\min}}
+\end{equation}
+
+\subsubsection{Measurement results}
+
+The following table summarizes the measured frequencies and power levels from the spectrum analyser.
+
+\begin{table}[htbp]
     \centering
-    \includegraphics[page=1,width=0.8\linewidth]{src/diagrams/RF_1/Schematic_1.png}
-    \caption{\centering Schematic of the measurement setup used, with RF coaxial line, E-field probe and the load.}
-    \label{fig:5}
-\end{figure}
-\\
-The schematic above shows the four main components used in this measurement setup. These are:
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Control Voltage ($V_{\text{tune}}$) / V} & \textbf{Frequency ($f$) / MHz} & \textbf{Output Power / dBm} & \textbf{Sensitivity ($K_v$) / Hz/V} \\ \hline
+        {[Insert Voltage]} & $54.750$ & $9.962$ & $-$ \\ \hline
+        {[Insert Voltage]} & $75.000$ & $9.368$ & $-$ \\ \hline
+        $10.0$ & $84.450$ & $9.005$ & {[Calculate using formula]} \\ \hline
+    \end{tabular}
+    \caption{Frequency and Output Power of the VCO ZOS-100+}
+    \label{tab:vco_zos100_results}
+\end{table}
+
+\textbf{Notes:}
 \begin{itemize}
-	\setlength{\itemsep}{0pt}
-	\setlength{\parskip}{0pt}
-	\item The RF signal generator\cite{RF_SG}, which provides the excitation signal.
-	\item The spectrum analyzer\cite{CXA_SA} with a movable E-field probe.
-	\item The coaxial transmission line which is traced by the probe.
-	\item The load at the end of the line; this can be replaced by any of the six terminations described earlier.
+    \item Measurement at $54.750$ MHz was recorded from the ``aux out''.
+    \item As mandated by the report guidelines, ensure that the columns clearly separate adjusted, measured, and calculated values.
 \end{itemize}
 
-\newpage
-\subsubsection{Formulas and calculations}
-\subsubsection{\textbf{Calculation of the wave velocity:}}
-The following formula \ref{eq:1_CO} is used to calculate the wave velocity$v$. \\
-\begin{gather}
-	v = f \cdot \lambda 							\label{eq:1_CO}
-\end{gather}
-$f$ (frequency) = 310MHz\\
-$\lambda$ (wavelength) = $2 \cdot \Delta d $\\
+\subsubsection{Curves \& diagrams}
 
-The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from correlating the chart \ref{fig:chart1}, and the tables \ref{tab:power_plots_1} \& \ref{tab:power_plots_2}) is:
-\begin{itemize}
-	\setlength{\itemsep}{0pt}
-	\setlength{\parskip}{0pt}
-	\item Open: 48.3cm
-	\item Short: 48.2cm
-	\item Capacitive load: 48.5cm
-\end{itemize} 
-
-Averaging these values to minimize tiny individual measurement errors, obtained $\Delta d$ = 48.33cm.\\
-
-Inferred wavelength: This measured value for wavelength is obtained using the formula \ref{eq:4_CO} : 
-\begin{gather}
-	\lambda = 2 \cdot \Delta d 						\label{eq:4_CO} \\
-	\lambda = 96.667cm
-\end{gather}
-
-Hence, \\
-Wave velocity (in m/s) is:
-\begin{gather}
-	v = 310 \times 10^6 \cdot 0.96451 				\nonumber \\
-	v = 2.9966 \times 10^8							\label{eq:3_CO}
-\end{gather}
-
-\subsubsection{\textbf{Calculation of the voltage standing wave ratio and reflection coefficient magnitude:}}
-
-Equation~\ref{eq:vswr_voltage} gives the definition of VSWR. Since the spectrum analyzer provides power values, VSWR can also be expressed in terms of the measured power ratio:
-\begin{gather}
-	\mathrm{VSWR} = \frac{V_{\max}}{V_{\min}} \label{eq:vswr_voltage} \\
-	\mathrm{VSWR} = \sqrt{\frac{P_{\max}}{P_{\min}}} \nonumber
-\end{gather}
-
-Since $P_{\max}$ and $P_{\min}$ must be in linear units, the measured values in dBm are converted using:
-\begin{gather}
-	\frac{P_{\max}}{P_{\min}} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{10}} \nonumber
-\end{gather}
-
-Finally, VSWR for each termination is obtained by computing the square root of this term as:
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}} \label{eq:vswr_power}
-\end{gather}
-
-Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR (using the relation~\ref{eq:vswr_power}), and subsequently the magnitude of it's reflection coefficient ($|\mathrm{\underline{\rho_0}}|$) (using the relation below), is made possible:
-\begin{gather}
-	|\mathrm{\underline{\rho_0}}| = \frac{\mathrm{VSWR}-1}{\mathrm{VSWR}+1} \label{eq:rho_mag} \\
-	\angle \rho = \text{from the position of the minima on the line} \label{eq:rho_phase}
-\end{gather}
-
-\subitem{\textbf{For Open load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-17.0 - (-73.0)}{20}}
-	= 10^{\frac{56.0}{20}}
-	= 10^{2.8}
-	\approx 630.96 \label{eq:vswr_open}\\
-	|\mathrm{\underline{\rho_0}}| = \frac{629.96}{631.96}
-	\approx 0.997 \label{eq:mag_open}
-\end{gather}
-
-\subitem{\textbf{For a Short:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.0 - (-64.0)}{20}}
-	= 10^{\frac{46}{20}}
-	= 10^{2.265}
-	\approx 199.52 \label{eq:vswr_short} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{198.52}{200.52}
-	\approx 0.99 \label{eq:mag_short}
-\end{gather}
-
-\subitem{\textbf{For 100$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-20.8 - (-27.3)}{20}}
-	= 10^{\frac{6.5}{20}}
-	= 10^{0.325}
-	\approx 2.11 \label{eq:vswr_100} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{1.11}{3.11}
-	\approx 0.357 \label{eq:mag_100}
-\end{gather}
-
-\subitem{\textbf{For 25$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-20.6 - (-28.7)}{20}}
-	= 10^{\frac{8.1}{20}}
-	= 10^{0.395}
-	\approx 2.54 \label{eq:vswr_25} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{1.54}{3.54}
-	\approx 0.435 \label{eq:mag_25}
-\end{gather}
-
-\subitem{\textbf{For 50$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-22.9 - (-24.4)}{20}}
-	= 10^{\frac{1.5}{20}}
-	= 10^{0.075}
-	\approx 1.19 \label{eq:vswr_50} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{0.19}{2.19}
-	\approx 0.086	 \label{eq:mag_50}
-\end{gather}
-
-\subitem{\textbf{For Capacitive load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.3 - (-53.8)}{20}}
-	= 10^{\frac{35.5}{20}}
-	= 10^{1.775}
-	\approx 59.57 \label{eq:vswr_cap} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{58.57}{60.57}
-	\approx 0.967 \label{eq:mag_cap}
-\end{gather}
-
-\subsubsection{\textbf{Calculation of the reflection coefficient phase, and load impedances:}}
-In order to obtain the angle of the reflection coefficient ($\delta_0$), one must use the following relation\cite{script} as laid out in the lab script: 
-\begin{gather}
-	\delta_0 = (2n+1)\pi - 2\beta \mathrm{z_{min}} 		\label{eq:phase_refl} \\
-	\mathrm{where, \quad}\beta = \frac{2\pi}{\lambda} 	\nonumber
-\end{gather}
-
-\newpage
-Simplifying equation~\ref{eq:phase_refl}:
-\begin{gather}
-	\delta_0 = (2\cdot0+1)\pi - 2\beta \mathrm{z_{min}} 	\nonumber \\
-	\delta_0 = \pi - 2 \cdot \frac{2\pi}{\lambda} \cdot \mathrm{z_{min}} \nonumber \\
-	\delta_0 = \pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda} \label{eq:phase_refl_simplified}
-\end{gather}
-
-For the load impedances ($Z_L$), one can use the following formula\cite{script}:
-\begin{gather}
-	\mathrm{\underline{\rho_0}} = \frac{Z_L - Z_0}{Z_L + Z_0} 	\nonumber \\[4pt]
-	\mathrm{\underline{\rho_0}} (Z_L + Z_0) = Z_L - Z_0 	\nonumber \\[4pt]
-	Z_L = Z_0 \frac{1+\mathrm{\underline{\rho_0}}}{1-\mathrm{\underline{\rho_0}}} 	\label{eq:load_imp}\\
-	\mathrm{where, \quad}\mathrm{\underline{\rho_0}} = |\mathrm{\underline{\rho_0}}|\cdot e^{j\delta_0} 	\nonumber
-\end{gather}
-
-% Using the tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the distance from the load to the position corresponding to the $0^{th}$ minima is obtained and used in the equation~\ref{eq:phase_refl_simplified} to obtain the angle of the reflection coefficient, and equation~\ref{eq:load_imp} is used for the load impedance calculation.
-
-% The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
-
-\subsubsection{Table with measurement results}
-Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
-\vspace{3mm}
-\\The following table~\ref{tab:minimas} shows all the minima points on each of the 6 termination loads:
-\input{src/assets/tabel/minimas}
-%\input{src/assets/tabel/refl_phase_load}
-
-These values are used to calculate the normalized phase of reflection coefficient (using formula~\ref{eq:phase_refl_simplified}).
-\input{src/assets/tabel/refl_phase_values}
-
-\newpage
-Formula \ref{eq:load_imp} can be made use of to obtain the load impedance values. \\
-The value of $Z_0$ is 50$\Omega$; the complex reflection coefficient must be computed to obtain the required load impedances. \\
-Carrying out this computation using Python \ref{lst:load-code}, the values for complex reflection coefficient phase and load impedance for each of the 6 terminations can be represented as: \\
-\input{src/assets/tabel/load_impedances}
-
-The representation of these Load impedance values has been done on a smith chart in  figure \ref{fig:smith_chart1}.
-
-\subsubsection{Measurement curve and diagrams} 
-Figures~\ref{fig:screen1} shows the spectrum analyzer output after making basic settings such as center, span, magnitude, sweep time, and residual bandwidth. The signal principal frequency is 310MHz and power is 10dBm.
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[page=4,width=0.7\linewidth]{src/diagrams/RF_1/Screen1_inv}
-	\caption{\centering Spectrum analyzer output on proper setting of required parameters.}
-	\label{fig:screen1}
-\end{figure}
-
-\newpage
-Illustrated in Figure~\ref{fig:chart1} is the measured location-dependent signal power values obtained along the coaxial transmission line with the RF Spectrum Analyzer for termination loads: Open, Short and 100$\Omega$ loads. \\The measurements were taken over a range of 35.0cm to 167.0cm, measured from the termination load.
-\begin{figure}[ht!]
+\begin{figure}[htpb]
     \centering
-    \includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_1}
-    \caption{\centering Measured power values for open, short and 100$\Omega$ terminations.}
-    \label{fig:chart1}
-\end{figure}
-\\Similar to \ref{fig:chart1}, illustrated in Figure~\ref{fig:chart2} is the measured location-dependent signal power values obtained along the coaxial transmission line with the RF Spectrum Analyzer for termination loads: 25$\Omega$, 50$\Omega$ and purely capacitive loads.
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_2}
-	\caption{\centering Measured power values for 25$\Omega$, 50$\Omega$ and capacitive load terminations.}
-	\label{fig:chart2}
-\end{figure}
-\\A consolidated figure~\ref{fig:chart3} with all 6 measurements curves on the same chart is present in the appendix. 
-
-\newpage
-Illustrated in figure~\ref{fig:chart_voltages} is the calculated location-dependent voltage values along the coaxial transmission line.
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[page=4,width=0.85\linewidth]{src/diagrams/RF_1/Chart_voltages}
-	\caption{\centering Calculated voltage over distance figures for all 6 load terminations.}
-	\label{fig:chart_voltages}
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_1.png}
+    \caption{Broadband measurement of the VCO ZOS-100+ output showing the fundamental frequency peak at 75.000 MHz (9.368 dBm) along with multiple visible harmonics.}
+    \label{fig:vco_broadband}
 \end{figure}
 
-Using the values obtained, a Smith chart was created as can be seen in the below figure~\ref{fig:smith_chart1}. 
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[page=4,width=0.6\linewidth]{src/diagrams/RF_1/smith_chart}
-	\caption{\centering The representation of reflection coefficients for all 6 loads on the Smith chart.}
-	\label{fig:smith_chart1}
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_2.png}
+    \caption{Spectrum analyzer measurement of the VCO ``aux out'' displaying a fundamental frequency of 54.750 MHz with an output power of 9.962 dBm.}
+    \label{fig:vco_aux_out}
 \end{figure}
 
-\newpage
-\subsubsection{Additional questions}
-\textbf{Q. Is it possible to match all loads with an additional passive impedance matching
-	network, consisting of transmission line and Capacitor?}\\
-A. Analyzing this question from the perspective of individual loads and their ideal effects on a transmission line, stating once again that the line impedance is 50$\Omega$ and the objective is to match each load impedance to this value:
-\begin{itemize}
-	\item \textbf{50$\Omega$ load}: This load is already matched, nothing to do. \textbf{Possible}.
-	\item \textbf{25$\Omega$ and 100$\Omega$ loads}: These are not matched, there are considerable reflections but it is rather simple to match them to the 50$\Omega$ load. \textbf{Possible}.
-	\item \textbf{Open and short loads}: These loads represent extreme cases since for a short, one must compensate for theoretically zero impedance and for an open load, it is theoretically infinite, so matching them is highly challenging when having access to only a simple passive network. However, with great precision and small allowance for reflections, in theory, \textbf{it is possible}.
-	\item \textbf{Capacitive load}: The negative reactance part can be cancelled out using a capacitor and the remaining part can be matched in most cases. \textbf{Possible}.
-\end{itemize} 
-
-\textbf{Q. Calculate an impedance matching network (by using a transmission line + capacitor)
-	for a load given by the supervisor.}\\
-A. Matching the impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_3.png}
+    \caption{Spectrum analyzer measurement of the VCO at a control voltage of 10V, showing a fundamental frequency of 84.450 MHz with an output power of 9.005 dBm.}
+    \label{fig:vco_10v_power}
+\end{figure}
 
 \FloatBarrier
-\subsubsection{Discussion} 
-\begin{itemize}
-  \item \textbf{105.411208 + j24.069960}
-\end{itemize}
 
-\subsection{Vector Network Analyzer measurements}
-\subsection{Balanced Power Amplifier (PA) analysis}
-\subsection{Radio Link analysis}
+\subsubsection{Short discussion of measurement results}
+
+The results demonstrate that the fundamental frequency of the VCO ZOS-100+ shifts according to the applied control voltage, yielding a measured tuning range from $54.750$ MHz up to $84.450$ MHz (at a 10V control voltage). Across this tuning range, the oscillator maintains a relatively stable output power, fluctuating only slightly between $9.005$ dBm and $9.962$ dBm. Additionally, the broadband measurement clearly displays multiple expected harmonic frequencies occurring alongside the fundamental peak.
+
+\subsection{Task 2: Analyze another RF Oscillator}
+
+\subsubsection{Task Description}
+The objective of this task is to analyze the spectrum of another selected RF oscillator from the hardware inventory. This includes determining the frequencies and power levels of the most powerful spurious emissions (spurii) and evaluating whether these frequencies are harmonics of the fundamental frequency. (Note: The bonus measurement for phase noise was not conducted and is excluded from this report).
+
+\subsubsection{Schematic}
+(Placeholder: Insert a basic block diagram here showing the Keysight Fieldfox Spectrum Analyzer connected to the unknown RF oscillator).
+
+\subsubsection{Formulas and Calculations}
+To determine if a spurious emission is a harmonic, its frequency must be an integer multiple of the fundamental frequency ($f_1$):
+
+\begin{equation}
+    f_n = n \cdot f_1
+\end{equation}
+
+where $n$ is an integer ($2, 3, 4, \dots$).
+
+\subsubsection{Measurement results}
+
+The provided data explicitly identifies two specific frequency peaks. Because the exact identity of the fundamental frequency was not explicitly recorded, the harmonic calculation ($n$) cannot be definitively confirmed.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Control Voltage / V} & \textbf{Frequency (f) / MHz} & \textbf{Output Power / dBm} & \textbf{Harmonic Multiple ($n$)} \\ \hline
+        {[Unknown]} & $342.500$ & $-27.50$ & $-$ \\ \hline
+        {[Unknown]} & $867.500$ & $-33.51$ & $-$ \\ \hline
+    \end{tabular}
+    \caption{Measured frequencies and power levels of the unknown RF Oscillator}
+    \label{tab:unknown_rf_oscillator}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_342_5MHz.png}
+    \caption{Spectrum analyzer measurement of the unknown RF oscillator from 0 Hz to 1 GHz, displaying multiple frequency peaks with a specific marker placed at a spurious emission of 342.500 MHz (-27.50 dBm).}
+    \label{fig:unknown_osc_342_5MHz}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_867_5MHz.png}
+    \caption{Spectrum analyzer measurement of the unknown RF oscillator, highlighting a higher-frequency spurious emission at 867.500 MHz with a measured power level of -33.51 dBm.}
+    \label{fig:unknown_osc_867_5MHz}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Short discussion of measurement results}
+
+The wideband spectrum of the unknown RF oscillator displays multiple spurious emissions. Two specific frequency peaks were measured at $342.500$ MHz and $867.500$ MHz. Because $867.500$ MHz is not an integer multiple of $342.500$ MHz, these two emissions are not direct harmonics of each other. A full harmonic analysis cannot be completed because the true fundamental frequency of the oscillator was not explicitly documented during the measurement.
+
+\subsection{Task 3: Analyze the function of a double balanced RF Mixer}
+
+\subsubsection{Task Description}
+The objective of this task is to analyze the performance of a double-balanced RF mixer. This involves applying Local Oscillator (LO) and Intermediate Frequency (IF) signals to the mixer, and observing the wideband output spectrum to determine the wanted and unwanted frequency products.
+
+\subsubsection{Schematic}
+(Placeholder: Insert a basic block diagram here showing the signal sources connected to the LO and IF ports of the double-balanced RF mixer, and the RF output port connected to the Keysight Fieldfox Spectrum Analyzer).
+
+\subsubsection{Formulas and Calculations}
+For a standard RF mixer, the output frequency products ($f_{\text{RF}}$) are mathematically defined by the sum and difference of the Local Oscillator ($f_{\text{LO}}$) and Intermediate Frequency ($f_{\text{IF}}$) input signals:
+
+\begin{equation}
+    f_{\text{RF}} = |f_{\text{LO}} \pm f_{\text{IF}}|
+\end{equation}
+
+Please note: Because the exact $f_{\text{LO}}$ and $f_{\text{IF}}$ frequencies generated during the lab were not recorded in the output file, you will need to retrieve these values from your lab notes to calculate the theoretical expected $f_{\text{RF}}$ frequencies.
+
+\subsubsection{Measurement results}
+
+The data file contains a single prominent measurement for the mixer output. Because the applied LO and IF frequencies are missing, the ``adjusted'' and ``calculated'' columns currently contain placeholders.
+
+\begin{table}[htbp]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Input Frequencies ($f_{\text{LO}}$, $f_{\text{IF}}$) / MHz} & \textbf{Output Frequency ($f_{\text{RF}}$) / MHz} & \textbf{Output Power / dBm} & \textbf{Expected $f_{\text{RF}}$ / MHz} \\ \hline
+        {[Unknown]} & $63.075$ & $-11.78$ & [Calculate using formula] \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Measured output frequency and power level of the RF Mixer}
+    \label{tab:rf_mixer_results}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/mixer_output_63_075MHz.png}
+    \caption{Spectrum analyzer measurement of the double-balanced RF mixer output, showing a single specific marker placed at a prominent frequency product of 63.075 MHz with a power level of -11.78 dBm.}
+    \label{fig:mixer_output_63_075MHz}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Short discussion of measurement results}
+
+The spectrum analyzer measurement of the double-balanced RF mixer reveals a distinct frequency product at $63.075$ MHz with a measured power level of $-11.78$ dBm. A full evaluation of the wanted and unwanted frequency products cannot be definitively concluded based on this single plot, as the specific $f_{\text{LO}}$ and $f_{\text{IF}}$ input frequencies applied during the experiment were not explicitly documented in the recorded dataset.
+
+\section{Part 2: Become familiar with the Network Analyzer}
+
+\subsection{Task 1: Analyze given Terminations and Coaxial Cables with different loads}
+
+\subsubsection{Task Description}
+The primary objective of this task is to utilize a Vector Network Analyzer (VNA), specifically the Keysight Fieldfox, to determine the performance parameters of various $50\,\Omega$ and $75\,\Omega$ terminations, as well as to analyze reflection coefficients when combining terminations using a BNC Coax-Tee and a resistive Power Divider. A crucial part of this exercise involves comparing measurements when the VNA is calibrated with and without a cable attached, and observing the effects of open and short calibrations.
+
+(Note: While the lab guidelines requested the determination of specific cable parameters such as attenuation and velocity factor, the explicit calculated data for these parameters is not present in the provided output file. Therefore, this section will concentrate comprehensively on the Smith chart impedance measurements recorded for the various termination configurations).
+
+\subsubsection{Schematic}
+(Placeholder: Insert a block diagram showing the Keysight Fieldfox VNA connected to the coaxial cable, which is then connected to various terminations (e.g., $50\,\Omega$, $75\,\Omega$, short) directly or via a BNC Coax-Tee/Power Divider).
+
+\subsubsection{Formulas and Calculations}
+The measurements rely on the fundamental relationship between the load impedance ($Z$) and the characteristic impedance of the system ($Z_w$, which is $50\,\Omega$ in this RF system). The reflection coefficient ($\rho$) at the load is defined as:
+
+\begin{equation}
+    \rho = \frac{Z - Z_w}{Z + Z_w}
+\end{equation}
+
+The Vector Network Analyzer displays these results on a Smith chart, which uniquely maps the complex normalized impedance plane ($z = Z / Z_w = r + jx$) to the complex reflection coefficient ($\rho$) plane.
+
+\subsubsection{Measurement results}
+
+The following table summarizes the real and imaginary impedance components extracted from the VNA Smith chart markers after calibration. Standard theoretical values are placed in the calculated column for comparison.
+
+\begin{table}[htbp]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Termination Type} & \textbf{Frequency / MHz} & \textbf{Measured Impedance ($Z$) / $\Omega$} & \textbf{Theoretical Ideal ($Z$) / $\Omega$} \\ \hline
+        $75\,\Omega$ Load (Post-Cal) & $50.875$ & $74.3 + j0.3$ & $75 + j0$ \\ \hline
+        Short Load (Post-Cal) & $50.875$ & $-0.3 + j0.7$ & $0 + j0$ \\ \hline
+        ``One by 2'' Termination & $50.875$ & $50.2 + j1.3$ & $50 + j0$ \\ \hline
+        ``Two by 2'' Termination & $50.875$ & $24.8 + j1.8$ & $25 + j0$ \\ \hline
+        Load Short (with cable) & $48.923$ & $1.3\text{k} - j1.1\text{k}$ & $-$ \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Measured Impedances of Various Terminations on the VNA}
+    \label{tab:vna_terminations}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_75ohm_load_post_cal.png}
+    \caption{Smith chart measurement of a $75\,\Omega$ termination after VNA calibration, showing a marker at $50.875$ MHz with a measured impedance of $74.3\,\Omega + j0.3\,\Omega$.}
+    \label{fig:vna_75ohm_load_post_cal}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_short_load_post_cal.png}
+    \caption{Smith chart measurement of a short circuit termination after calibration, verifying the short with a reading of $-0.3\,\Omega + j0.7\,\Omega$ at $50.875$ MHz.}
+    \label{fig:vna_short_load_post_cal}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_1by2_termination.png}
+    \caption{Smith chart measurement of the ``One by 2'' termination setup, displaying an impedance of $50.2\,\Omega + j1.3\,\Omega$ at $50.875$ MHz.}
+    \label{fig:vna_1by2_termination}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_2by2_termination.png}
+    \caption{Smith chart measurement of the ``Two by 2'' termination setup, displaying an impedance of $24.8\,\Omega + j1.8\,\Omega$ at $50.875$ MHz.}
+    \label{fig:vna_2by2_termination}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_load_short_with_cable.png}
+    \caption{Smith chart measurement showing the profound impedance transformation ($1.3\,\text{k}\Omega - j1.1\,\text{k}\Omega$ at $48.923$ MHz) when a short load is measured through an uncalibrated or specific length of connected coaxial cable.}
+    \label{fig:vna_load_short_with_cable}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Short discussion of measurement results}
+
+The measurements clearly illustrate the critical importance of proper VNA calibration and the behavior of parallel RF loads. Following calibration, the VNA accurately recorded the $75\,\Omega$ termination as $74.3\,\Omega$ with a negligible reactive component of $j0.3\,\Omega$, mapping correctly to the Smith chart's real axis. Similarly, the short circuit calibration was successful, yielding a near-ideal $-0.3\,\Omega$.
+
+The experiment exploring makeshift terminations using the BNC Coax-Tee/Power Divider yielded excellent practical results. The ``One by 2'' termination measured approximately $50.2\,\Omega$, confirming a single standard load. When the ``Two by 2'' termination was measured, the impedance dropped to $24.8\,\Omega + j1.8\,\Omega$. This perfectly demonstrates the parallel resistance formula:
+
+\begin{equation}
+    R_{\text{total}} = \frac{R_1 \times R_2}{R_1 + R_2}
+\end{equation}
+
+where two $50\,\Omega$ loads connected in parallel via the tee result in an equivalent impedance of $25\,\Omega$.
+
+Finally, Figure 2.5 highlights the impedance transformation effect of coaxial cables. When a short circuit is measured at the end of a transmission line without shifting the calibration plane to the end of the cable, the line acts as an impedance transformer, shifting the perceived impedance from $0\,\Omega$ to a highly complex value ($1.3\,\text{k}\Omega - j1.1\,\text{k}\Omega$) depending on the electrical length of the cable and the phase constant ($\beta$) at $48.923$ MHz.
+
+\subsection{Task 3: Determine Radio Link Parameters}
+
+\subsubsection{Task Description}
+The objective is to measure the return losses ($S_{11}$, $S_{22}$) and transmission losses ($S_{21}$, $S_{12}$) of a radio link using antennas.
+
+\subsubsection{Schematic}
+(Placeholder: Insert a block diagram showing the Vector Network Analyzer connected to the single and dual antenna setups in the lab environment).
+
+\subsubsection{Formulas and Calculations}
+The VNA measures the S-parameters directly in decibels (dB), representing the logarithmic ratio of the reflected or transmitted wave to the incident wave.
+
+\begin{equation}
+    \text{Return Loss (dB)} = -20 \log_{10} |\rho| = -20 \log_{10} |S_{11}| \quad \text{or} \quad -20 \log_{10} |S_{22}|
+\end{equation}
+
+\begin{equation}
+    \text{Transmission Loss (dB)} = -20 \log_{10} |S_{21}| \quad \text{or} \quad -20 \log_{10} |S_{12}|
+\end{equation}
+
+\subsubsection{Measurement results}
+
+The following tables summarize the S-parameter log-magnitude peak values extracted from the VNA plots for both the dual and single antenna setups.
+
+\begin{table}[htbp]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} & \textbf{Expected ideal / dB} \\ \hline
+        $972.335$ & $S_{21}$ & $-27.53$ & $-$ \\ \hline
+        $970.928$ & $S_{22}$ & $-26.55$ & $-$ \\ \hline
+        $989.511$ & $S_{11}$ & $-15.34$ & $-$ \\ \hline
+        $989.511$ & $S_{21}$ & $-72.27$ & $-$ \\ \hline
+        $989.511$ & $S_{22}$ & $-10.35$ & $-$ \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Measured S-Parameters for the Dual Antenna Setup}
+    \label{tab:dual_antenna_results}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
+        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} & \textbf{Expected ideal / dB} \\ \hline
+        $260.132$ & $S_{11}$ & $-33.26$ & $-$ \\ \hline
+        $260.132$ & $S_{12}$ & $-26.99$ & $-$ \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Measured S-Parameters for the One Antenna Setup}
+    \label{tab:one_antenna_results}
+\end{table}
+
+\subsubsection{Curves \& diagrams}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s21_972mhz.png}
+    \caption{Log-magnitude plot of the transmission loss ($S_{21}$) for the dual antenna setup, showing a marker at $972.335$ MHz with a value of $-27.53$ dB.}
+    \label{fig:dual_antennae_s21_972mhz}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s22_970mhz.png}
+    \caption{Log-magnitude plot of the return loss ($S_{22}$) for the dual antenna setup, showing a marker at $970.928$ MHz with a value of $-26.55$ dB.}
+    \label{fig:dual_antennae_s22_970mhz}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s21_989mhz.png}
+    \caption{Log-magnitude plot of the transmission loss ($S_{21}$) for the dual antenna setup, showing a significant signal drop to $-72.27$ dB at $989.511$ MHz.}
+    \label{fig:dual_antennae_s21_989mhz}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/one_antenna_s11_260mhz.png}
+    \caption{Log-magnitude plot of the return loss ($S_{11}$) for the single antenna setup, showing a distinct resonance peak of $-33.26$ dB at $260.132$ MHz.}
+    \label{fig:one_antenna_s11_260mhz}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/one_antenna_s12_260mhz.png}
+    \caption{Log-magnitude plot of the transmission ($S_{12}$) for the single antenna setup, measured at $-26.99$ dB at $260.132$ MHz.}
+    \label{fig:one_antenna_s12_260mhz}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Short discussion of measurement results}
+
+The measurements successfully document the return and transmission losses of the radio link. However, instead of the targeted $433$ MHz ISM band, the antennas tested showed primary resonances at different frequencies.
+
+For the dual antenna setup, a usable transmission loss ($S_{21}$) of $-27.53$ dB was recorded at $972.33$ MHz, alongside a good return loss ($S_{22}$) of $-26.55$ dB at $970.92$ MHz. At $989.51$ MHz, the transmission loss drastically worsened to $-72.27$ dB, indicating very poor signal transfer at that specific frequency. The single antenna setup demonstrated an excellent return loss ($S_{11}$) of $-33.26$ dB at $260.13$ MHz, meaning very little power was reflected back to the source at this frequency.
