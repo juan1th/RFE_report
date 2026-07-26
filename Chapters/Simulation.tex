@@ -255,7 +255,7 @@ A. Analyzing this question from the perspective of individual loads and their id
 
 \textbf{Q. Calculate an impedance matching network (by using a transmission line + capacitor)
 	for a load given by the supervisor.}\\
-A. Matching the impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
+A. Matching the measured impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
 
 It shall be matched to a transmission line with characteristic impedance
 \[
@@ -280,50 +280,50 @@ The wavelength is
 	\]
 	
 	\item A 50$\Omega$ transmission line transforms the normalized load
-	impedance according to:
+	impedance according to \cite{script}:
 	\[
 	z_\mathrm{in} =
 	\frac{z_L+j\tan(\beta l)}
-	{1+jz_L\tan(\beta l)},
+	{1+jz_L\tan(\beta l)}
 	\]
 	where
 	\[
-	\beta=\frac{2\pi}{\lambda}.
+	\beta=\frac{2\pi}{\lambda}=6.5
 	\]
 	
 	\item The line length is selected such that the real part of the
 	normalized input admittance is equal to one:
 	\[
-	y_\mathrm{in}=\frac{1}{z_\mathrm{in}}=1-j0.7643.
+	y_\mathrm{in}=\frac{1}{z_\mathrm{in}}=1-j0.7643
 	\]
 	
 	This condition is obtained for:
 	\[
-	l=0.3432\lambda.
+	l=0.3432\cdot\lambda
 	\]
 	
 	Using the given wavelength:
 	\[
-	l=0.3432\cdot 0.966667~\mathrm{m}
-	=0.3317~\mathrm{m}.
+	l=0.3432\cdot 0.966667
+	=0.3317~\mathrm{m}
 	\]
 	
 	Therefore, the required transmission-line length is:
 	\[
-	\boxed{l\approx33.17~\mathrm{cm}.}
+	\boxed{l\approx33.17~\mathrm{cm}}
 	\]
 	
-	\item At this position, the admittance is:
+	\item At this position, we calculate:
 	\[
-	Y_\mathrm{in,line}
+	Y_\mathrm{in}
 	=\frac{1-j0.7643}{50}
-	=0.02-j0.01529~\mathrm{S}.
+	=0.02-j0.01529
 	\]
 	
 	The capacitor is connected in parallel with the input of the line.
 	It must provide the opposite susceptance:
 	\[
-	B_C=+0.01529~\mathrm{S}.
+	B_C=+0.01529
 	\]
 	
 	Since
@@ -332,38 +332,38 @@ The wavelength is
 	\]
 	the required capacitance is:
 	\[
-	C=\frac{0.01529}{2\pi\cdot310\cdot10^6}.
+	C=\frac{0.01529}{2\pi\cdot310\cdot10^6}
 	\]
 	
 	Thus:
 	\[
-	\boxed{C\approx7.85~\mathrm{pF}.}
+	\boxed{C\approx7.85~\mathrm{pF}}
 	\]
 	
-	\item The total input admittance after adding the capacitor becomes:
+	\item Finally the total input admittance after adding the capacitor comes out to be:
 	\[
 	Y_\mathrm{total}
 	=(0.02-j0.01529)+j0.01529
-	=0.02~\mathrm{S}.
+	=0.02
 	\]
 	
 	Therefore:
 	\[
 	Z_\mathrm{total}=\frac{1}{Y_\mathrm{total}}
 	=\frac{1}{0.02}
-	=50~\Omega.
+	=50~\Omega
 	\]
 \end{enumerate}
 
-Thus, the load is matched at 310 MHz using a 50$\Omega$ transmission line
-with a length of approximately 33.17 cm and a shunt capacitor of
-approximately 7.85 pF.
+Thus, the characteristics of a matched load at 310 MHz using a 50$\Omega$ transmission line
+is with a length of 33.17 cm and a shunt capacitor of approximately 7.85 pF.
 
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
   \item \textbf{Wave velocity and wavelength}:\\
   The calculation of wave velocity was done after determining the wavelength. \\Both of these figures seem plausible and valid for the measurements made.
+  
   \item \textbf{VSWR \& Reflection coefficient magnitude}:\\
   The calculated VSWR and reflection coefficient magnitude values can be analyzed as:
 	  \begin{itemize}
@@ -373,7 +373,7 @@ approximately 7.85 pF.
 		\item \textbf{For 100$\Omega$ impedance}: Same expectations as 25$\Omega$, but delivers a much better result. VSWR reaches 2.11, close enough to expectations. Reflection coefficient of 0.357, significantly better than 25$\Omega$ result.	
 		\item \textbf{For a purely capacitive load}: Expectations are to see a high VSWR, but lower than open or short loads, still yielding a near 100\% reflection, the achieved results seem fair enough.
 	  \end{itemize}
-  \newpage
+
   \item \textbf{Reflection coefficient phase and Load impedances}:\\
   The calculated reflection coefficient phases and the resulting load impedances can be analyzed as follows:
 	\begin{itemize}
