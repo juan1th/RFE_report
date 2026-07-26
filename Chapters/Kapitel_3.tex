@@ -58,7 +58,7 @@ Figure~\ref{fig:antenna_measurement_setup} shows the measurement configuration o
 		% Spectrum analyser
 		\node[draw, sharp corners, minimum width=3.3cm, minimum height=1.3cm,
 		align=center] (sa) at (11,0)
-		{Spectrum analyser};
+		{Spectrum analyzer};
 		
 		% Antenna separation
 		\draw[<->] (3.5,2.8) -- (8,2.8);
@@ -70,8 +70,8 @@ Figure~\ref{fig:antenna_measurement_setup} shows the measurement configuration o
 \end{figure}
 
 \subsection{Formulas and calculations}
-\subsubsection{\textbf{Calculation of the wave velocity:}}
-The following formula \ref{eq:x1_CO} is used to calculate the wave velocity$v$. \\
+\subsubsection{\textbf{Calculation of the group characteristic and the total radiation pattern:}}
+Foremostly, one must calculate the wavelength : \\
 \begin{gather}
 	v = f \cdot \lambda 							\label{eq:x1_CO}
 \end{gather}
@@ -102,7 +102,7 @@ Wave velocity (in m/s) is:
 	\boxed{v = 2.9966 \times 10^8}							\label{eq:x3_CO}
 \end{gather}
 
-\subsubsection{\textbf{Calculation of the voltage standing wave ratio and reflection coefficient magnitude:}}
+\subsubsection{\textbf{Calculation for Gain of the group compared to an intrinsic radiator:}}
 
 Equation~\ref{eq:xvswr_voltage} gives the definition of VSWR. Since the spectrum analyzer provides power values, VSWR can also be expressed in terms of the measured power ratio:
 \begin{gather}

@@ -255,8 +255,75 @@ A. Analyzing this question from the perspective of individual loads and their id
 
 \textbf{Q. Calculate an impedance matching network (by using a transmission line + capacitor)
 	for a load given by the supervisor.}\\
-A. Matching the measured impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
+A. Matching the measured impedance $Z_L = 105.4 - 3j$ (which is $0.357\angle$-1.987) to $Z_0 = 50\Omega$ includes the following steps:
 
+It shall be matched to a transmission line with characteristic impedance
+\[
+Z_0 = 50~\Omega
+\]
+
+\begin{enumerate}
+	\item First step is to normalize the load impedance:
+	\[
+	z_L = \frac{Z_L}{Z_0}
+	= \frac{105.4-j3}{50}
+	= 2.108-j0.06.
+	\]
+	
+	\item Using the Smith chart, this point can now be used to draw the constant reflection magnitude circle,\\This circle intersects the 50$\Omega$ circle exactly at:
+	\[
+	z_\mathrm{m} =
+	1+j0.77
+	\]
+	which corresponds to the impedance of:
+	\[
+	Z_\mathrm{m} =
+	50+j38.55
+	\]
+	which can be represented as:
+	\[
+	0.357 \angle 68.8 ^\circ
+	\]
+	
+	\newpage
+	\item The length of the line is selected such that the real part of the impedance is compensated for:
+	\[
+	\Delta\angle = -1.987 - 68.8 = 289.2^\circ
+	\]
+	\[
+	\Delta\angle = 2\beta l
+	\]
+	since:
+	\[
+	\beta = \frac{2\pi}{\lambda}
+	\]
+	
+	One can simplify this to:
+	\[
+	l = \frac{\Delta\angle\cdot\lambda}{4\cdot\pi} = \frac{289.2\cdot\lambda}{720}
+	\]
+	\begin{gather}
+		\boxed{l = 38.827cm}
+	\end{gather}
+
+	\item The capacitor compensates for the:
+	\[
+	Z_C=-38.55\Omega
+	\]
+	
+	Using this value, the capacitance value of the required capacitor is:
+	\[
+	C = \frac{1}{2\pi f Z_C}
+	\]
+	\begin{gather}
+		\boxed{C = 13.3178pF}
+	\end{gather}
+\end{enumerate}	
+
+Thus, the characteristics of a matched load at 310 MHz using a 50$\Omega$ transmission line
+is with a length of 38.82cm and a capacitor in series of approximately 13.31pF.
+
+\begin{comment}
 It shall be matched to a transmission line with characteristic impedance
 \[
 Z_0 = 50~\Omega
@@ -280,7 +347,7 @@ The wavelength is
 	\]
 	
 	\item A 50$\Omega$ transmission line transforms the normalized load
-	impedance according to \cite{script}:
+	impedance according to \cite{script}, page 15.:
 	\[
 	z_\mathrm{in} =
 	\frac{z_L+j\tan(\beta l)}
@@ -320,8 +387,7 @@ The wavelength is
 	=0.02-j0.01529
 	\]
 	
-	The capacitor is connected in parallel with the input of the line.
-	It must provide the opposite susceptance:
+	The capacitor must now provide the opposite susceptance:
 	\[
 	B_C=+0.01529
 	\]
@@ -355,8 +421,10 @@ The wavelength is
 	\]
 \end{enumerate}
 
+
 Thus, the characteristics of a matched load at 310 MHz using a 50$\Omega$ transmission line
 is with a length of 33.17 cm and a shunt capacitor of approximately 7.85 pF.
+\end{comment}
 
 \FloatBarrier
 \subsection{Discussion} 
