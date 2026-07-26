@@ -85,6 +85,7 @@ The following figure~\ref{fig:chart3} shows the resultant plot of the measured s
 \newpage
 \subsection{Code snippets used for calculations}
 
+The following code \ref{lst:load-code} is used to compute the Load impedance.
 \lstdefinestyle{mystyle}{
 	basicstyle=\ttfamily\small,
 	breaklines=true,
@@ -96,27 +97,23 @@ import cmath
 import math
 
 Z0 = 50  # characteristic impedance in ohms
-
 mag = float(input("Enter reflection coefficient magnitude |Gamma|: "))
 phase_deg = float(input("Enter reflection coefficient phase in degrees: "))
 
 phase_rad = math.radians(phase_deg)
-
 Gamma = mag * cmath.exp(1j * phase_rad)
-
 ZL = Z0 * (1 + Gamma) / (1 - Gamma)
 
 print(f"\nGamma = {Gamma.real:.6f} + j{Gamma.imag:.6f}")
 print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 \end{lstlisting}
 
-
+The following code \ref{lst:load-code} is used to represent the reflection coefficient on the smith chart.
 \begin{lstlisting}[style=mystyle, language=Python, label={lst:smith-code}]
 	import matplotlib.pyplot as plt
 	import pysmithchart
 	
 	Z0 = 50
-	
 	Z = [
 	1e9 + 0j,   # Open
 	0 + 0j,     # Short
@@ -125,7 +122,6 @@ print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 	50 + 0j,    # 50 ohm
 	0 - 50j     # Capacitive load
 	]
-	
 	labels = ["Open", "Short", "100Ω", "25Ω", "50Ω", "Capacitive"]
 	colors = ["red", "blue", "green", "orange", "purple", "brown"]
 	
@@ -133,12 +129,12 @@ print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 	ax = plt.subplot(111, projection="smith", Z0=Z0)
 	
 	for z, label, color in zip(Z, labels, colors):
-	ax.plot([z], marker="o", markersize=10, color=color, ls="")
-	ax.text(z, label, color=color)
-	
-	ax.set_title("Smith Chart of 6 Load Impedances")
-	plt.tight_layout()
-	plt.show()
+		ax.plot([z], marker="o", markersize=10, color=color, ls="")
+		ax.text(z, label, color=color)
+		
+		ax.set_title("Smith Chart of 6 Load Impedances")
+		plt.tight_layout()
+		plt.show()
 \end{lstlisting}
 
 \subsection{Measurement data for the switched capacitor filter}

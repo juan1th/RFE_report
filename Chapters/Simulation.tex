@@ -57,14 +57,14 @@ Averaging these values to minimize tiny individual measurement errors, obtained 
 Inferred wavelength: This measured value for wavelength is obtained using the formula \ref{eq:4_CO} : 
 \begin{gather}
 	\lambda = 2 \cdot \Delta d 						\label{eq:4_CO} \\
-	\lambda = 96.667cm
+	\boxed{\lambda = 96.667cm}
 \end{gather}
 
 Hence, \\
 Wave velocity (in m/s) is:
 \begin{gather}
 	v = 310 \times 10^6 \cdot 0.96451 				\nonumber \\
-	v = 2.9966 \times 10^8							\label{eq:3_CO}
+	\boxed{v = 2.9966 \times 10^8}							\label{eq:3_CO}
 \end{gather}
 
 \subsubsection{\textbf{Calculation of the voltage standing wave ratio and reflection coefficient magnitude:}}
@@ -82,7 +82,7 @@ Since $P_{\max}$ and $P_{\min}$ must be in linear units, the measured values in 
 
 Finally, VSWR for each termination is obtained by computing the square root of this term as:
 \begin{gather}
-	\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}} \label{eq:vswr_power}
+	\boxed{\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}}} \label{eq:vswr_power}
 \end{gather}
 
 Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR (using the relation~\ref{eq:vswr_power}), and subsequently the magnitude of it's reflection coefficient ($|\mathrm{\underline{\rho_0}}|$) (using the relation below), is made possible:
@@ -154,16 +154,17 @@ Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, th
 \subsubsection{\textbf{Calculation of the reflection coefficient phase, and load impedances:}}
 In order to obtain the angle of the reflection coefficient ($\delta_0$), one must use the following relation\cite{script} as laid out in the lab script: 
 \begin{gather}
-	\delta_0 = (2n+1)\pi - 2\beta \mathrm{z_{min}} 		\label{eq:phase_refl} \\
+	\delta_n = (2n+1)\pi - 2\beta \mathrm{z_{min}} 		\label{eq:phase_refl} \\
 	\mathrm{where, \quad}\beta = \frac{2\pi}{\lambda} 	\nonumber
 \end{gather}
 
 \newpage
 Simplifying equation~\ref{eq:phase_refl}:
 \begin{gather}
-	\delta_0 = (2\cdot0+1)\pi - 2\beta \mathrm{z_{min}} 	\nonumber \\
-	\delta_0 = \pi - 2 \cdot \frac{2\pi}{\lambda} \cdot \mathrm{z_{min}} \nonumber \\
-	\delta_0 = \pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda} \label{eq:phase_refl_simplified}
+	\delta_0 = (2\cdot n+1)\pi - 2\beta \mathrm{z_{min}} 	\nonumber \\
+	\boxed{\delta_0 = \pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \quad
+	\boxed{\delta_1 = 3\pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \quad
+	\boxed{\delta_2 = 5\pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \label{eq:phase_refl_simplified}
 \end{gather}
 
 For the load impedances ($Z_L$), one can use the following formula\cite{script}:
@@ -247,21 +248,148 @@ A. Analyzing this question from the perspective of individual loads and their id
 \begin{itemize}
 	\item \textbf{50$\Omega$ load}: This load is already matched, nothing to do. \textbf{Possible}.
 	\item \textbf{25$\Omega$ and 100$\Omega$ loads}: These are not matched, there are considerable reflections but it is rather simple to match them to the 50$\Omega$ load. \textbf{Possible}.
-	\item \textbf{Open and short loads}: These loads represent extreme cases since for a short, one must compensate for theoretically zero impedance and for an open load, it is theoretically infinite, so matching them is highly challenging when having access to only a simple passive network. However, with great precision and small allowance for reflections, in theory, \textbf{it is possible}.
-	\item \textbf{Capacitive load}: The negative reactance part can be cancelled out using a capacitor and the remaining part can be matched in most cases. \textbf{Possible}.
+	\item \textbf{Open and short loads}: These loads represent extreme cases since both their reflection coefficient magnitudes are near 1, this cannot be matched only using a capacitor, one would require a real resistance.
+	So, using only a transmission line and a capacitor, \textbf{it is not possible}.
+	\item \textbf{Capacitive load}: A capacitive load falls at the outer circumference of the Smith chart. The capacitive part can be cancelled by an inductive reactance of the line, but the same phenomenon seen with open and short arises, it has no resistive part, and this cannot be compensated using only a simple passive network described here, hence, it is \textbf{not possible}.
 \end{itemize} 
 
 \textbf{Q. Calculate an impedance matching network (by using a transmission line + capacitor)
 	for a load given by the supervisor.}\\
 A. Matching the impedance $Z_L = 105.4 - 3j$ to $Z_0 = 50\Omega$ includes the following steps:
 
+It shall be matched to a transmission line with characteristic impedance
+\[
+Z_0 = 50~\Omega
+\]
+at the frequency
+\[
+f = 310~\mathrm{MHz}.
+\]
+
+The wavelength is
+\[
+\lambda = 96.6667~\mathrm{cm} = 0.966667~\mathrm{m}.
+\]
+
+\begin{enumerate}
+	\item Normalize the load impedance:
+	\[
+	z_L = \frac{Z_L}{Z_0}
+	= \frac{105.4-j3}{50}
+	= 2.108-j0.06.
+	\]
+	
+	\item A 50$\Omega$ transmission line transforms the normalized load
+	impedance according to:
+	\[
+	z_\mathrm{in} =
+	\frac{z_L+j\tan(\beta l)}
+	{1+jz_L\tan(\beta l)},
+	\]
+	where
+	\[
+	\beta=\frac{2\pi}{\lambda}.
+	\]
+	
+	\item The line length is selected such that the real part of the
+	normalized input admittance is equal to one:
+	\[
+	y_\mathrm{in}=\frac{1}{z_\mathrm{in}}=1-j0.7643.
+	\]
+	
+	This condition is obtained for:
+	\[
+	l=0.3432\lambda.
+	\]
+	
+	Using the given wavelength:
+	\[
+	l=0.3432\cdot 0.966667~\mathrm{m}
+	=0.3317~\mathrm{m}.
+	\]
+	
+	Therefore, the required transmission-line length is:
+	\[
+	\boxed{l\approx33.17~\mathrm{cm}.}
+	\]
+	
+	\item At this position, the admittance is:
+	\[
+	Y_\mathrm{in,line}
+	=\frac{1-j0.7643}{50}
+	=0.02-j0.01529~\mathrm{S}.
+	\]
+	
+	The capacitor is connected in parallel with the input of the line.
+	It must provide the opposite susceptance:
+	\[
+	B_C=+0.01529~\mathrm{S}.
+	\]
+	
+	Since
+	\[
+	B_C=2\pi fC,
+	\]
+	the required capacitance is:
+	\[
+	C=\frac{0.01529}{2\pi\cdot310\cdot10^6}.
+	\]
+	
+	Thus:
+	\[
+	\boxed{C\approx7.85~\mathrm{pF}.}
+	\]
+	
+	\item The total input admittance after adding the capacitor becomes:
+	\[
+	Y_\mathrm{total}
+	=(0.02-j0.01529)+j0.01529
+	=0.02~\mathrm{S}.
+	\]
+	
+	Therefore:
+	\[
+	Z_\mathrm{total}=\frac{1}{Y_\mathrm{total}}
+	=\frac{1}{0.02}
+	=50~\Omega.
+	\]
+\end{enumerate}
+
+Thus, the load is matched at 310 MHz using a 50$\Omega$ transmission line
+with a length of approximately 33.17 cm and a shunt capacitor of
+approximately 7.85 pF.
+
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
-  \item \textbf{Noise a105.411208j24.069960nalysis of a single stage emitter circuit}:\\
-  Noise analysis of the single stage emitter circuit (figure~\ref{fig:6}) reveals that $R_g$ contributes most to the total noise (brown trace).
-  \item \textbf{OpAmp noise model check}:\\
-  A simple voltage follower circuit was built with LM4562 and using cursors, the simulated noise density $e_n$ was read at 10\,Hz as well as 1.0\,kHz and compared to the datasheet values (see table~\ref{tab:sim_2}).
-  \item \textbf{Noise analysis of inverting and non-inverting amplifier circuits}:\\
-  The simulated output noise spectral density for these circuits with gain-10 amplifiers is shown in (figures~\ref{fig:8} and~\ref{fig:112}). The spectrum shows the expected behaviour: increased low-frequency noise due to flicker noise and an approximately flat mid-band (white) noise floor. The change in slope marks the 1/f corner frequency.
+  \item \textbf{Wave velocity and wavelength}:\\
+  The calculation of wave velocity was done after determining the wavelength. \\Both of these figures seem plausible and valid for the measurements made.
+  \item \textbf{VSWR \& Reflection coefficient magnitude}:\\
+  The calculated VSWR and reflection coefficient magnitude values can be analyzed as:
+	  \begin{itemize}
+	 	\item \textbf{For open and short loads}: Extremely high VSWR, as expected, yielding a near full reflection in either cases.
+		\item \textbf{For 50$\Omega$ impedance}: Matched impedance resulting in ideal VSWR, ideally should be 1.0 but stands at 1.19, likely due to parasitic effects of the setup. Very small reflection coefficient magnitude.
+		\item \textbf{For 25$\Omega$ impedance}: Small VSWR but significant enough to cause reflections. Ideally should be 2 but reaches 2.54. Reflection coefficient roughly in the same neighbourhood but notable shift from 0.333 ideal scenario.
+		\item \textbf{For 100$\Omega$ impedance}: Same expectations as 25$\Omega$, but delivers a much better result. VSWR reaches 2.11, close enough to expectations. Reflection coefficient of 0.357, significantly better than 25$\Omega$ result.	
+		\item \textbf{For a purely capacitive load}: Expectations are to see a high VSWR, but lower than open or short loads, still yielding a near 100\% reflection, the achieved results seem fair enough.
+	  \end{itemize}
+  \newpage
+  \item \textbf{Reflection coefficient phase and Load impedances}:\\
+  The calculated reflection coefficient phases and the resulting load impedances can be analyzed as follows:
+	\begin{itemize}
+		\item \textbf{For open and short loads}: The obtained distances for the voltage minima were relatively consistent, but the final calculated load impedances deviated noticeably from the ideal. Theoretically, an open or short should yield an infinite or zero impedance with purely reactive edge-cases, but this is not seen perfectly.
+		
+		\item \textbf{For 50$\Omega$ impedance}: This is the only load where the phase calculations cannot be heavily relied upon. Because the load is nearly matched, the standing wave minima are extremely shallow and difficult to accurately locate. Consequently, the phase calculations yielded varying results. The final plotted point on the Smith chart is only close to the center due to the definitively small reflection coefficient magnitude, rather than an accurate phase measurement.
+		
+		\item \textbf{For 25$\Omega$ impedance}: Ideally, this load should plot on the horizontal line (just like $100\Omega$ and $50\Omega$) on the real axis inside the Smith chart ($25 + j0\,\Omega$). However, any slight error in locating the exact minimum position physically translates to an noticeable phase shift in the calculations. This introduces a parasitic reactive component, pushing the plotted point off the real axis.
+		
+		\item \textbf{For 100$\Omega$ impedance}: This carries the same expectations as the 25$\Omega$ load but performed noticeably better. It yielded a primarily resistive value near 100$\Omega$ with only a minor resistive and reactive offset, placing it fairly accurately in the expected right-hand portion of the real axis.
+		
+		\item \textbf{For a purely capacitive load}: Ideally, this load should yield a purely negative reactance and sit firmly in the lower half of the Smith chart. However, our calculated impedance deviated significantly from this fundamental expectation. (explanation later)
+	\end{itemize}
+	
+	\textbf{Verdict}: To try and explain the offsets observed for the extreme cases (open and short), one could attribute this to the length of the load adapters, as well as measurement setup factors like cable attenuation, and parasitic inductance at the terminations. \\Even tiny errors in the reflection coefficient, like from (ideal case of) 1 to (measured instance of) 0.997 for an open circuit, causes a huge shift in the location of the same in the Smith chart because the reflection coefficient changes from 0 + j349.96 -> 3.75 + j349.92.
+	
+	However, the most notable anomaly is the capacitive load being plotting in the incorrect quadrant of the Smith chart. Despite rechecking all calculation and reviewing the measurements multiple times, and also consulting external references, the exact cause of this unexpected behavior could not be definitively identified.
 \end{itemize}
+
