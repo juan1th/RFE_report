@@ -1,36 +1,5 @@
 \newpage
 \section{Appendix}\label{chap:appendix}
-\subsection{Calculations for the active band pass filter}
-Calculation of the transfer function of one filter stage:
-\begin{gather}
-    U_{R2} = -U_{out}\\
-\end{gather}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.65\linewidth]{src/figers/wolfram.png}
-    \caption{\centering computing factor $\alpha$}
-    \label{fig:96}
-\end{figure}
-The chosen real solutions is $\alpha = 1.0826$
-\FloatBarrier
-\newpage
-\subsection{Measurement data}
-The following table~\ref{tab:power_plots_1} shows the measured signal power along the coaxial RF line for the loads: open, short and 100$\Omega$.
-\input{src/assets/tabel/sim_1}
-\\The following table~\ref{tab:power_plots_2} shows the measured signal power along the coaxial RF line for the loads: capacitive load, 25$\Omega$ and 50$\Omega$.
-\input{src/assets/tabel/sim_2}
-
-\subsection{Calculations for the ADC-Driver and anti-aliasing filter}
-These formulas can be found in the chapter \textit{Active 2nd Order Low Pass (Multifeedback)} of \cite{ASV}. From these equations the equations for the component values can be constructed.
-\begin{gather}
-    H_0 = -\frac{R_2}{R_1}\label{eq:231}\\
-    a = \omega_C C_1 \Biggl[R_2+R_3+\frac{R_2R_3}{R_1}\Biggr]\\
-    b =\omega_C^2 C_1C_2R_2R_3
-\end{gather}
-
-
-
 
 \subsection{Resultant plots from measurement data}
 The following figure~\ref{fig:chart3} shows the resultant plot of the measured signal power values, for all 6 termination loads in the same chart, along the coaxial transmission line.
@@ -41,7 +10,6 @@ The following figure~\ref{fig:chart3} shows the resultant plot of the measured s
 	\label{fig:chart3}
 \end{figure}
 
-\newpage
 \subsection{Code snippets used for calculations}
 
 The following code \ref{lst:load-code} is used to compute the Load impedance.
@@ -67,6 +35,7 @@ print(f"\nGamma = {Gamma.real:.6f} + j{Gamma.imag:.6f}")
 print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 \end{lstlisting}
 
+\newpage
 The following code \ref{lst:load-code} is used to represent the reflection coefficient on the smith chart.
 \begin{lstlisting}[style=mystyle, language=Python, label={lst:smith-code}]
 	import matplotlib.pyplot as plt
@@ -96,8 +65,4 @@ The following code \ref{lst:load-code} is used to represent the reflection coeff
 		plt.show()
 \end{lstlisting}
 
-\subsection{Measurement data for the switched capacitor filter}
-Table ~\ref{tab:Messermunt_4} show the magnitude response of the filter at 1MHz. The phase values were observed shifting around 0 in minimal quantities and hence this measurement has been excluded. 
-\input{src/assets/tabel/Messermunt_4}
-\input{src/assets/tabel/Messermunt_3}
 \newpage
