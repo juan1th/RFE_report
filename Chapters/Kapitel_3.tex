@@ -71,36 +71,101 @@ Figure~\ref{fig:antenna_measurement_setup} shows the measurement configuration o
 
 \subsection{Formulas and calculations}
 \subsubsection{\textbf{Calculation of the group characteristic and the total radiation pattern:}}
-Foremostly, one must calculate the wavelength : \\
+Foremostly, the known specifications are:
 \begin{gather}
-	v = f \cdot \lambda 							\label{eq:x1_CO}
-\end{gather}
-$f$ (frequency) = 310MHz\\
-$\lambda$ (wavelength) = $2 \cdot \Delta d $\\
-
-The term $\Delta d$ is given by the difference between the points of two adjacent minima. \\For the different loads, this value (obtained from correlating the chart \ref{fig:xchart1}, and the tables \ref{tab:power_plots_1} \& \ref{tab:power_plots_2}) is:
-\begin{itemize}
-	\setlength{\itemsep}{0pt}
-	\setlength{\parskip}{0pt}
-	\item Open: 48.3cm
-	\item Short: 48.2cm
-	\item Capacitive load: 48.5cm
-\end{itemize} 
-
-Averaging these values to minimize tiny individual measurement errors, obtained $\Delta d$ = 48.33cm.\\
-
-Inferred wavelength: This measured value for wavelength is obtained using the formula \ref{eq:x4_CO} : 
-\begin{gather}
-	\lambda = 2 \cdot \Delta d 						\label{eq:x4_CO} \\
-	\boxed{\lambda = 96.667cm}
+	d = 62.5mm	\nonumber\\
+	\lambda=125mm \nonumber\\
+	f=2.4GHz \nonumber
 \end{gather}
 
-Hence, \\
-Wave velocity (in m/s) is:
+where d represents the distance between 2 adjacent antennas in the array.
+\\Since there are 4 antennas, and each is sourced with equal phase:
 \begin{gather}
-	v = 310 \times 10^6 \cdot 0.96451 				\nonumber \\
-	\boxed{v = 2.9966 \times 10^8}							\label{eq:x3_CO}
+	\delta_0=0 \nonumber \\
+	N=4	\nonumber
 \end{gather}
+
+\begin{enumerate}
+	\item One can represent the array/group characteristic in such a form:
+	\[
+	G(\varphi,\vartheta) = \frac{\sin(uN)}{N\sin(u)}
+	\]
+	
+	\item The value of 'u' must be calculated now:
+	\[
+	d/\lambda=62.5/125=0.5
+	\]
+	hence,
+	\[
+	u = \frac{\delta_0}{2} - \pi\cdot\frac{d}{\lambda}\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta
+	\]
+	\[
+	u = - 0.5\pi\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta
+	\]
+	
+	\item The line length is selected such that the real part of the
+	normalized input admittance is equal to one:
+	\[
+	y_\mathrm{in}=\frac{1}{z_\mathrm{in}}=1-j0.7643
+	\]
+	
+	This condition is obtained for:
+	\[
+	l=0.3432\cdot\lambda
+	\]
+	
+	Using the given wavelength:
+	\[
+	l=0.3432\cdot 0.966667
+	=0.3317~\mathrm{m}
+	\]
+	
+	Therefore, the required transmission-line length is:
+	\[
+	\boxed{l\approx33.17~\mathrm{cm}}
+	\]
+	
+	\item At this position, we calculate:
+	\[
+	Y_\mathrm{in}
+	=\frac{1-j0.7643}{50}
+	=0.02-j0.01529
+	\]
+	
+	The capacitor is connected in parallel with the input of the line.
+	It must provide the opposite susceptance:
+	\[
+	B_C=+0.01529
+	\]
+	
+	Since
+	\[
+	B_C=2\pi fC,
+	\]
+	the required capacitance is:
+	\[
+	C=\frac{0.01529}{2\pi\cdot310\cdot10^6}
+	\]
+	
+	Thus:
+	\[
+	\boxed{C\approx7.85~\mathrm{pF}}
+	\]
+	
+	\item Finally the total input admittance after adding the capacitor comes out to be:
+	\[
+	Y_\mathrm{total}
+	=(0.02-j0.01529)+j0.01529
+	=0.02
+	\]
+	
+	Therefore:
+	\[
+	Z_\mathrm{total}=\frac{1}{Y_\mathrm{total}}
+	=\frac{1}{0.02}
+	=50~\Omega
+	\]
+\end{enumerate}
 
 \subsubsection{\textbf{Calculation for Gain of the group compared to an intrinsic radiator:}}
 
@@ -269,7 +334,7 @@ Figure~\ref{fig:xscreen3} shows the generated polar plot from the data acquired 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/group4_horz_equal}
-	\caption{\centering Polar plot of the received Horn antenna signal power (in dBm) at frequency 2.4GHz in horizontal configuration.}
+	\caption{\centering Polar plot of the received 4-Group antennae (equal phase) normalized signal power at frequency 2.4GHz in horizontal configuration.}
 	\label{fig:xscreen3}
 \end{figure}
 
@@ -279,7 +344,7 @@ Figure~\ref{fig:xscreen4} shows the generated polar plot from the data acquired 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/group4_vert_equal}
-	\caption{\centering Polar plot of the received Horn antenna signal power (in dBm) at frequency 2.4GHz in vertical configuration.}
+	\caption{\centering Polar plot of the received 4-Group antennae (equal phase) normalized signal power at frequency 2.4GHz in vertical configuration.}
 	\label{fig:xscreen4}
 \end{figure}
 
@@ -289,7 +354,7 @@ Figure~\ref{fig:xscreen5} shows the generated polar plot from the data acquired 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/group4_horz_diff}
-	\caption{\centering Polar plot of the received Horn antenna signal power (in dBm) at frequency 2.4GHz in horizontal configuration.}
+	\caption{\centering Polar plot of the received 4-Group antennae (different phase) normalized signal power at frequency 2.4GHz in horizontal configuration.}
 	\label{fig:xscreen5}
 \end{figure}
 
@@ -299,7 +364,7 @@ Figure~\ref{fig:xscreen6} shows the generated polar plot from the data acquired 
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/group4_vert_diff}
-	\caption{\centering Polar plot of the received Horn antenna signal power (in dBm) at frequency 2.4GHz in vertical configuration.}
+	\caption{\centering Polar plot of the received 4-Group antennae (different phase) normalized signal power at frequency 2.4GHz in vertical configuration.}
 	\label{fig:xscreen6}
 \end{figure}
 
