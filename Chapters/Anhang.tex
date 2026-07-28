@@ -1,78 +1,16 @@
 \newpage
 \section{Appendix}\label{chap:appendix}
-\subsection{Calculations for the active band pass filter}
-Calculation of the transfer function of one filter stage:
-\begin{gather}
-    U_{R2} = -U_{out}\\
-    U_{R3} = U_{C2}\\
-    I_{R2}=\frac{U_{R2}}{R_2} \\
-    U_{C2} = I_{R2} \cdot Z_2 = \frac{U_{R2}}{sR_2C_2}\\
-   U_{C1} = U_{C2} + U_{R2}=  U_{R2}+\frac{ U_{R2}}{sR_2C_2}\\
-   I_{C1} =  \frac{U_{C1}}{Z_{C1}}=\Biggl(U_{R2} +\frac{U_{R2}}{sR_2C_2}\Biggr) \cdot sC_1 \\ 
-    I_{R3}= \frac{U_{R3}}{R_3} = \frac{U_{R2}}{sR_2C_2R_3}\\
-    I_{R1}= I_{C1} + I_{C2} + I_{R3}=sC_1U_{R2}+\frac{sC_1U_{R2}}{R_2C_2}+\frac{U_{R2}}{R_2}+\frac{U_{R2}}{sR_2C_2R_3}\\
-    C_1 = C_2 = C\\
-    U_{in}= U_{R3} + U_{R1}= R_1 \cdot I_{R1} + \frac{U_{R2}}{sR_2C} =\\
-    U_{R2}\Biggl(\frac{1}{sR_2C} + \frac{2R_1}{R_2} + sCR_1 + \frac{R_1}{sR_2R_3C}\Biggr) =\\
-    -U_{out}\frac{R3+2sR_1R_3C+s^2R_1R_2R_3C^2+R_1}{sR_2R_3C}\\
-    \begin{split}
-     H(s)=\frac{U_{out}}{U_{in}}=-\frac{\frac{sR_2R_3C}{R_1+R_3}}{1+\frac{2R_1R_3}{R_1+R_3}sC+\frac{R_1R_2R_3}{R_1+R_3}s^2C^2}\\
-     H(P)=-\frac{\frac{R_2R_3C}{R_1+R_3}\omega_0P}{1+\frac{2R_1R_3}{R_1+R_3}\omega_0PC+\frac{R_1R_2R_3}{R_1+R_3}\omega_0^2P^2C^2}  
-    \end{split}
-\end{gather}
-Calculation the get the factor $\alpha$:\\
-The denominator of the function \ref{eq:6} is the following.
-\begin{gather}
-    D(s)=[1+\frac{\alpha s}{Q_i}+(\alpha s)^2] \cdot [1+\frac{1}{Q_i}\Biggl(\frac{s}{\alpha}\Biggr)+\Biggl(\frac{s}{\alpha}\Biggr)^2]\\
-    =1+s\Biggl(\frac{\alpha}{Q_i} +\frac{1}{Q_i\alpha}\Biggr) + s^2\Biggl(\alpha^2+\frac{1}{Q_i^2} + \frac{1}{\alpha^2}\Biggr) + s^3 \Biggl(\frac{\alpha}{Q_i}+\frac{1}{Q_i\alpha}\Biggr) + s^4
-\end{gather}
-\newpage
-Coefficient comparison:
-\begin{gather}
-    s^0: 1=1\\
-    s^1: \frac{\alpha}{Q_i} +\frac{1}{Q_i\alpha} = \frac{\alpha}{b}\Delta\Omega\\
-    s^2: \alpha^2+\frac{1}{Q_i^2} + \frac{1}{\alpha^2} = 2+ \frac{\Delta\Omega^2}{b}\\
-    s^3: \frac{\alpha}{Q_i} +\frac{1}{Q_i\alpha} = \frac{\alpha}{b}\Delta\Omega\\
-    s^4: 1=1
-\end{gather}
-The equation~\ref{eq:16} can be derived from $s^1$ or $s^3$ and must be substituted in the coefficient equation of $s^2$ as follows.
-\begin{gather}
-    \alpha^2+\Biggl[\frac{\alpha\Delta\Omega a}{b(1+\alpha^2)}\Biggr] + \frac{1}{\alpha^2}-2-\frac{(\Delta\Omega)^2}{b}=0\label{eq:89}
-\end{gather}
-The equation~\ref{eq:89} was solved using Wolfram Alpha \ref{fig:96}\\
-Further necessary values for the calculations are:\\
-\begin{gather}
-    Q=\frac{f_m}{f_u-f_l}=4.47\\
-    \Delta\Omega=\frac{1}{Q}\\
-    a = \sqrt{2}; 
-    b=1 \\ \text{a and b are given for a Butterworth filter}
-\end{gather}
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.65\linewidth]{src/figers/wolfram.png}
-    \caption{\centering computing factor $\alpha$}
-    \label{fig:96}
-\end{figure}
-The chosen real solutions is $\alpha = 1.0826$
+
+\subsection{Measurement data for a coaxial RF line with various terminations}
+The following table~\ref{tab:power_plots_1} shows the measured signal power along the coaxial line for loads: open, short and 100$\Omega$.
+\input{src/assets/tabel/sim_1}
+
 \FloatBarrier
 \newpage
-\subsection{Measurement data}
-The following table~\ref{tab:power_plots_1} shows the measured signal power along the coaxial RF line for the loads: open, short and 100$\Omega$.
-\input{src/assets/tabel/sim_1}
-\\The following table~\ref{tab:power_plots_2} shows the measured signal power along the coaxial RF line for the loads: capacitive load, 25$\Omega$ and 50$\Omega$.
+The following table~\ref{tab:power_plots_2} shows the measured signal power along the coaxial RF line for the loads: capacitive load, 25$\Omega$ and 50$\Omega$.
 \input{src/assets/tabel/sim_2}
 
-\subsection{Calculations for the ADC-Driver and anti-aliasing filter}
-These formulas can be found in the chapter \textit{Active 2nd Order Low Pass (Multifeedback)} of \cite{ASV}. From these equations the equations for the component values can be constructed.
-\begin{gather}
-    H_0 = -\frac{R_2}{R_1}\label{eq:231}\\
-    a = \omega_C C_1 \Biggl[R_2+R_3+\frac{R_2R_3}{R_1}\Biggr]\\
-    b =\omega_C^2 C_1C_2R_2R_3
-\end{gather}
-
-
-
-
+\newpage
 \subsection{Resultant plots from measurement data}
 The following figure~\ref{fig:chart3} shows the resultant plot of the measured signal power values, for all 6 termination loads in the same chart, along the coaxial transmission line.
 \begin{figure}[ht!]
@@ -82,7 +20,6 @@ The following figure~\ref{fig:chart3} shows the resultant plot of the measured s
 	\label{fig:chart3}
 \end{figure}
 
-\newpage
 \subsection{Code snippets used for calculations}
 
 The following code \ref{lst:load-code} is used to compute the Load impedance.
@@ -108,6 +45,7 @@ print(f"\nGamma = {Gamma.real:.6f} + j{Gamma.imag:.6f}")
 print(f"Load impedance ZL = {ZL.real:.6f} + j{ZL.imag:.6f} ohms")
 \end{lstlisting}
 
+\newpage
 The following code \ref{lst:load-code} is used to represent the reflection coefficient on the smith chart.
 \begin{lstlisting}[style=mystyle, language=Python, label={lst:smith-code}]
 	import matplotlib.pyplot as plt
@@ -137,8 +75,4 @@ The following code \ref{lst:load-code} is used to represent the reflection coeff
 		plt.show()
 \end{lstlisting}
 
-\subsection{Measurement data for the switched capacitor filter}
-Table ~\ref{tab:Messermunt_4} show the magnitude response of the filter at 1MHz. The phase values were observed shifting around 0 in minimal quantities and hence this measurement has been excluded. 
-\input{src/assets/tabel/Messermunt_4}
-\input{src/assets/tabel/Messermunt_3}
 \newpage
