@@ -8,6 +8,32 @@ The network analyzer was calibrated (transmission and reflection for all 4 ports
 
 A specific circuit diagram is not required for this task, as the measurement simply involves connecting the coaxial filters directly between the calibrated ports of the network analyser.
 
+\subsubsection{Formulas and Calculations}
+
+The order of a filter ($n$) can be determined by evaluating the steep roll-off slope in the stopband of the transmission parameter ($S_{21}$). A standard filter rolls off at $n \times 20$ dB/decade. The slope is calculated using:
+
+\begin{equation}
+    \text{Slope} = \frac{\Delta S_{21}}{\Delta \log_{10}(f)}
+\end{equation}
+
+\paragraph{Lowpass Filter (SLP-100) Calculation:}
+Extracting two points from the logarithmic $S_{21}$ plot ($f_1 = 100$ MHz at $-3$ dB, and $f_2 = 200$ MHz at $-50$ dB):
+
+\begin{equation}
+    \text{Slope} = \frac{-50\text{ dB} - (-3\text{ dB})}{\log_{10}(200\text{ MHz}) - \log_{10}(100\text{ MHz})} = \frac{-47\text{ dB}}{\log_{10}(2)} \approx -156\text{ dB/decade}
+\end{equation}
+
+Dividing this slope by the standard $20$ dB/decade roll-off per pole yields $n = 156 / 20 = 7.8$, confirming an 8th-order filter.
+
+\paragraph{Highpass Filter (SHP-100) Calculation:}
+Extracting two points from the attenuation slope below the cutoff frequency ($f_1 = 100$ MHz at $-3$ dB, and $f_2 = 50$ MHz at $-50$ dB):
+
+\begin{equation}
+    \text{Slope} = \frac{-3\text{ dB} - (-50\text{ dB})}{\log_{10}(100\text{ MHz}) - \log_{10}(50\text{ MHz})} = \frac{47\text{ dB}}{\log_{10}(2)} \approx 156\text{ dB/decade}
+\end{equation}
+
+Dividing this by $20$ dB/decade proves this is also an 8th-order filter.
+
 \subsubsection{Measurement results}
 
 \begin{table}[htpb]
@@ -37,6 +63,8 @@ A specific circuit diagram is not required for this task, as the measurement sim
     \end{tabular}
     \caption{Measured 2-port S-parameters for the coaxial filters at marker frequency (2.025 GHz)}
 \end{table}
+
+\FloatBarrier
 
 \subsubsection{Curves \& diagrams}
 
@@ -107,17 +135,14 @@ A specific circuit diagram is not required for this task, as the measurement sim
 
 \subsubsection{Short discussion of measurement results}
 
+Based on the transmission and reflection measurements, the characteristics of the three coaxial filters can be evaluated:
+
 \begin{itemize}
-    \item \textbf{Lowpass Filter (SLP-100):} Passes frequencies below $\sim$100 MHz. At the 2.025 GHz stopband marker, transmission is highly attenuated ($S_{21}$ = -56.11 dB), while reflection is nearly 0 dB ($S_{11}$ = -0.26 dB). The rejected signal is almost entirely reflected, which is confirmed by the Smith chart trace moving along the highly reactive outer boundary.
-    
-    \item \textbf{Highpass Filter (SHP-100):} Passes frequencies above $\sim$100 MHz. At the 2.025 GHz passband marker, insertion loss is negligible ($S_{21}$ = -0.29 dB) and reflection is minimized ($S_{11}$ = -26.96 dB). Passband frequencies properly converge near the 50 $\Omega$ center of the Smith chart.
-    
-    \item \textbf{Bandpass Filter (SIF-70):} The passband is centered near 70 MHz. At 2.025 GHz, transmission is attenuated ($S_{21}$ = -13.33 dB) and reflection increases ($S_{11}$ = -2.04 dB).
+    \item \textbf{Lowpass Filter (SLP-100):} Passes frequencies below $\sim\!100$ MHz. At the $2.025$ GHz stopband marker, transmission is highly attenuated ($S_{21} = -56.11$ dB), while reflection is nearly $0$ dB ($S_{11} = -0.26$ dB). The rejected signal is almost entirely reflected, which is confirmed by the Smith chart trace moving along the highly reactive outer boundary. As proven in the calculations, the steep $-156$ dB/decade roll-off confirms it is an 8th-order filter.
+    \item \textbf{Highpass Filter (SHP-100):} Passes frequencies above $\sim\!100$ MHz. At the $2.025$ GHz passband marker, insertion loss is negligible ($S_{21} = -0.29$ dB) and reflection is minimized ($S_{11} = -26.96$ dB). Passband frequencies properly converge near the $50\,\Omega$ center of the Smith chart. The $156$ dB/decade roll-off proves this is also an 8th-order filter.
+    \item \textbf{Bandpass Filter (SIF-70):} The passband is centered near $70$ MHz. At $2.025$ GHz, transmission is attenuated ($S_{21} = -13.33$ dB) and reflection increases ($S_{11} = -2.04$ dB).
+    \item \textbf{Phase Characteristics:} The phase shifts uniformly within the passbands. In the stopbands, attenuation drops the signal near the network analyzer's noise floor, causing the chaotic phase variations visible in the plots.
 \end{itemize}
-
-Filter orders can be estimated from the stopband attenuation slopes. The steep transition and high roll-off rate in the SLP-100 and SHP-100 plots indicate they are higher-order filters.
-
-The phase shifts uniformly within the passbands. In the stopbands, attenuation drops the signal near the network analyzer's noise floor, causing the chaotic phase variations visible in the plots.
 
 \subsection{Microstrip Lines}
 
@@ -329,35 +354,53 @@ Below is the circuit diagram for the 3-port resistive power divider.
 
 \subsubsection{Formulas and Calculations}
 
-A completely matched, reciprocal 3-port network cannot be lossless. A resistive power divider uses internal resistors to match all three ports simultaneously to the characteristic impedance ($Z_0$). Because of the reciprocal and symmetrical nature of this specific resistive network, the theoretical linear S-parameter matrix is expected to be:
+\textbf{Calculation of the Resistor Values:} A symmetric 3-port resistive power divider utilizes a star configuration of three identical internal resistors ($R$) to match all ports to the characteristic impedance ($Z_0 = 50\,\Omega$). When Port 2 and Port 3 are terminated with $Z_0$, the input impedance looking into Port 1 must also equal $Z_0$. The equivalent circuit looking into Port 1 consists of the first resistor $R$ in series with the parallel combination of the other two branches (each having a resistance of $R + Z_0$).
+
+\begin{equation}
+    Z_{\text{in}} = R + \frac{R + Z_0}{2}
+\end{equation}
+
+To achieve perfect matching, we set $Z_{\text{in}} = Z_0$:
+
+\begin{align}
+    Z_0 &= \frac{3R + Z_0}{2} \\
+    2Z_0 &= 3R + Z_0 \\
+    R &= \frac{Z_0}{3}
+\end{align}
+
+For a standard $50\,\Omega$ measurement system, the required resistor values are:
+
+\begin{equation}
+    R = \frac{50\,\Omega}{3} = 16.67\,\Omega
+\end{equation}
+
+\textbf{Theoretical S-Parameters:} A completely matched, reciprocal 3-port network cannot be lossless. Because of the reciprocal and symmetrical nature of this specific resistive network, the theoretical linear S-parameter matrix is expected to be:
 
 \begin{equation}
     S_{\text{ideal}} = 0.5 
-    \begin{bmatrix}
-        0 & 1 & 1 \\
-        1 & 0 & 1 \\
-        1 & 1 & 0
-    \end{bmatrix}
+    \begin{pmatrix} 
+        0 & 1 & 1 \\ 
+        1 & 0 & 1 \\ 
+        1 & 1 & 0 
+    \end{pmatrix}
 \end{equation}
 
-Network analysers display these values in decibels (dB). The theoretical forward transmission linear magnitude of 0.5 corresponds to the following theoretical loss:
+Network analysers display these values in decibels (dB). The theoretical forward transmission linear magnitude of $0.5$ corresponds to the following theoretical loss:
 
 \begin{equation}
-    S_{\text{dB}} = 20 \cdot \log_{10}(0.5) = -6.02 \text{ dB}
+    S_{\text{dB}} = 20 \cdot \log_{10}(0.5) = -6.02\text{ dB}
 \end{equation}
 
 To directly compare the measured decibel results from the network analyser with the ideal linear voltage ratios, the measured dB values must be converted back to linear magnitudes using the following calculation:
 
 \begin{equation}
-    |S_{\text{linear}}| = 10^{\frac{S_{\text{dB}}}{20}}
+    |S_{\text{linear}}| = 10^{(S_{\text{dB}} / 20)}
 \end{equation}
 
-Exemplary Calculation:
-
-To demonstrate the calculation process for the values populated in the "Calculated" column of the measurement table, the forward transmission parameter ($S_{21}$) is evaluated below. Given the measured transmission coefficient of $S_{21} = -6.0411$ dB, the linear magnitude is calculated as:
+\textbf{Exemplary Calculation:} To demonstrate the calculation process for the values populated in the ``Calculated'' column of the measurement table, the forward transmission parameter ($S_{21}$) is evaluated below. Given the measured transmission coefficient of $S_{21} = -6.0411$ dB, the linear magnitude is calculated as:
 
 \begin{equation}
-    |S_{21}| = 10^{\frac{-6.0411}{20}} = 0.4988
+    |S_{21}| = 10^{(-6.0411 / 20)} = 0.4988
 \end{equation}
 
 \subsubsection{Measurement results}
@@ -409,17 +452,17 @@ To demonstrate the calculation process for the values populated in the "Calculat
 \subsubsection{Short discussion of measurement results}
 
 \begin{itemize}
-    \item \textbf{Impedance Matching:} Reflection coefficients ($S_{11}$, $S_{22}$, $S_{33}$) remain below -33 dB (linear magnitude $< 0.022$), confirming strong port matching to the 50 $\Omega$ characteristic impedance. The Smith chart validates this by contracting the traces tightly toward the center matching point.
+    \item \textbf{Impedance Matching:} Reflection coefficients ($S_{11}$, $S_{22}$, $S_{33}$) remain below $-33$ dB (linear magnitude $< 0.022$). This confirms that the calculated $16.67\,\Omega$ internal star-resistor configuration successfully provides strong port matching to the $50\,\Omega$ characteristic impedance. The Smith chart validates this by contracting the traces tightly toward the center matching point.
     
-    \item \textbf{Transmission Loss:} Forward and reverse transmission parameters ($S_{21}$, $S_{12}$, $S_{31}$, $S_{13}$) measure between -6.04 dB and -6.08 dB (linear ratios near 0.498), closely matching the theoretical -6.02 dB loss of a resistive 3-port network. The minor 0.02 to 0.06 dB deviation stems from high-frequency VNA calibration limits and residual fixture parasitics at 2.1 GHz.
+    \item \textbf{Transmission Loss:} Forward and reverse transmission parameters ($S_{21}$, $S_{12}$, $S_{31}$, $S_{13}$) measure between $-6.04$ dB and $-6.08$ dB (linear ratios near $0.498$), closely matching the theoretical $-6.02$ dB loss calculated for this network. The minor $0.02$ to $0.06$ dB deviation stems from high-frequency VNA calibration limits and residual fixture parasitics at $2.1$ GHz.
     
-    \item \textbf{Isolation:} Parameters between the output ports ($S_{23}$, $S_{32}$) measure approximately -6.04 dB. This demonstrates a complete lack of isolation between ports 2 and 3, where signals pass freely with the same attenuation as the main path, highlighting the fundamental functional difference from an isolated Wilkinson divider.
+    \item \textbf{Isolation:} Parameters between the output ports ($S_{23}$, $S_{32}$) measure approximately $-6.04$ dB. This demonstrates a complete lack of isolation between ports 2 and 3, where signals pass freely with the same attenuation as the main path, highlighting the fundamental functional difference from an isolated Wilkinson divider.
 \end{itemize}
 
 \subsection{Antenna Reflection Coefficients}
 
 \subsubsection{Task Description}
-The reflection coefficient ($S_{11}$) of various antennas was measured using a network analyzer. The reflection characteristics of two distinct antenna configurations---Antenna 1 and Antenna 2 mounted with a ground plane---were evaluated. Results are presented using both logarithmic magnitude frequency plots and Smith chart representations.
+The reflection coefficient ($S_{11}$) of various antennas was measured using a network analyzer. The reflection characteristics of two distinct antenna configurations, Antenna 1 and Antenna 2 mounted with a ground plane were evaluated. Results are presented using both logarithmic magnitude frequency plots and Smith chart representations.
 
 \subsubsection{Formulas and Calculations}
 
@@ -579,19 +622,22 @@ The unmatched antenna presents a load impedance $Z_A$ which can be determined fr
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{src/figers/ex_3/Antenna_1_smith.png}
     \caption{Measured reflection coefficient of the unmatched antenna at 2.4 GHz displayed in a Smith chart.}
     \label{fig:antenna_1_smith}
 \end{figure}
 
-\begin{figure}[htpb]
+\clearpage
+
+\begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]{src/figers/ex_3/matching_network_smith.png}
+    \includegraphics[width=0.8\textwidth]{src/figers/ex_3/Figure_3_23_Smith_Chart_Match.png}
     \caption{Graphical solution of the matching network (line + capacitor) constructed in the Smith chart.}
     \label{fig:matching_network_smith}
 \end{figure}
+
 \FloatBarrier
 
 \subsubsection{Short discussion of measurement results}
@@ -678,14 +724,14 @@ The VSWR is then calculated as:
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{src/figers/ex_3/Antenna_ss_turner_smith.png}
     \caption{Smith chart illustrating the impedance matching process using the slide-screw tuner at 2.4 GHz.}
     \label{fig:ss_tuner_smith}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{src/figers/ex_3/Antenna_ss_turner_mag.png}
     \caption{Measured final reflection coefficient (logarithmic magnitude) of the antenna matched with the slide-screw tuner.}
