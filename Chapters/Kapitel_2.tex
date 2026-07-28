@@ -2,10 +2,7 @@
 \subsection{Coaxial Filters}
 
 \subsubsection{Task Description}
-The task is to calibrate the network analyser (transmission and reflection for all 4 ports) and measure the 2-port parameters for coaxial filters
-. Three specific coaxial filters were measured in this exercise: a Lowpass filter (SLP-100), a Highpass filter (SHP-100), and a Bandpass filter (SIF-70). Based on these measurements, the order of the filters and their characteristics must be determined
-. Finally, the reflection coefficients are to be displayed as a Smith chart, and the transmission parameters must be displayed as logarithmic magnitude and phase
-.
+The network analyzer was calibrated (transmission and reflection for all 4 ports) to measure the 2-port parameters of three coaxial filters: a Lowpass (SLP-100), a Highpass (SHP-100), and a Bandpass (SIF-70). From these measurements, the characteristics and order of each filter were determined. Reflection coefficients were plotted on a Smith chart, and transmission parameters were recorded as logarithmic magnitude and phase.
 
 \subsubsection{Schematic}
 
@@ -110,24 +107,22 @@ A specific circuit diagram is not required for this task, as the measurement sim
 
 \subsubsection{Short discussion of measurement results}
 
-Considering the measured transmission and reflection parameters, the distinct characteristics of the three filters can be clearly identified:
-
 \begin{itemize}
-    \item \textbf{Lowpass Filter (SLP-100):} The magnitude plot exhibits a clear low-pass characteristic, passing frequencies below approximately 100 MHz. In the stopband at the 2.025 GHz marker, the transmission ($S_{21}$) is highly attenuated (-56.11 dB), while the reflection ($S_{11}$) is nearly 0 dB (-0.26 dB). This indicates that in the stopband, the rejected signal is almost entirely reflected rather than absorbed. The Smith chart confirms this, as the impedance trace moves tightly along the highly reactive outer boundary for stopband frequencies.
+    \item \textbf{Lowpass Filter (SLP-100):} Passes frequencies below $\sim$100 MHz. At the 2.025 GHz stopband marker, transmission is highly attenuated ($S_{21}$ = -56.11 dB), while reflection is nearly 0 dB ($S_{11}$ = -0.26 dB). The rejected signal is almost entirely reflected, which is confirmed by the Smith chart trace moving along the highly reactive outer boundary.
     
-    \item \textbf{Highpass Filter (SHP-100):} This filter demonstrates a high-pass response, heavily attenuating low frequencies but allowing frequencies above $\sim$100 MHz to pass. At the 2.025 GHz marker (which falls within the passband), the transmission is excellent with negligible insertion loss ($S_{21}$ = -0.29 dB) and the reflection is minimized ($S_{11}$ = -26.96 dB). On the Smith chart, the passband frequencies converge securely near the 50 $\Omega$ center matching point.
+    \item \textbf{Highpass Filter (SHP-100):} Passes frequencies above $\sim$100 MHz. At the 2.025 GHz passband marker, insertion loss is negligible ($S_{21}$ = -0.29 dB) and reflection is minimized ($S_{11}$ = -26.96 dB). Passband frequencies properly converge near the 50 $\Omega$ center of the Smith chart.
     
-    \item \textbf{Bandpass Filter (SIF-70):} The magnitude plot reveals a distinct passband centered near 70 MHz. At higher frequencies outside this band, such as the 2.025 GHz marker, the signal transmission is attenuated ($S_{21}$ = -13.33 dB) and the reflection increases accordingly ($S_{11}$ = -2.04 dB).
+    \item \textbf{Bandpass Filter (SIF-70):} The passband is centered near 70 MHz. At 2.025 GHz, transmission is attenuated ($S_{21}$ = -13.33 dB) and reflection increases ($S_{11}$ = -2.04 dB).
 \end{itemize}
 
-Regarding the order of the filters, it can be estimated by observing the attenuation slope in the stopband of the logarithmic magnitude plots. The extreme steepness of the transition from the passband to the stopband - particularly visible as a sharp, near-vertical drop in the SLP-100 and SHP-100 plots—indicates a high roll-off rate per decade. This suggests that these components are higher-order filters, which is necessary to provide such a rapid cut-off.
+Filter orders can be estimated from the stopband attenuation slopes. The steep transition and high roll-off rate in the SLP-100 and SHP-100 plots indicate they are higher-order filters.
 
-Furthermore, the transmission phase plots confirm the passband and stopband regions of the filters. Within the passbands, the phase shifts uniformly over frequency. In the stopband regions, the deep attenuation drops the signal near the network analyser's noise floor, which results in the rapid, chaotic phase variations visible in the diagrams.
+The phase shifts uniformly within the passbands. In the stopbands, attenuation drops the signal near the network analyzer's noise floor, causing the chaotic phase variations visible in the plots.
 
 \subsection{Microstrip Lines}
 
 \subsubsection{Task Description}
-The task is to measure the transmission coefficient ($S_{21}$) and the reflection coefficient ($S_{11}$) for different microstrip lines using a network analyser. Based on the measurement data obtained, this section focuses on a comparative analysis of the reflection coefficients ($S_{11}$) of five distinct microstrip configurations, utilizing the instrument's memory traces to display them simultaneously.
+The transmission ($S_{21}$) and reflection ($S_{11}$) coefficients of various microstrip lines were measured using a network analyzer. This section evaluates the reflection characteristics ($S_{11}$) of five distinct microstrip configurations captured simultaneously using the instrument's memory traces.
 
 \subsubsection{Schematic}
 \textit{(Placeholder: Insert your "Figure 3.1: Measured Microstrip-Lines" photograph here. As per the guidelines, the network analyser itself does not need to be drawn in detail, but the measuring points connecting to the microstrip lines must be clearly indicated.)}
@@ -195,21 +190,21 @@ To demonstrate the calculation process for the values populated in the "Calculat
 \subsubsection{Short discussion of measurement results}
 
 \begin{itemize}
-    \item At very low frequencies (starting at 10 MHz), the reflection coefficients are extremely low (approximately -45 dB), indicating excellent impedance matching to the 50 $\Omega$ system.
+    \item \textbf{Low-Frequency Performance:} At 10 MHz, reflection coefficients are very low ($\sim$-45 dB), indicating excellent impedance matching to the 50 $\Omega$ system.
     
-    \item As the frequency increases towards 3 GHz, the overall envelope of the reflection coefficients degrades, rising to approximately -15 dB. This progressive mismatch is a result of frequency-dependent dielectric losses, conductor losses, and parasitic reactances inherent to the microstrip structures and their SMA connector transitions.
+    \item \textbf{High-Frequency Degradation:} As frequency increases toward 3 GHz, the reflection envelope rises to $\sim$-15 dB. This mismatch stems from frequency-dependent dielectric and conductor losses, alongside parasitic reactances in the structures and SMA connectors.
     
-    \item Every reflection coefficient curve exhibits periodic, sharp minima, with approximately four deep minima visible across the 3 GHz spectrum. At these specific resonant frequencies, the reflection coefficient drops significantly, meaning the given microstrip line is exceptionally well-matched and presents an input impedance of almost exactly 50 $\Omega$.
+    \item \textbf{Resonant Minima:} Each curve displays periodic sharp minima ($\sim$4 deep notches across the 3 GHz span). At these resonant frequencies, the line is exceptionally well-matched, presenting an input impedance near 50 $\Omega$.
     
-    \item Figure 3-8 includes a measurement of a disconnected microstrip line, represented by the flat green trace. Because the line is open-ended, the boundary condition creates an infinite load impedance, resulting in a theoretical reflection factor of $\rho = +1$. This is perfectly validated by the measurement, which shows a constant $S_{11}$ magnitude of approximately 0 dB (-0.0190 dB at 2.025 GHz) across the entire frequency range, confirming that the signal is being entirely reflected back to the source.
+    \item \textbf{Disconnected Line Response:} The flat trace representing the open-ended, disconnected line validates theoretical boundary conditions ($\rho = +1$). The measured $S_{11}$ magnitude remains constant at $\sim$0 dB (-0.0190 dB at 2.025 GHz) across the band, confirming total signal reflection.
     
-    \item Although the laboratory task description explicitly mandates the measurement of both the transmission coefficient ($S_{21}$) and the reflection coefficient ($S_{11}$), the forward transmission data was unfortunately not recorded during the laboratory session. Consequently, the comparative analysis of the microstrip lines in this section is strictly limited to their reflection characteristics and mismatch behavior.
+    \item \textbf{Scope Limitation:} Forward transmission data ($S_{21}$) was omitted during the measurement session. Consequently, this evaluation is restricted strictly to reflection parameters and mismatch behavior.
 \end{itemize}
 
 \subsection{3-Port Circulator}
 
 \subsubsection{Task Description}
-The objective of this task is to measure the complete S-parameter matrix of a 3-port circulator using a network analyser and compare the measured characteristics against the ideal theoretical behaviour of a circulator. Two different physical components were measured: a larger circulator optimized for the $\sim$900 MHz band, and a smaller circulator optimized for the $\sim$2.4 GHz band.
+The complete S-parameter matrix of a 3-port circulator was measured using a network analyzer to compare its performance against ideal theoretical behavior. Measurements were performed on two distinct physical components: a larger circulator optimized for the $\sim$900 MHz band and a smaller circulator optimized for the $\sim$2.4 GHz band.
 
 \subsubsection{Schematic}
 Below is the block diagram for the 3-port circulator measurement setup. 
@@ -303,24 +298,24 @@ The linear S-matrix for the 901 MHz circulator is reconstructed from the calcula
     \end{bmatrix}
 \end{equation}
 
-Comparing this to the ideal theoretical matrix confirms the expected characteristics of the circulator:
+\noindent Comparing this matrix to ideal theoretical behavior confirms the expected circulator characteristics:
 
 \begin{itemize}
     \item \textbf{Impedance Matching:} The main diagonal entries ($S_{11}$, $S_{22}$, $S_{33}$) are near zero (below 0.025 linear). This indicates excellent impedance matching at all ports, achieving return losses better than 32 dB.
     
-    \item \textbf{Forward Transmission:} The forward parameters ($S_{21}$, $S_{32}$, $S_{13}$) are approximately 0.98. This confirms the non-reciprocal behaviour of the component, as power flows strictly in a clockwise circle (port 1 to 2, port 2 to 3, and port 3 to 1).
+    \item \textbf{Forward Transmission:} The forward parameters ($S_{21}$, $S_{32}$, $S_{13}$) are approximately 0.98. This confirms the non-reciprocal behavior of the component, as power flows strictly in a clockwise direction (port 1 to 2, port 2 to 3, and port 3 to 1).
     
-    \item \textbf{Isolation:} In the reverse direction ($S_{12}$, $S_{23}$, $S_{31}$), the signal is strongly blocked. The linear values are near 0.02, which corresponds to an isolation of over 30 dB.
+    \item \textbf{Isolation:} In the reverse direction ($S_{12}$, $S_{23}$, $S_{31}$), the signal is strongly blocked. Linear values remain near 0.02, corresponding to an isolation of over 30 dB.
     
-    \item \textbf{Insertion Loss:} The forward transmission is slightly below the ideal theoretical value of 1. This 0.15 to 0.20 dB attenuation is a result of normal physical insertion losses, specifically ohmic conductor losses and magnetic losses in the ferrite material.
+    \item \textbf{Insertion Loss:} Forward transmission sits slightly below the ideal value of 1. This 0.15 to 0.20 dB attenuation stems from physical insertion losses, specifically ohmic conductor losses and magnetic losses within the ferrite material.
     
-    \item \textbf{Frequency Dependency:} The measurements verify that circulators are strictly frequency-dependent due to the physical size of their ferrite cores. The larger circulator is optimized for a longer wavelength (901 MHz), while the smaller circulator operates at a shorter wavelength (2.436 GHz).
+    \item \textbf{Frequency Dependency:} Measurements verify that circulators are strictly frequency-dependent due to the physical size of their ferrite cores. The larger circulator is optimized for a longer wavelength (901 MHz), while the smaller circulator operates at a shorter wavelength (2.436 GHz).
 \end{itemize}
 
 \subsection{3-Port Resistive Power Divider}
 
 \subsubsection{Task Description}
-The task is to measure the S-parameters of a 3-port resistive power divider using a network analyser. The objective is to verify that the power divider matches all three ports to the characteristic impedance and exhibits a total loss of 6 dB. Furthermore, the measurement should determine whether there is any isolation between output ports 2 and 3.
+The S-parameters of a 3-port resistive power divider were measured using a network analyzer. The measurements verified port matching to the characteristic impedance, evaluated the 6 dB total transmission loss, and determined whether isolation exists between output ports 2 and 3.
 
 \subsubsection{Schematic}
 Below is the circuit diagram for the 3-port resistive power divider.
@@ -413,23 +408,18 @@ To demonstrate the calculation process for the values populated in the "Calculat
 
 \subsubsection{Short discussion of measurement results}
 
-Based on the measurement data, the operational characteristics of the resistive power divider are clearly verified:
-
 \begin{itemize}
-    \item \textbf{Impedance Matching:} The reflection coefficients ($S_{11}$, $S_{22}$, $S_{33}$) are all below -33 dB (equivalent to a linear magnitude of less than 0.022). This confirms that all three ports are exceptionally well-matched to the 50 $\Omega$ characteristic impedance. The Smith chart validates this, as the traces contract securely into the center matching point (e.g., $S_{11}$ reads $52.17\ \Omega - j0.29\ \Omega$).
+    \item \textbf{Impedance Matching:} Reflection coefficients ($S_{11}$, $S_{22}$, $S_{33}$) remain below -33 dB (linear magnitude $< 0.022$), confirming strong port matching to the 50 $\Omega$ characteristic impedance. The Smith chart validates this by contracting the traces tightly toward the center matching point.
     
-    \item \textbf{Transmission Loss:} The forward and reverse transmission coefficients between the input and outputs ($S_{21}$, $S_{12}$, $S_{31}$, $S_{13}$) were measured at approximately -6.04 dB to -6.08 dB (linear ratios near 0.498). This practically matches the theoretical -6.02 dB transmission loss inherent to this specific resistive 3-port network. The minor deviations of roughly 0.02 to 0.06 dB from the ideal value can be attributed to the component tolerances of the internal resistors and slight parasitic effects at 2.1 GHz.
+    \item \textbf{Transmission Loss:} Forward and reverse transmission parameters ($S_{21}$, $S_{12}$, $S_{31}$, $S_{13}$) measure between -6.04 dB and -6.08 dB (linear ratios near 0.498), closely matching the theoretical -6.02 dB loss of a resistive 3-port network. The minor 0.02 to 0.06 dB deviation stems from high-frequency VNA calibration limits and residual fixture parasitics at 2.1 GHz.
     
-    \item \textbf{Isolation:} The measured parameters between the two output ports ($S_{23}$ and $S_{32}$) are approximately -6.04 dB. This explicitly demonstrates that there is no isolation between port 2 and port 3. The signal is freely transmitted between these two output ports, experiencing the exact same attenuation as the main input-to-output path. This lack of isolation is the defining difference between a basic resistive power divider and a Wilkinson power divider, which actively isolates its outputs.
+    \item \textbf{Isolation:} Parameters between the output ports ($S_{23}$, $S_{32}$) measure approximately -6.04 dB. This demonstrates a complete lack of isolation between ports 2 and 3, where signals pass freely with the same attenuation as the main path, highlighting the fundamental functional difference from an isolated Wilkinson divider.
 \end{itemize}
 
 \subsection{Antenna Reflection Coefficients}
 
 \subsubsection{Task Description}
-The task is to measure the reflection coefficient ($S_{11}$) of different antennas using a network analyser. Based on the measurements, the reflection characteristics of two different antenna configurations (Antenna 1 and Antenna 2 with a ground plane) are evaluated. The measurement results must be displayed both as a Smith chart and as a logarithmic magnitude plot over frequency.
-
-\subsubsection{Schematic}
-The antenna under test is connected directly to Port 1 of the calibrated VNA. Measurements are recorded for Antenna 1 (unmatched monopole/dipole) and Antenna 2 (mounted on a metallic ground plane).
+The reflection coefficient ($S_{11}$) of various antennas was measured using a network analyzer. The reflection characteristics of two distinct antenna configurations---Antenna 1 and Antenna 2 mounted with a ground plane---were evaluated. Results are presented using both logarithmic magnitude frequency plots and Smith chart representations.
 
 \subsubsection{Formulas and Calculations}
 
@@ -521,25 +511,20 @@ The VSWR is then calculated as:
 
 \subsubsection{Short discussion of measurement results}
 
-Based on the measurement data and plots, the distinct matching characteristics of the two antenna setups can be evaluated:
-
 \begin{itemize}
-    \item \textbf{Antenna 1 (Unmatched):} This antenna exhibits a moderate resonance at approximately 3.049 GHz, where the reflection coefficient reaches a minimum of -9.61 dB. Converting this value yields a VSWR of 1.99, indicating that a notable portion of the signal is being reflected.
+    \item \textbf{Antenna 1 (Unmatched):} Exhibits a moderate resonance at 3.049 GHz with an $S_{11}$ minimum of -9.61 dB (VSWR 1.99), indicating significant signal reflection.
     
-    \item \textbf{Antenna 1 Impedance:} The Smith chart confirms this mismatch. At the 3.049 GHz marker, the normalised input impedance does not perfectly reach the 50 $\Omega$ center point, instead presenting a slightly capacitive impedance of $38.34\ \Omega - j28.07\ \Omega$.
+    \item \textbf{Antenna 1 Impedance:} The Smith chart confirms the mismatch at 3.049 GHz, showing a capacitive input impedance of $38.34\ \Omega - j28.07\ \Omega$ away from the 50 $\Omega$ system center.
     
-    \item \textbf{Antenna 2 (With Ground Plane):} In contrast, the antenna mounted on a metallic ground plane demonstrates excellent matching characteristics. The logarithmic magnitude plot reveals a deep, sharp resonance at 2.512 GHz with a reflection coefficient of -27.24 dB (VSWR of 1.09).
+    \item \textbf{Antenna 2 (With Ground Plane):} Demonstrates strong matching when mounted on a metallic ground plane, showing a deep resonance at 2.512 GHz with $S_{11} = -27.24$ dB (VSWR 1.09).
     
-    \item \textbf{Antenna 2 Impedance:} The Smith chart for Antenna 2 illustrates that the impedance curve passes extremely close to the optimal 50 $\Omega$ matching point. Near resonance, the impedance is $47.76\ \Omega + j3.44\ \Omega$, proving that the reactive components have been almost entirely cancelled out to allow maximum power transfer into the antenna structure.
+    \item \textbf{Antenna 2 Impedance:} The Smith chart confirms the impedance curve passes close to the 50 $\Omega$ center. Near resonance, the impedance measures $47.76\ \Omega + j3.44\ \Omega$, indicating near-complete cancellation of reactive components for optimal power transfer.
 \end{itemize}
 
 \subsection{Unmatched Antenna and Matching Network}
 
 \subsubsection{Task Description}
-The objective of this task is to measure the reflection coefficient of an unmatched antenna at a frequency of 2.4 GHz. Based on this measurement, an impedance matching network consisting of a transmission line and a series capacitor must be calculated to match the antenna to the 50 $\Omega$ system. The solution is derived using both an analytical calculation and a graphical solution via the Smith chart. Finally, the calculated matching network is verified to observe the final matched reflection coefficient.
-
-\subsubsection{Schematic}
-A specific circuit diagram is not required for the initial measurement, as the unmatched antenna is connected directly to the calibrated port of the network analyser. The equivalent circuit of the calculated matching network consists of the antenna ($Z_A$) connected to a transmission line of length $l_e$, followed by a series capacitor $C$ connecting to the 50 $\Omega$ measurement port.
+The reflection coefficient of an unmatched antenna was measured at 2.4 GHz. Using both analytical calculations and a graphical Smith chart method, an L-section matching network consisting of a transmission line and a series capacitor was designed to match the antenna impedance to the 50 $\Omega$ system. The designed matching network was then physically implemented and verified to record the improved reflection coefficient.
 
 \subsubsection{Formulas and Calculations}
 
@@ -611,20 +596,18 @@ The unmatched antenna presents a load impedance $Z_A$ which can be determined fr
 
 \subsubsection{Short discussion of measurement results}
 
-Based on the measurements and calculations, the theoretical impedance matching process is clearly validated:
-
 \begin{itemize}
-    \item \textbf{Unmatched State:} The initial measurement at 2.4 GHz yielded an input impedance of $Z_A = 113.76\ \Omega - j73.63\ \Omega$. Relative to the 50 $\Omega$ system, this produced a reflection coefficient magnitude of $0.5424$ ($-5.32$ dB) and a phase angle of $-24.9^\circ$, indicating a significant mismatch where over 54\% of the voltage wave is reflected.
+    \item \textbf{Unmatched State:} Initial measurement at 2.4 GHz yielded an input impedance of $Z_A = 113.76\ \Omega - j73.63\ \Omega$. Relative to the 50 $\Omega$ system, this produced a reflection coefficient magnitude of $0.5424$ ($-5.32$ dB) with a phase angle of $-24.9^\circ$, reflecting over 54\% of the voltage wave.
     
-    \item \textbf{Analytical Solution:} Using the transmission line equations, the required matching network was calculated. The transmission line length needed to rotate the reflection coefficient to the correct reactive matching point was calculated as $l_e = 4.83$ cm ($0.386\ \lambda$). At this point, the required series capacitance to cancel out the remaining reactance was calculated to be exactly $C = 1.03$ pF.
+    \item \textbf{Analytical Solution:} Using transmission line equations, the required matching network was calculated. A transmission line length of $l_e = 4.83$ cm ($0.386\ \lambda$) rotates the reflection coefficient to the matching circle, where a series capacitance of $C = 1.03$ pF cancels the remaining reactance.
     
-    \item \textbf{Graphical Solution:} The graphical Smith chart method perfectly aligned with the analytical calculations, validating the theoretical rotation path from the unmatched coordinate to the center matching point.
+    \item \textbf{Graphical Solution:} The Smith chart graphical method validates the analytical calculations, tracking the exact rotation path from the unmatched coordinate to the center matching point.
 \end{itemize}
 
 \subsection{Slide-Screw Tuner}
 
 \subsubsection{Task Description}
-The objective of this task is to use a mechanical slide-screw tuner to physically match the previously unmatched 2.4 GHz antenna to the 50 $\Omega$ measurement system. The final reflection coefficient of the matched state must be measured and evaluated using the network analyser.
+A mechanical slide-screw tuner was used to physically match the unmatched 2.4 GHz antenna to the 50 $\Omega$ system. The resulting matched reflection coefficient was measured and evaluated using the network analyzer.
 
 \subsubsection{Schematic}
 The measurement setup consists of the calibrated network analyser connected to the slide-screw tuner, which is in turn connected to the unmatched antenna.
@@ -712,14 +695,12 @@ The VSWR is then calculated as:
 
 \subsubsection{Short discussion of measurement results}
 
-Based on the measurement data, the mechanical impedance matching process was highly successful:
-
 \begin{itemize}
-    \item \textbf{Initial Unmatched State:} The antenna initially exhibited a high reflection coefficient of $-5.27$ dB at $2.4$ GHz, corresponding to a poor VSWR of $3.40$. This indicated a severe impedance mismatch where a significant portion of the transmitted power was being reflected.
+    \item \textbf{Initial Unmatched State:} The antenna initially exhibited an $S_{11}$ of $-5.27$ dB at $2.4$ GHz (VSWR $3.40$), indicating a severe impedance mismatch with significant power reflection.
     
-    \item \textbf{Tuning Mechanism:} By observing the Smith chart on the network analyser in real-time, the slide-screw tuner was adjusted. Lowering the slug into the slabline ($Y$-direction) altered the magnitude of the reflection, while sliding it along the line ($X$-direction) rotated the phase.
+    \item \textbf{Tuning Mechanism:} Real-time monitoring of the Smith chart guided the mechanical adjustments: positioning the probe depth ($Y$-direction) controlled the reflection magnitude, while sliding along the line ($X$-direction) adjusted the phase.
     
-    \item \textbf{Matched State:} This dual-axis mechanical adjustment effectively steered the impedance curve directly into the matching point at the center of the Smith chart. The marker reading of $49.078\ \Omega + j2.953\ \Omega$ confirms that the reactive components of the unmatched antenna were effectively cancelled out.
+    \item \textbf{Matched State:} Dual-axis tuning steered the impedance trajectory directly to the center of the Smith chart. The measured impedance of $49.078\ \Omega + j2.953\ \Omega$ confirms that the antenna's reactive components were effectively canceled out.
     
-    \item \textbf{Verification:} The final measurement yielded an excellent reflection coefficient of $-40.4259$ dB at $2.4$ GHz, corresponding to a near-ideal VSWR of $1.02$. This practically demonstrates that the mechanical slide-screw tuner successfully matched the antenna to the $50\ \Omega$ system without the need to calculate or solder fixed physical capacitors or transmission line segments.
+    \item \textbf{Verification:} The final measurement recorded a reflection coefficient of $-40.4259$ dB at $2.4$ GHz (VSWR $1.02$), demonstrating that the mechanical slide-screw tuner successfully achieved a 50 $\Omega$ match without fixed passive components.
 \end{itemize}
