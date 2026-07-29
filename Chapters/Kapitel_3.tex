@@ -73,183 +73,106 @@ Figure~\ref{fig:antenna_measurement_setup} shows the measurement configuration o
 \subsubsection{\textbf{Calculation of the group characteristic and the total radiation pattern:}}
 Foremostly, the known specifications are:
 \begin{gather}
-	d = 62.5mm	\nonumber\\
-	\lambda=125mm \nonumber\\
-	f=2.4GHz \nonumber
+	d = 62.5\mathrm{mm}	\nonumber\\
+	\lambda=125\mathrm{mm} \nonumber\\
 \end{gather}
 
-where d represents the distance between 2 adjacent antennas in the array.
-\\Since there are 4 antennas, and each is sourced with equal phase:
+where\begin{itemize}
+	\item d represents the distance between 2 adjacent antennas in the array.
+	\item $\lambda$ represents the wavelength of the RF signal.
+\end{itemize}
+Since there are 4 antennas, and each is sourced with equal phase:
 \begin{gather}
 	\delta_0=0 \nonumber \\
 	N=4	\nonumber
 \end{gather}
 
 \begin{enumerate}
-	\item One can represent the array/group characteristic in such a form:
-	\[
-	G(\varphi,\vartheta) = \frac{\sin(uN)}{N\sin(u)}
-	\]
+	\item Using \cite{script} [page 72], one can represent the array/group characteristic in such a form:
+	\begin{gather}
+		G(\varphi,\vartheta) = \frac{\sin(uN)}{N\sin(u)} \label{group_char}
+	\end{gather}
 	
-	\item The value of 'u' must be calculated now:
-	\[
-	d/\lambda=62.5/125=0.5
-	\]
-	hence,
-	\[
-	u = \frac{\delta_0}{2} - \pi\cdot\frac{d}{\lambda}\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta
-	\]
-	\[
-	u = - 0.5\pi\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta
-	\]
+	\item The value of '$u$' must be calculated now.\\ From \cite{script} [page 73], one can deduce:
+	\begin{gather}
+		u = \frac{\delta_0}{2} - \pi\cdot\frac{d}{\lambda}\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta \nonumber \\
+		\mathrm{where,}\quad
+		\frac{d}{\lambda}=\frac{62.5}{125}=0.5	\nonumber \\
+		\boxed{u = - 0.5\pi\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta} \label{value_u}
+	\end{gather}
+
+	\item This equation is set to meet the specifications of horizontally and vertically polarized antenna arrays:
+	\begin{itemize}
+		\item For the horizontal polarisation, the $\vartheta$ is set to 90$^\circ$, which yields:
+			\begin{gather}
+				sin(\vartheta) = 1 \nonumber \\
+				u = -\frac{\pi}{2}\cdot\mathrm{cos}\varphi \\
+				\varphi \in \mathrm{(0,360)} \nonumber
+			\end{gather}
+
+		\item For the vertical polarisation, the $\varphi$ can be set to 0$^\circ$, which yields:
+			\begin{gather}
+				cos(\varphi) = 1 \nonumber \\
+				u = -\frac{\pi}{2}\cdot\mathrm{sin}\vartheta \\
+				\vartheta \in \mathrm{(0,360)} \nonumber
+			\end{gather}
+	\end{itemize}
 	
-	\item The line length is selected such that the real part of the
-	normalized input admittance is equal to one:
-	\[
-	y_\mathrm{in}=\frac{1}{z_\mathrm{in}}=1-j0.7643
-	\]
-	
-	This condition is obtained for:
-	\[
-	l=0.3432\cdot\lambda
-	\]
-	
-	Using the given wavelength:
-	\[
-	l=0.3432\cdot 0.966667
-	=0.3317~\mathrm{m}
-	\]
-	
-	Therefore, the required transmission-line length is:
-	\[
-	\boxed{l\approx33.17~\mathrm{cm}}
-	\]
-	
-	\item At this position, we calculate:
-	\[
-	Y_\mathrm{in}
-	=\frac{1-j0.7643}{50}
-	=0.02-j0.01529
-	\]
-	
-	The capacitor is connected in parallel with the input of the line.
-	It must provide the opposite susceptance:
-	\[
-	B_C=+0.01529
-	\]
-	
-	Since
-	\[
-	B_C=2\pi fC,
-	\]
-	the required capacitance is:
-	\[
-	C=\frac{0.01529}{2\pi\cdot310\cdot10^6}
-	\]
-	
-	Thus:
-	\[
-	\boxed{C\approx7.85~\mathrm{pF}}
-	\]
-	
-	\item Finally the total input admittance after adding the capacitor comes out to be:
-	\[
-	Y_\mathrm{total}
-	=(0.02-j0.01529)+j0.01529
-	=0.02
-	\]
-	
-	Therefore:
-	\[
-	Z_\mathrm{total}=\frac{1}{Y_\mathrm{total}}
-	=\frac{1}{0.02}
-	=50~\Omega
-	\]
+	\item Following is the calculation for the total radiation pattern:
+	\begin{itemize}
+		\item One can assume the single dipole element factor to be at a constant 1 for the horizontal polarisation, this gives:
+		\begin{gather}
+			F_{\mathrm{tot}} = F(\varphi, \vartheta)\cdot G(\varphi, \vartheta) = 1\cdot G(\varphi, \vartheta) \nonumber \\
+			\boxed {F_{\mathrm{tot-horz}} = G(\varphi, \vartheta)}			\label{horizontal_pattern}
+		\end{gather}
+		The resultant array characteristic has been plotted in \ref{fig:xscreen7}.
+		\item However, for vertical polarization, this does not stay constant and changes with the angle, so one must calculate the angle-dependent dipole pattern F($\vartheta$), this gives:
+		\begin{gather}
+			F_{\mathrm{tot}} = F(\varphi, \vartheta)\cdot G(\varphi, \vartheta) \nonumber \\
+			{F_{\mathrm{tot}} = \frac{\cos(\beta h \cos \vartheta)-\cos(\beta h)}{\sin \vartheta} \cdot \frac{\mathrm{sin}(Nu)}{N\mathrm{sin}(u)}} \nonumber \\
+			\boxed {F_{\mathrm{tot-vert}} = \frac{\cos(\frac{\pi}{2}\cdot\cos{\vartheta})}{\sin \vartheta} \cdot G(\varphi, \vartheta)} \label{vertical_pattern}
+		\end{gather}
+		The resultant array characteristic has been plotted in \ref{fig:xscreen8}.
+	\end{itemize}
 \end{enumerate}
 
 \subsubsection{\textbf{Calculation for Gain of the group compared to an intrinsic radiator:}}
+To determine the total gain of the 4-antenna group compared to an intrinsic (isotropic) radiator, both theoretical array principles and relative laboratory measurements must be evaluated.
 
-Equation~\ref{eq:xvswr_voltage} gives the definition of VSWR. Since the spectrum analyzer provides power values, VSWR can also be expressed in terms of the measured power ratio:
+\paragraph{Theoretical Gain via Array Factor:}
+An intrinsic radiator is defined as an isotropic source with a theoretical gain of $G_{\mathrm{iso}} = 1$ ($0\mathrm{\ dBi}$). 
+
+For a single standard half-wave dipole, the theoretical gain is approximately:
 \begin{gather}
-	\mathrm{VSWR} = \frac{V_{\max}}{V_{\min}} \label{eq:xvswr_voltage} \\
-	\mathrm{VSWR} = \sqrt{\frac{P_{\max}}{P_{\min}}} \nonumber
+	G_{\mathrm{single}} \approx 1.64 \qquad \Leftrightarrow \qquad 2.15\mathrm{\ dBi} \nonumber
 \end{gather}
 
-Since $P_{\max}$ and $P_{\min}$ must be in linear units, the measured values in dBm are converted using:
+When $N$ identical antennas are arranged in a linear array and fed with equal phase, the radiation fields add up in the main beam direction. This increases the effective current from $I_0$ to $N \cdot I_0$, resulting in a power gain factor of $N$. For the used 4-antenna array ($N=4$), the theoretical group gain is:
 \begin{gather}
-	\frac{P_{\max}}{P_{\min}} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{10}} \nonumber
+	G_{\mathrm{group\_theory}} = N \cdot G_{\mathrm{single}} \nonumber \\
+	G_{\mathrm{group\_theory}} = 4 \cdot 1.64 = 6.56 \label{eq:gain_linear}
 \end{gather}
 
-Finally, VSWR for each termination is obtained by computing the square root of this term as:
+Expressed in decibels relative to an isotropic radiator (dBi):
 \begin{gather}
-	\boxed{\mathrm{VSWR} = 10^{\frac{P_{\max,\mathrm{dBm}} - P_{\min,\mathrm{dBm}}}{20}}} \label{eq:xvswr_power}
+	G_{\mathrm{group\_theory}}[\mathrm{dBi}] = 10\log_{10}(6.56) \nonumber \\
+	\boxed{G_{\mathrm{group\_theory}} \approx 8.17\mathrm{\ dBi}} \label{eq:gain_db}
+\end{gather}
+This theoretical calculation indicates the group gain should be about $6\mathrm{\ dB}$ higher than the gain of a single half-wave dipole.
+
+\paragraph{Measured Gain via Comparison Method:}
+Based on the measurement data collected, one can calculate the true measured gain, the comparison method is to use a reference horn antenna with a known gain $G_{\mathrm{horn}}$.
+
+The measured power difference $\Delta P$ between the test array and the reference horn is calculated directly from the spectrum analyzer readings:
+\begin{gather}
+	\Delta P [\mathrm{dB}] = P_{\mathrm{group}} [\mathrm{dBm}] - P_{\mathrm{horn}} [\mathrm{dBm}] \label{eq:delta_p}
 \end{gather}
 
-Using values from tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the calculation of VSWR (using the relation~\ref{eq:xvswr_power}), and subsequently the magnitude of it's reflection coefficient ($|\mathrm{\underline{\rho_0}}|$) (using the relation below), is made possible:
+The actual measured gain of the group is then found by adding this difference to the known horn gain:
 \begin{gather}
-	|\mathrm{\underline{\rho_0}}| = \frac{\mathrm{VSWR}-1}{\mathrm{VSWR}+1} \label{eq:xrho_mag} \\
-	\angle \rho = \text{from the position of the minima on the line} \label{eq:xrho_phase}
+	G_{\mathrm{group\_measured}} [\mathrm{dBi}] = G_{\mathrm{horn}} [\mathrm{dBi}] + \Delta P [\mathrm{dB}] \label{eq:measured_gain}
 \end{gather}
-
-\subitem{\textbf{For Open load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-17.0 - (-73.0)}{20}}
-	= 10^{\frac{56.0}{20}}
-	= 10^{2.8}
-	\approx 630.96 \label{eq:xvswr_open}\\
-	|\mathrm{\underline{\rho_0}}| = \frac{629.96}{631.96}
-	\approx 0.997 \label{eq:xmag_open}
-\end{gather}
-
-\subitem{\textbf{For a Short:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.0 - (-64.0)}{20}}
-	= 10^{\frac{46}{20}}
-	= 10^{2.265}
-	\approx 199.52 \label{eq:xvswr_short} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{198.52}{200.52}
-	\approx 0.99 \label{eq:xmag_short}
-\end{gather}
-
-\subitem{\textbf{For 100$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-20.8 - (-27.3)}{20}}
-	= 10^{\frac{6.5}{20}}
-	= 10^{0.325}
-	\approx 2.11 \label{eq:xvswr_100} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{1.11}{3.11}
-	\approx 0.357 \label{eq:xmag_100}
-\end{gather}
-
-\subitem{\textbf{For 25$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-20.6 - (-28.7)}{20}}
-	= 10^{\frac{8.1}{20}}
-	= 10^{0.395}
-	\approx 2.54 \label{eq:xvswr_25} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{1.54}{3.54}
-	\approx 0.435 \label{eq:xmag_25}
-\end{gather}
-
-\subitem{\textbf{For 50$\Omega$ load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-22.9 - (-24.4)}{20}}
-	= 10^{\frac{1.5}{20}}
-	= 10^{0.075}
-	\approx 1.19 \label{eq:xvswr_50} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{0.19}{2.19}
-	\approx 0.086	 \label{eq:xmag_50}
-\end{gather}
-
-\subitem{\textbf{For Capacitive load:}}
-\begin{gather}
-	\mathrm{VSWR} = 10^{\frac{-18.3 - (-53.8)}{20}}
-	= 10^{\frac{35.5}{20}}
-	= 10^{1.775}
-	\approx 59.57 \label{eq:xvswr_cap} \\
-	|\mathrm{\underline{\rho_0}}| = \frac{58.57}{60.57}
-	\approx 0.967 \label{eq:xmag_cap}
-\end{gather}
+By comparing $G_{\mathrm{group\_measured}}$ to the theoretical $8.17\mathrm{\ dBi}$, the efficiency and inherent losses of the multi-antenna setup can be quantified.
 
 \subsubsection{\textbf{Calculation of the reflection coefficient phase, and load impedances:}}
 In order to obtain the angle of the reflection coefficient ($\delta_0$), one must use the following relation\cite{script} as laid out in the lab script: 
@@ -329,7 +252,7 @@ Figure~\ref{fig:xscreen2} shows the generated polar plot from the data acquired 
 \end{figure}
 
 \newpage
-\subsubsection{4-Group antenna, equal phase: horizontal radiation pattern} 
+\subsubsection{4-Group antenna, equal phase: horizontal polarisation} 
 Figure~\ref{fig:xscreen3} shows the generated polar plot from the data acquired from a group of 4 antennae for the horizontal radiation pattern at 2.4GHz, where each antenna is sourced with the same phase.
 \begin{figure}[ht!]
 	\centering
@@ -339,7 +262,7 @@ Figure~\ref{fig:xscreen3} shows the generated polar plot from the data acquired 
 \end{figure}
 
 \newpage
-\subsubsection{4-Group antenna, equal phase: vertical radiation pattern}
+\subsubsection{4-Group antenna, equal phase: vertical polarisation}
 Figure~\ref{fig:xscreen4} shows the generated polar plot from the data acquired from a group of 4 antennae for the vertical radiation pattern at 2.4GHz, where each antenna is sourced with a equal phase.
 \begin{figure}[ht!]
 	\centering
@@ -349,7 +272,7 @@ Figure~\ref{fig:xscreen4} shows the generated polar plot from the data acquired 
 \end{figure}
 
 \newpage
-\subsubsection{4-Group antenna, different phase: horizontal radiation pattern} 
+\subsubsection{4-Group antenna, different phase: horizontal polarisation} 
 Figure~\ref{fig:xscreen5} shows the generated polar plot from the data acquired from a group of 4 antennae for the horizontal radiation pattern at 2.4GHz, where each antenna is sourced with a different phase.
 \begin{figure}[ht!]
 	\centering
@@ -359,13 +282,33 @@ Figure~\ref{fig:xscreen5} shows the generated polar plot from the data acquired 
 \end{figure}
 
 \newpage
-\subsubsection{4-Group antenna, different phase: vertical radiation pattern} 
+\subsubsection{4-Group antenna, different phase: vertical polarisation} 
 Figure~\ref{fig:xscreen6} shows the generated polar plot from the data acquired from a group of 4 antennae for the vertical radiation pattern at 2.4GHz, where each antenna is sourced with a different phase.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/group4_vert_diff}
 	\caption{\centering Polar plot of the received 4-Group antennae (different phase) normalized signal power at frequency 2.4GHz in vertical configuration.}
 	\label{fig:xscreen6}
+\end{figure}
+
+\newpage
+\subsubsection{Total radiation pattern, horizontal polarisation: measured vs. calculated} 
+Figure~\ref{fig:xscreen7} shows the generated polar plot comparing the measured horizontally polarised antenna with the ideal behaviour, each antenna is sourced with equal phase.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/Q1_horz_real}
+	\caption{\centering Polar plot comparing the measured and calculated group characteristic in horizontal configuration.}
+	\label{fig:xscreen7}
+\end{figure}
+
+\newpage
+\subsubsection{Total radiation pattern, vertical polarisation: measured vs. calculated} 
+Figure~\ref{fig:xscreen8} shows the generated polar plot comparing the measured vertically polarised antenna with the ideal behaviour, each antenna is sourced with equal phase.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/Q1_vert_real}
+	\caption{\centering Polar plot comparing the measured and calculated group characteristic in vertical configuration.}
+	\label{fig:xscreen8}
 \end{figure}
 
 \newpage
