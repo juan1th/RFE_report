@@ -70,80 +70,113 @@ The line driver significantly steepens the signal edge. The signal generator alo
 \subsection{Measurement B: Reflections of a coax cable with different loads}
 
 \subsubsection{Task Description}
-A 2.0 m RG142 coaxial cable was connected to the line driver output (see Figure 2.1). The cable was terminated with various load impedances $Z_L$ (Open, Short, 50 Ω, 100 Ω, 25 Ω, 100 pF, and 1 nH). Transient voltage curves were recorded to measure the time delay between reflections, the maximum voltage, and the steady-state asymptotic voltage. From the measured propagation delay and physical cable length, the relative dielectric constant ($\epsilon_r$) of the cable was calculated.  
+An RG142 coaxial transmission line of physical length $l = 2.0$ m is connected to the output of the high-current line driver. The far end of the coaxial cable is terminated with various resistive and reactive load impedances $Z_L$ (Open, Short, $50\,\Omega$, $100\,\Omega$, $25\,\Omega$, $100$ pF, and $1$ nH). The resulting transient voltage waveforms are captured on the oscilloscope using trace averaging. For each load termination, the round-trip propagation delay between the incident voltage step and its corresponding reflection is measured using horizontal cursors. Additionally, the maximum transient voltage ($V_{\max}$) and the asymptotic steady-state voltage ($V_{\text{steady}}$) are recorded. Using the measured round-trip time delay and the known physical length of the line, the relative dielectric constant ($\epsilon_r$) of the cable's internal insulator is calculated and compared to its theoretical value.
 
 \subsubsection{Formulas and Calculations}
 
-The reflection factor $\rho_0$ at the load is determined by the load impedance $Z_L$ and the characteristic impedance $Z_w$ of the transmission line:
+The reflection factor $\rho_0$ at the load interface represents the ratio of the reflected voltage wave to the incident voltage wave [6.66]:
 
 \begin{equation}
     \rho_0 = \frac{Z_L - Z_w}{Z_L + Z_w}
 \end{equation}
 
-The phase velocity $v_p$ of the signal propagating through the transmission line depends on the speed of light in a vacuum ($c = 2.9979 \times 10^8$ m/s) and the relative dielectric constant $\epsilon_r$:
+Where:
+\begin{itemize}
+    \item $Z_L$ is the impedance of the connected load.
+    \item $Z_w$ is the characteristic impedance of the transmission line ($50\,\Omega$ for the RG142 cable).
+\end{itemize}
+
+The phase velocity $v_p$ of the electromagnetic signal propagating through the lossless coaxial cable depends on the speed of light in a vacuum ($c \approx 2.9979 \times 10^8\text{ m/s}$) and the relative dielectric constant $\epsilon_r$ of the dielectric medium [6.57]:
 
 \begin{equation}
     v_p = \frac{c}{\sqrt{\epsilon_r}}
 \end{equation}
 
-The time delay $t$ measured between the incident wave and the reflected wave represents the round trip of the signal along the length of the cable $l$:
+The propagation delay $t$ measured between the incident and reflected voltage transitions represents the round-trip travel time of the wavefront along the cable of length $l$:
 
 \begin{equation}
     t = \frac{2l}{v_p}
 \end{equation}
 
-By substituting the phase velocity formula into the time delay formula, the dielectric constant $\epsilon_r$ can be calculated from the physical length and the measured time delay:
+By substituting the phase velocity equation into the round-trip delay equation, the relative dielectric constant $\epsilon_r$ can be directly calculated [6.57]:
 
 \begin{equation}
     \epsilon_r = \left( \frac{c \cdot t}{2l} \right)^2
 \end{equation}
 
-Exemplary Calculation:
+For reactive loads (capacitors and inductors), the transient charging and discharging behaviors are governed by exponential time constants ($\tau$) established by the line's characteristic impedance $Z_w$ [6.62].
 
-To demonstrate the calculation process for the values populated in the "calculated" columns of the measurement table, the 100 $\Omega$ load and Open circuit measurements are evaluated below.
-
-For a characteristic impedance of $Z_w = 50\ \Omega$ and a load of $Z_L = 100\ \Omega$, the reflection factor is calculated as:
-
+For a capacitive load, the RC time constant is defined as [6.19, 6.62]:
 \begin{equation}
-    \rho_0 = \frac{100\ \Omega - 50\ \Omega}{100\ \Omega + 50\ \Omega} = \frac{50}{150} = +0.33
+    \tau_C = Z_w \cdot C
 \end{equation}
 
-For the Open load measurement, a time delay of $t = 19.6$ ns was recorded across the $l = 2.0$ m cable. The relative dielectric constant is calculated as:
-
+For an inductive load, the RL time constant is defined as [6.62]:
 \begin{equation}
-    \epsilon_r = \left( \frac{2.9979 \times 10^8\ \text{m/s} \cdot 19.6 \times 10^{-9}\ \text{s}}{2 \cdot 2.0\ \text{m}} \right)^2 = \left( \frac{5.875}{4.0} \right)^2 \approx 2.16
+    \tau_L = \frac{L}{Z_w}
 \end{equation}
 
-\subsubsection{Measurement results}
+The standard 10\% to 90\% transition time ($t_{\text{rise}}$ or $t_{\text{fall}}$) of an exponential transient curve is mathematically related to its time constant by:
+\begin{equation}
+    t_{\text{transition}} \approx 2.2 \cdot \tau
+\end{equation}
 
-\begin{table}[ht!]
+Due to the $1\,\text{k}\Omega$ detection resistor on the line driver board, the high-frequency signal is attenuated at the oscilloscope input by a factor of 1:21. The actual physical voltage on the transmission line ($V_{\text{line}}$) is calculated from the raw oscilloscope reading ($V_{\text{osc}}$) as:
+
+\begin{equation}
+    V_{\text{line}} = \frac{V_{\text{osc}} \cdot 21}{1000}
+\end{equation}
+
+Where $V_{\text{line}}$ is in Volts (V) and $V_{\text{osc}}$ is in millivolts (mV).
+
+\vspace{1em}
+\textbf{Exemplary Calculations:}
+
+\begin{enumerate}
+    \item \textbf{Resistive Load Reflection ($100\,\Omega$ Load):}
+    \begin{equation}
+        \rho_0 = \frac{100\,\Omega - 50\,\Omega}{100\,\Omega + 50\,\Omega} = \frac{50}{150} \approx +0.33
+    \end{equation}
+
+    \item \textbf{Relative Dielectric Constant ($\epsilon_r$) from Open Circuit delay ($t = 19.6$ ns):}
+    \begin{equation}
+        \epsilon_r = \left( \frac{2.9979 \times 10^8\text{ m/s} \cdot 19.6 \times 10^{-9}\text{ s}}{2 \cdot 2.0\text{ m}} \right)^2 = \left( \frac{5.8759\text{ m}}{4.0\text{ m}} \right)^2 \approx 2.16
+    \end{equation}
+
+    \item \textbf{Actual steady-state line voltage for the $100\,\Omega$ load ($V_{\text{steady}} = 200$ mV):}
+    \begin{equation}
+        V_{\text{steady, line}} = \frac{200\text{ mV} \cdot 21}{1000} = 4.20\text{ V}
+    \end{equation}
+
+    \item \textbf{Transient Parameter Extraction of the Inductive Load:} \\
+    Visual inspection of the inductive transient curve shows a rounded, sloping exponential decay. We determine the physical time constant $\tau_L$ by locating the point where the transient voltage has decayed to $1/e$ ($\approx 36.8\%$) of its peak value ($300\text{ mV} \cdot 0.368 \approx 110\text{ mV}$). On the horizontal axis, this decay occurs over an interval of approximately $\tau_L \approx 4.0$ ns. Using the time constant, we extract the true nominal inductance ($L_{\text{extract}}$) of the physical component:
+    \begin{equation}
+        L_{\text{extract}} = \tau_L \cdot Z_w = 4.0\text{ ns} \cdot 50\,\Omega = 200\text{ nH}
+    \end{equation}
+\end{enumerate}
+
+\subsubsection{Measurement Results}
+
+\begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \renewcommand{\arraystretch}{1.2} % Adds vertical padding to rows for better readability
+    \begin{tabular}{|l|c|c|c|c|c|}
         \hline
-        \textbf{Adjusted} & \textbf{Measured} & \textbf{Measured} & \textbf{Measured} & \textbf{Calculated} & \textbf{Calculated} \\
-        \hline
-        Load $Z_L$ & Time Delay $t$ / ns & Max Voltage $V_{\text{max}}$ / mV & Steady-state Voltage $V_{\text{steady}}$ / mV & Reflection Factor $\rho_0$ & Dielectric Const. $\epsilon_r$ \\
-        \hline
-        Open & 19.6 & 300 & 300 & +1 & 2.16 \\
-        \hline
-        Short & 19.6 & 150 & 0 & -1 & 2.16 \\
-        \hline
-        50 $\Omega$ & 19.5 & 150 & 150 & 0 & 2.14 \\
-        \hline
-        100 $\Omega$ & 19.5 & 200 & 200 & +0.33 & 2.14 \\
-        \hline
-        25 $\Omega$ & 19.5 & 150 & 100 & -0.33 & 2.14 \\
-        \hline
-        100 pF & 19.7 & 300 & 300 & $\rightarrow$ +1 (transient) & 2.18 \\
-        \hline
-        1 nH & 21.3 & 300 & 0 & $\rightarrow$ -1 (transient) & 2.55 \\
-        \hline
-    \end{tabular}%
-    }
-    \caption{\centering Reflection characteristics and calculated parameters for various loads. Notes: Physical length of RG142 cable $l = 2.0$ m. Characteristic impedance $Z_w = 50\ \Omega$. Voltage values represent raw oscilloscope readings measured via the 1:21 voltage divider (incident wave $V_{\text{inc}} \approx 150$ mV). For reactive loads, $\rho_0$ denotes the final steady-state reflection factor. The average calculated $\epsilon_r$ for the resistive loads is 2.15.}
-    \label{tab:reflections_different_loads}
+        \multicolumn{1}{|c|}{\textbf{Adjusted}} & \multicolumn{2}{c|}{\textbf{Measured}} & \multicolumn{3}{c|}{\textbf{Calculated}} \\ \hline
+        \textbf{Load $Z_L$} & \textbf{Delay $t$ / ns} & \textbf{\shortstack{Osc. Voltage / mV \\ $V_{\max} / V_{\text{steady}}$}} & \textbf{\shortstack{Line Voltage / V \\ $V_{\max,\text{line}} / V_{\text{steady,line}}$}} & \textbf{Factor $\rho_0$} & \textbf{Permittivity $\epsilon_r$} \\ \hline
+        Open          & $19.6$ & $300 / 300$ & $6.30 / 6.30$ & $+1.00$       & $2.16$ \\ \hline
+        Short         & $19.6$ & $150 / 0$   & $3.15 / 0.00$ & $-1.00$       & $2.16$ \\ \hline
+        $50\,\Omega$  & $19.5$ & $150 / 150$ & $3.15 / 3.15$ & $0.00$        & $2.14$ \\ \hline
+        $100\,\Omega$ & $19.5$ & $200 / 200$ & $4.20 / 4.20$ & $+0.33$       & $2.14$ \\ \hline
+        $25\,\Omega$  & $19.5$ & $150 / 100$ & $3.15 / 2.10$ & $-0.33$       & $2.14$ \\ \hline
+        $100$ pF      & $19.7$ & $300 / 300$ & $6.30 / 6.30$ & $\to +1.00$   & $2.18$* \\ \hline
+        $1$ nH (nom.) & $21.3$ & $300 / 0$   & $6.30 / 0.00$ & $\to -1.00$   & $2.55$* \\ \hline
+    \end{tabular}
+    \caption{Reflection characteristics and calculated parameters for various loads.}
+    \label{tab:reflection_characteristics}
 \end{table}
+
+\textbf{Notes:} Physical length of the RG142 coaxial cable $l = 2.0$ m. Characteristic impedance $Z_w = 50\,\Omega$. $V_{\max, \text{line}}$ and $V_{\text{steady, line}}$ values represent the physical voltages present on the SMA connector prior to the 1:21 voltage divider. *Apparent dielectric constants calculated for reactive loads are skewed by transient charging delays and do not reflect the physical properties of the cable (see discussion).
 \FloatBarrier
 
 \subsubsection{Curves \& diagrams}
@@ -193,32 +226,42 @@ For the Open load measurement, a time delay of $t = 19.6$ ns was recorded across
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{src/figers/ex_2/refl_1nH_inductor.png}
-    \caption{Transient voltage curve for a 1 nH inductive load.}
+    \caption{Transient voltage curve for the inductive load (nominally labeled 1 nH).}
     \label{fig:refl_1nH_inductor}
 \end{figure}
 \FloatBarrier
 
-\subsubsection{Short discussion of measurement results}
+\subsubsection{Short Discussion of Measurement Results}
 
-The measured transient responses match standard transmission line behavior. The incident voltage step ($V_{\text{inc}}$) was approximately 150 mV on the oscilloscope, corresponding to a 3.15 V line voltage before the 1:21 divider.
+\begin{enumerate}
+    \item \textbf{Resistive Load Reflection Behavior} \\
+    The measured step transitions agree with transmission line boundary conditions:
+    \begin{itemize}
+        \item \textbf{Open Circuit ($\rho_0 = +1$):} Total positive reflection doubles the incident $3.15$\,V step to $6.30$\,V ($300$\,mV scope reading).
+        \item \textbf{Short Circuit ($\rho_0 = -1$):} Total negative reflection cancels the incident wave, bringing the steady-state line voltage to $0.00$\,V.
+        \item \textbf{Matched $50\,\Omega$ Load ($\rho_0 = 0$):} Absorbs all incident power; no reflected wave returns, holding the line voltage flat at $3.15$\,V.
+        \item \textbf{$100\,\Omega$ and $25\,\Omega$ Loads ($\rho_0 = \pm 0.33$):} Yield partial reflections, settling at $4.20$\,V ($+0.33$ step shift) and $2.10$\,V ($-0.33$ step shift), respectively.
+    \end{itemize}
 
-\begin{itemize}
-    \item \textbf{Open Circuit:} The positive reflection ($\rho_0 = +1$) doubled the incident voltage to a maximum of 300 mV.
-    \item \textbf{Short Circuit:} The negative reflection ($\rho_0 = -1$) canceled the voltage at the load, dropping it to 0 mV.
-    \item \textbf{Matched Load (50 $\Omega$):} With $\rho_0 = 0$, no backward wave was generated, and the voltage remained constant at 150 mV.
-    \item \textbf{100 $\Omega$ and 25 $\Omega$ Loads:} The 100 $\Omega$ load produced a partial positive reflection (+50 mV), settling at 200 mV. The 25 $\Omega$ load produced a partial negative reflection (-50 mV), settling at 100 mV.
-    \item \textbf{100 pF Capacitor:} Initially acted as a short circuit during the signal step, then charged towards an open-circuit steady state ($\rho_0 \rightarrow +1$).
-    \item \textbf{1 nH Inductor:} Initially acted as an open circuit (producing a 300 mV peak), then settled into a short-circuit steady state ($\rho_0 \rightarrow -1$).
-\end{itemize}
+    \item \textbf{Line Driver Output Impedance Effects} \\
+    The driver circuit uses a $+5.0$\,V supply with a nominal $5.4\,\Omega$ series output resistor. An ideal voltage divider with a $50\,\Omega$ line would launch a step of:
+    \begin{equation}
+        V_{\text{launch}} = 5.0\text{ V} \cdot \frac{50\,\Omega}{50\,\Omega + 5.4\,\Omega} \approx 4.51\text{ V} \quad (\approx 215\text{ mV scope})
+    \end{equation}
+    The lower measured launch step of $3.15$\,V ($150$\,mV scope reading) is caused by the channel resistance $R_{\text{DS(on)}}$ of the gate driver output transistors under transit currents ($\approx 60$\,mA to $90$\,mA), alongside transient drop across local bypass capacitance.
 
-\vspace{1em}
-\noindent\textbf{Time Delay and Dielectric Constant}
+    \item \textbf{Reactive Load Analysis and Parameter Extraction}
+    \begin{itemize}
+        \item \textbf{Capacitive Load ($100$ pF nominal):} Acts as an instantaneous short circuit ($\rho_0 \to -1$) before charging exponentially toward an open circuit ($\rho_0 \to +1$, $6.30$\,V steady-state). The observed RC transition time ($\approx 11$ ns) matches $\tau_C = Z_w \cdot C = 50\,\Omega \cdot 100\text{ pF} = 5.0\text{ ns}$.
+        \item \textbf{Inductive Load ($1$ nH nominal label / $200$ nH actual):} Acts as an initial open circuit ($\rho_0 \to +1$, $6.30$\,V peak) before decaying toward a short circuit ($\rho_0 \to -1$, $0.00$\,V steady-state). A true $1$ nH inductor has a time constant of $\tau_L = 1\text{ nH} / 50\,\Omega = 20\text{ ps}$, which would decay in $< 100\text{ ps}$ and appear as an instantaneous short circuit on a $10.0$ ns/div scale. The observed $1/e$ decay time ($\tau_L \approx 4.0$ ns) confirms that the physical component used had a nominal value of $L = \tau_L \cdot Z_w = 4.0\text{ ns} \cdot 50\,\Omega = 200\text{ nH}$.
+    \end{itemize}
 
-The time delay across the purely resistive, open, and short loads averaged 19.55 ns.
-
-For the 2.0 m RG142 cable, the resulting relative dielectric constant ($\epsilon_r$) is 2.15. This aligns with the theoretical permittivity of its PTFE dielectric ($\epsilon_r \approx 2.1$).
-
-The delay for the 1 nH inductor deviated slightly ($\Delta t = 21.3$ ns). This is due to the higher reading error when placing cursors on a rounded transient slope rather than a sharp step.
+    \item \textbf{Dielectric Constant and Error Sources} \\
+    The average round-trip delay across the resistive, open, and short terminations is $19.55$ ns. For a $2.0$ m cable, this yields an average relative dielectric constant of $\epsilon_r = 2.15$, which matches the nominal permittivity of the RG142 cable's PTFE dielectric ($\epsilon_r \approx 2.1$). 
+    
+    \vspace{0.5em}
+    The higher apparent dielectric constant for the inductive load ($\epsilon_r = 2.55$, $t = 21.3$ ns) is an experimental artifact: the exponential decay slope delays the cursor alignment point, adding phase lag rather than reflecting physical cable properties. Primary sources of measurement uncertainty include horizontal cursor quantization at $10.0$ ns/div, manual vertical level estimation at $50.0$ mV/div, and physical cable length measurement tolerances.
+\end{enumerate}
 
 \subsection{Measurement C: Determine cable length}
 
