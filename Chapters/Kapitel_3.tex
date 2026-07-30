@@ -158,12 +158,20 @@ Expressed in decibels relative to an isotropic radiator (dBi):
 	G_{\mathrm{group\_theory}}[\mathrm{dBi}] = 10\log_{10}(6.56) \nonumber \\
 	\boxed{G_{\mathrm{group\_theory}} \approx 8.17\mathrm{\ dBi}} \label{eq:gain_db}
 \end{gather}
-This theoretical calculation indicates the group gain should be about $6\mathrm{\ dB}$ higher than the gain of a single half-wave dipole.
+This theoretical calculation indicates the group gain should be about $6\mathrm{\ dB}$ higher than the gain of a single half-wave dipole.\\
 
+If the horn antenna gain was known, the gain of the antenna group could be estimated by comparing the measured received powers of both antennas under the same measurement conditions, at 2.4GHz:
+\begin{gather}
+	G_{\mathrm{array}}[\mathrm{dBi}] = G_{\mathrm{horn}}[\mathrm{dBi}] + \left(P_{\mathrm{array}} - P_{\mathrm{horn}}\right) \label{eq:array_gain}
+\end{gather}
+
+However, since the measurements were not made at 2.4GHz for the Horn antenna, the equation was not computed further.
+
+\begin{comment}
 \paragraph{Measured Gain via Comparison Method:}
 Based on the measurement data collected, one can calculate the true measured gain, the comparison method is to use a reference horn antenna with a known gain $G_{\mathrm{horn}}$.
 
-The measured power difference $\Delta P$ between the test array and the reference horn is calculated directly from the spectrum analyzer readings:
+The measured power difference $\Delta P$ between the antenna array and the reference horn is:
 \begin{gather}
 	\Delta P [\mathrm{dB}] = P_{\mathrm{group}} [\mathrm{dBm}] - P_{\mathrm{horn}} [\mathrm{dBm}] \label{eq:delta_p}
 \end{gather}
@@ -173,35 +181,94 @@ The actual measured gain of the group is then found by adding this difference to
 	G_{\mathrm{group\_measured}} [\mathrm{dBi}] = G_{\mathrm{horn}} [\mathrm{dBi}] + \Delta P [\mathrm{dB}] \label{eq:measured_gain}
 \end{gather}
 By comparing $G_{\mathrm{group\_measured}}$ to the theoretical $8.17\mathrm{\ dBi}$, the efficiency and inherent losses of the multi-antenna setup can be quantified.
+\end{comment}
 
-\subsubsection{\textbf{Calculation of the reflection coefficient phase, and load impedances:}}
-In order to obtain the angle of the reflection coefficient ($\delta_0$), one must use the following relation\cite{script} as laid out in the lab script: 
+\subsubsection{\textbf{Calculation of the directivity of the group:}}
+Directivity indicates the power increase in the main beam direction compared to the average
+power radiated in all directions \cite{script}.\\
+The calculation of directivity for the horizontally polarised antenna array is:
 \begin{gather}
-	\delta_n = (2n+1)\pi - 2\beta \mathrm{z_{min}} 		\label{eq:xphase_refl} \\
-	\mathrm{where, \quad}\beta = \frac{2\pi}{\lambda} 	\nonumber
+	D_{\mathrm{horz}} = \frac{\Phi_{\mathrm{max}}}{\Phi_i}	\nonumber \\
+	\mathrm{where,\quad} 	\nonumber \\
+	\Phi_{\mathrm{i-norm}} = 0.2281 \mathrm{\quad and \quad} \Phi_{\mathrm{max-norm}} = 1 	\nonumber \\
+	\boxed{D_{\mathrm{horz}} = \frac{1}{0.2281} = 4.284}
 \end{gather}
 
-\newpage
-Simplifying equation~\ref{eq:xphase_refl}:
+The calculation of directivity for the vertically polarised antenna array is:
 \begin{gather}
-	\delta_0 = (2\cdot n+1)\pi - 2\beta \mathrm{z_{min}} 	\nonumber \\
-	\boxed{\delta_0 = \pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \quad
-	\boxed{\delta_1 = 3\pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \quad
-	\boxed{\delta_2 = 5\pi - 4 \pi \cdot \frac{\mathrm{z_{min}}}{\lambda}} \label{eq:xphase_refl_simplified}
+	D_{\mathrm{vert}} = \frac{\Phi_{\mathrm{max}}}{\Phi_i}	\nonumber \\
+	\mathrm{where,\quad} 	\nonumber \\
+	\Phi_{\mathrm{i-norm}} = 0.2152 \mathrm{\quad and \quad} \Phi_{\mathrm{max-norm}} = 1 	\nonumber \\
+	\boxed{D_{\mathrm{vert}} = \frac{1}{0.2152} = 4.647}
 \end{gather}
 
-For the load impedances ($Z_L$), one can use the following formula\cite{script}:
+\subsubsection{\textbf{Calculation of the distance dependence of the received power:}}
+
+For plotting the distance dependence of the received power one must understand the distance dependence of the received power. \\
+According to the theory \cite{script}, the received power in the far field follows the inverse-square law. Meaning that the electromagnetic field strength decreases with $1/r$, while the radiated power decreases with $1/r^2$.
+
+\paragraph{Calculation formula:}
+The received power can be calculated as:
 \begin{gather}
-	\mathrm{\underline{\rho_0}} = \frac{Z_L - Z_0}{Z_L + Z_0} 	\nonumber \\[4pt]
-	\mathrm{\underline{\rho_0}} (Z_L + Z_0) = Z_L - Z_0 	\nonumber \\[4pt]
-	Z_L = Z_0 \frac{1+\mathrm{\underline{\rho_0}}}{1-\mathrm{\underline{\rho_0}}} 	\label{eq:xload_imp}\\
-	\mathrm{where, \quad}\mathrm{\underline{\rho_0}} = |\mathrm{\underline{\rho_0}}|\cdot e^{j\delta_0} 	\nonumber
+	P_r = P_t \cdot G_t \cdot G_r \cdot \left(\frac{\lambda}{4\pi r}\right)^2 \label{eq:friis}
+\end{gather}
+
+where:
+\begin{itemize}
+	\item $P_t$ is the transmitted power, set at +10dBm
+	\item $G_t$ is the gain of the transmitting antenna, theoretical assumption of 6.56 = 8.17dBi
+	\item $G_r$ is the gain of the receiving antenna, theoretical assumption of 1.64 = 2.15dBi
+	\item $\lambda$ is the wavelength, set at 0.125m
+	\item $r$ is the distance between the antennas, varying from 0.25m to 5m
+\end{itemize}
+
+\begin{comment}
+	The term
+	\begin{gather}
+		\left(\frac{4\pi r}{\lambda}\right)^2
+	\end{gather}
+	represents the free-space loss.
+\end{comment}
+\begin{gather}
+	P_r = 107.584 \cdot \left(\frac{0.125}{4\pi r}\right)^2 \nonumber
+\end{gather}
+
+For each distance, the received power is calculated using the equation~\ref{eq:friis}. \\
+The resultant graph has been plotted in \ref{fig:xscreen9}.
+
+\subsubsection{\textbf{Calculation of the free space loss during all measurements:}}
+
+The term
+\begin{gather}
+	L_{fs} = \mathrm{20}\log_{10}\left(\frac{4\pi r}{\lambda}\right)	\label{eq:free_space}
+\end{gather}
+represents the free-space loss. \\Hence, the calculation of r is essential before calculation of the free space loss itself.
+
+Rearranging Friis equation gives:
+\begin{gather}
+	P_r = P_t \cdot G_t \cdot G_r \cdot \left(\frac{\lambda}{4\pi r}\right)^2 \nonumber \\
+	r = \frac{\lambda}{4\pi}\sqrt{\frac{P_t \cdot G_t \cdot G_r}{P_r}} \label{eq:friis_r}
+\end{gather}
+
+One can consider the horn antenna as the reference measurement for the Gain ($G_r$) at 1GHz. The maximum received power ($P_r$) is -21.803 dBm, in mW it becomes $6.602 \times 10^{-3}$. The gain of the measuring antenna is assumed to be 1. $G_t$ in linear units is $6.166$.
+\begin{gather}
+	r = \frac{0.3}{4\pi}\sqrt{\frac{10 \cdot 6.166 \cdot 1}{6.602\times10^{-3}}} \nonumber \\
+	\boxed{r = 2.307\mathrm{m}} \label{eq:antenna_dist}
+\end{gather}
+
+Using the value of \ref{eq:antenna_dist} in \ref{eq:free_space}, one can obtain:
+\begin{gather}
+	L_{\mathrm{fs-1GHz}} = \mathrm{20}\log_{10}\left(\frac{4\pi \cdot2.307}{0.30}\right) =  39.70\,\mathrm{dB} \nonumber \\
+	L_{\mathrm{fs-2GHz}} = \mathrm{20}\log_{10}\left(\frac{4\pi \cdot2.307}{0.15}\right) = 45.72\,\mathrm{dB} \nonumber \\
+	L_{\mathrm{fs-3GHz}} = \mathrm{20}\log_{10}\left(\frac{4\pi \cdot2.307}{0.10}\right) = 49.25\,\mathrm{dB} \nonumber \\
+	L_{\mathrm{fs-2.4GHz}} = \mathrm{20}\log_{10}\left(\frac{4\pi \cdot2.307}{0.125}\right) = 47.31\,\mathrm{dB} \nonumber
 \end{gather}
 
 % Using the tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2}, the distance from the load to the position corresponding to the $0^{th}$ minima is obtained and used in the equation~\ref{eq:xphase_refl_simplified} to obtain the angle of the reflection coefficient, and equation~\ref{eq:xload_imp} is used for the load impedance calculation.
 
 % The calculations were made with a Python script-\ref{lst:vswr-code} (placed in the appendix) this time, and the computed values are present in the table~\ref{tab:refl_phase_n_load}.
 
+\begin{comment}
 \subsection{Table with measurement results}
 Tables~\ref{tab:power_plots_1} and~\ref{tab:power_plots_2} (placed in the appendix section of this document) present the measured power values at different positions along the coaxial RF line for different terminations.
 \vspace{3mm}
@@ -219,6 +286,7 @@ Carrying out this computation using Python \ref{lst:load-code}, the values for c
 \input{src/assets/tabel/load_impedances}
 
 The representation of these Load impedance values has been done on a smith chart in  figure \ref{fig:xsmith_chart1}.
+\end{comment}
 
 \newpage
 \subsection{Measurement curve and diagrams}
@@ -310,8 +378,23 @@ Figure~\ref{fig:xscreen8} shows the generated polar plot comparing the measured 
 	\caption{\centering Polar plot comparing the measured and calculated group characteristic in vertical configuration.}
 	\label{fig:xscreen8}
 \end{figure}
+\\(\textbf{NOTE}: This is not a mistake in representation. Measured power for a vertically polarised antenna matches the behaviour of an ideal horizontally polarised antenna. Reference: \cite{script}, page 74, figure 2-17.)
 
 \newpage
+\subsubsection{Distance dependence of the received power} 
+Figure~\ref{fig:xscreen9} shows the generated line plot of calculated power over distance in a linear scale.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[page=4,width=1\linewidth]{src/diagrams/RF_4/Q5_linear}
+	\caption{\centering Line plot showing the power vs. distance behaviour of the received power.}
+	\label{fig:xscreen9}
+\end{figure}
+
+\paragraph{Note:}
+This is only a simple Friis-style estimate, so the curve looks idealized. \\To plot the measured received power over distance instead of the theoretical calculations, one must possess the correct gains against a known reference at a matching frequency.
+
+\newpage
+\begin{comment}
 \subsection{Additional questions}
 \textbf{Q. Is it possible to match all loads with an additional passive impedance matching
 	network, consisting of transmission line and Capacitor?}\\
@@ -428,39 +511,33 @@ The wavelength is
 
 Thus, the characteristics of a matched load at 310 MHz using a 50$\Omega$ transmission line
 is with a length of 33.17 cm and a shunt capacitor of approximately 7.85 pF.
+\end{comment}
 
 \FloatBarrier
 \subsection{Discussion} 
 \begin{itemize}
-	\item \textbf{Wave velocity and wavelength}:\\
-	The calculation of wave velocity was done after determining the wavelength. \\Both of these figures seem plausible and valid for the measurements made.
+	\item \textbf{Horn antenna measurements}:\\
+	The measured horn antenna patterns are consistent with the expected patterns. What can be seen from the polar plots is that the received power decreases as the frequency increases, and the 1GHz curve shows the highest received power, followed by 2GHz and 3GHz. 
+	\\The measured patterns also show the expected angle-dependent behaviour of the horn antenna.\\
+	The vertical pattern has a more concentrated beam in far-field when compared to the higher spread of the horizontal polarisation at all 3 frequencies.
 	
-	\item \textbf{VSWR \& Reflection coefficient magnitude}:\\
-	The calculated VSWR and reflection coefficient magnitude values can be analyzed as:
+	\item 
 	\begin{itemize}
-		\item \textbf{For open and short loads}: Extremely high VSWR, as expected, yielding a near full reflection in either cases.
-		\item \textbf{For 50$\Omega$ impedance}: Matched impedance resulting in ideal VSWR, ideally should be 1.0 but stands at 1.19, likely due to parasitic effects of the setup. Very small reflection coefficient magnitude.
-		\item \textbf{For 25$\Omega$ impedance}: Small VSWR but significant enough to cause reflections. Ideally should be 2 but reaches 2.54. Reflection coefficient roughly in the same neighbourhood but notable shift from 0.333 ideal scenario.
-		\item \textbf{For 100$\Omega$ impedance}: Same expectations as 25$\Omega$, but delivers a much better result. VSWR reaches 2.11, close enough to expectations. Reflection coefficient of 0.357, significantly better than 25$\Omega$ result.	
-		\item \textbf{For a purely capacitive load}: Expectations are to see a high VSWR, but lower than open or short loads, still yielding a near 100\% reflection, the achieved results seem fair enough.
+		\item \textbf{4-antenna group measurements, equal phase}:\\
+		The 4-antenna group shows the higher and lower spreads based on the antenna polarisation. The horizontal polarisation of the antenna shows a much higher spread, the behaviour cannot be decisively ascertained just by analysing the measured pattern. \\On the contrary, vertical polarisation of the antenna shows 2 large lobes at 0$^\circ$ and 180$^\circ$, and 4 small ones.
+		
+		\item \textbf{4-antenna group measurements, different phase}:\\
+		The 4-antenna group when sourced with different phases show overall similar trends, but there are notable differences. The vertical polarisation no longer creates 2 large lobes at 0$^\circ$ and 180$^\circ$, but instead makes them at 35$^\circ$ and 145$^\circ$, with one smaller lobe at 305$^\circ$. \\Here, horizontal polarisation of the antenna shows a very similar spread as compared to the horizontally polarised group antennae which were sourced with equal phase, but the irregularities are higher.\\
+		
+		\textit{This irregularity when moving from equal phase to different phase is explained, since phase differences between the elements change the array factor and therefore the direction of constructive and destructive interference.}
 	\end{itemize}
 	
-	\item \textbf{Reflection coefficient phase and Load impedances}:\\
-	The calculated reflection coefficient phases and the resulting load impedances can be analyzed as follows:
+	\item \textbf{Measured vs. calculated radiation patterns}:\\
+	\textcolor{blue}{The largest and quite an inexplicable deviation occurred when comparing the measured total radiation pattern against the theoretical figures of the group antennae sourced with equal phase.
+	The calculated patterns were plotted with the red marker, and confirmed against the source material \cite{script}.\\ 
+	However, the measured values present in the excel sheet convey:
 	\begin{itemize}
-		\item \textbf{For open and short loads}: The obtained distances for the voltage minima were relatively consistent, but the final calculated load impedances deviated noticeably from the ideal. Theoretically, an open or short should yield an infinite or zero impedance with purely reactive edge-cases, but this is not seen perfectly.
-		
-		\item \textbf{For 50$\Omega$ impedance}: This is the only load where the phase calculations cannot be heavily relied upon. Because the load is nearly matched, the standing wave minima are extremely shallow and difficult to accurately locate. Consequently, the phase calculations yielded varying results. The final plotted point on the Smith chart is only close to the center due to the definitively small reflection coefficient magnitude, rather than an accurate phase measurement.
-		
-		\item \textbf{For 25$\Omega$ impedance}: Ideally, this load should plot on the horizontal line (just like $100\Omega$ and $50\Omega$) on the real axis inside the Smith chart ($25 + j0\,\Omega$). However, any slight error in locating the exact minimum position physically translates to an noticeable phase shift in the calculations. This introduces a parasitic reactive component, pushing the plotted point off the real axis.
-		
-		\item \textbf{For 100$\Omega$ impedance}: This carries the same expectations as the 25$\Omega$ load but performed noticeably better. It yielded a primarily resistive value near 100$\Omega$ with only a minor resistive and reactive offset, placing it fairly accurately in the expected right-hand portion of the real axis.
-		
-		\item \textbf{For a purely capacitive load}: Ideally, this load should yield a purely negative reactance and sit firmly in the lower half of the Smith chart. However, our calculated impedance deviated significantly from this fundamental expectation. (explanation later)
+		\item Measurements made with the horizontally polarised antenna create a pattern that very remotely matches the expected vertically polarised antenna characteristic.
+		\item Measurements made with the vertically polarised antenna create a pattern that very strongly matches the expected horizontally polarised antenna characteristic.
 	\end{itemize}
-	
-	\textbf{Verdict}: To try and explain the offsets observed for the extreme cases (open and short), one could attribute this to the length of the load adapters, as well as measurement setup factors like cable attenuation, and parasitic inductance at the terminations. \\Even tiny errors in the reflection coefficient, like from (ideal case of) 1 to (measured instance of) 0.997 for an open circuit, causes a huge shift in the location of the same in the Smith chart because the reflection coefficient changes from 0 + j349.96 -> 3.75 + j349.92.
-	
-	However, the most notable anomaly is the capacitive load being plotting in the incorrect quadrant of the Smith chart. Despite rechecking all calculation and reviewing the measurements multiple times, and also consulting external references, the exact cause of this unexpected behavior could not be definitively identified.
-\end{itemize}
-
+	The Excel document used to obtain the measurements was checked, and the polarisation has not been inadvertently swapped during processing.}
