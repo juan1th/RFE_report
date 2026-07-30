@@ -149,9 +149,6 @@ Based on the transmission and reflection measurements, the characteristics of th
 \subsubsection{Task Description}
 The transmission ($S_{21}$) and reflection ($S_{11}$) coefficients of various microstrip lines were measured using a network analyzer. This section evaluates the reflection characteristics ($S_{11}$) of five distinct microstrip configurations captured simultaneously using the instrument's memory traces.
 
-\subsubsection{Schematic}
-\textit{(Placeholder: Insert your "Figure 3.1: Measured Microstrip-Lines" photograph here. As per the guidelines, the network analyser itself does not need to be drawn in detail, but the measuring points connecting to the microstrip lines must be clearly indicated.)}
-
 \subsubsection{Formulas and Calculations}
 
 To calculate the Voltage Standing Wave Ratio (VSWR) from the measured logarithmic reflection coefficient ($S_{11}$ in decibels) for the measurement table, the following formula is applied:
@@ -183,7 +180,7 @@ To demonstrate the calculation process for the values populated in the "Calculat
         \hline
         2.025 GHz & Line 2 (Cyan Trace): -16.9885 dB & 1.33 \\
         \hline
-        2.025 GHz & Line 3 (Orange Trace): -23.9754 dB & 1.13 \\
+        2.025 GHz & Line 3 (Orange Trace): -23.9754 dB & 1.14 \\
         \hline
         2.025 GHz & Line 4 (Red Trace): -14.3692 dB & 1.47 \\
         \hline
@@ -221,7 +218,7 @@ To demonstrate the calculation process for the values populated in the "Calculat
     
     \item \textbf{Resonant Minima:} Each curve displays periodic sharp minima ($\sim$4 deep notches across the 3 GHz span). At these resonant frequencies, the line is exceptionally well-matched, presenting an input impedance near 50 $\Omega$.
     
-    \item \textbf{Disconnected Line Response:} The flat trace representing the open-ended, disconnected line validates theoretical boundary conditions ($\rho = +1$). The measured $S_{11}$ magnitude remains constant at $\sim$0 dB (-0.0190 dB at 2.025 GHz) across the band, confirming total signal reflection.
+    \item \textbf{Disconnected Line Response:} The flat trace representing the open-ended, disconnected line validates theoretical boundary conditions ($\rho = +1$). The measured $S_{11}$ magnitude remains constant at $\sim$0 dB (-0.0318 dB at 2.025 GHz) across the band, confirming total signal reflection.
     
     \item \textbf{Scope Limitation:} Forward transmission data ($S_{21}$) was omitted during the measurement session. Consequently, this evaluation is restricted strictly to reflection parameters and mismatch behavior.
 \end{itemize}
@@ -246,9 +243,9 @@ A circulator is an asymmetric, non-reciprocal component. According to the labora
 
 \begin{equation}
     S_{\text{ideal}} = \begin{bmatrix}
-    0 & 1 & 0 \\
     0 & 0 & 1 \\
-    1 & 0 & 0
+    1 & 0 & 0 \\
+    0 & 1 & 0
     \end{bmatrix}
 \end{equation}
 

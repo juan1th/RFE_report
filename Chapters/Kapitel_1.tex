@@ -29,7 +29,7 @@ Rise and fall times were determined using the oscilloscope's automatic measureme
         \hline
         Test Point & Rise Time $t_r$ / ns & Fall Time $t_f$ / ns & - \\
         \hline
-        Signal Generator & 8.354 & 4.374 & - \\
+        Signal Generator & 8.354 & Not measured* & - \\
         \hline
         Line Driver (Open Output) & 1.282 & Not measured* & - \\
         \hline
@@ -65,7 +65,9 @@ Rise and fall times were determined using the oscilloscope's automatic measureme
 
 \subsubsection{Short discussion of measurement results}
 
-The line driver significantly steepens the signal edge. The signal generator alone has a rise time of 8.354 ns and a fall time of 4.374 ns. The LM5134 and LMG1025 gate drivers reduce this rise time to 1.282 ns. This fast transition is necessary for TDR to provide high spatial resolution when separating incident and reflected waves.  The fall time at the driver output could not be captured. With a ~1 kHz input signal, the falling edge occurs roughly 500 µs after the rising edge. Because the oscilloscope timebase was set to 2.00 ns/div to measure the nanosecond rise time, the falling edge fell completely outside the acquisition window.
+The line driver significantly steepens the signal edge, reducing the input rise time from 8.354 ns to 1.282 ns. This fast transition is necessary for TDR to provide high spatial resolution when separating incident and reflected waves.
+
+Both the signal generator and line driver fall times were not measured during this zoomed-in acquisition. Because the oscilloscope horizontal timebase was optimized to resolve the nanosecond rise times (10.0 ns/div and 2.00 ns/div, respectively), the displayed horizontal windows are restricted to 100 ns and 20 ns. With a 1 kHz rectangular input signal, the subsequent falling edge occurs approximately 500 $\mu$s after the rising edge, putting it hundreds of thousands of divisions off-screen and completely outside the active trigger acquisition window.
 
 \subsection{Measurement B: Reflections of a coax cable with different loads}
 
