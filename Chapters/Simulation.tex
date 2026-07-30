@@ -6,7 +6,36 @@
 The objective of this task is to analyze the performance of the VCO ZOS-100+ Oscillator. This involves determining its frequency range, measuring the VCO tuning sensitivity (in Hz/V), identifying the minimum and maximum frequencies within the valid control voltage range, and recording the power levels delivered at its outputs.
 
 \subsubsection{Schematic}
-(Note: As per the guidelines, you should insert a standard block diagram of your measuring circuit here. It should show the Keysight Fieldfox Spectrum Analyser connected to the VCO, along with the DC power supply providing the control voltage.)
+Following schematic shows the oscillator connected to a spectrum analyser and a DC power supply.
+\begin{figure}[htbp]
+	\centering
+	\begin{circuitikz}[>=Latex, thick]
+		
+		% Power supply block
+		\node[draw, rectangle, minimum width=3.3cm, minimum height=1.4cm, align=center, fill=white!10] (ps) at (0,2.5) {\textbf{DC Power Supply}};
+		
+		% VCO block
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=2.0cm, align=center, fill=white!10] (vco) at (5,2.5) {\textbf{VCO ZOS-100}\\\small Oscillator};
+		
+		% Spectrum analyzer block
+		\node[draw, rectangle, minimum width=4.2cm, minimum height=2.0cm, align=center, fill=white!10] (sa) at (11,2.5) {\textbf{Spectrum Analyzer}\\\small Keysight Fieldfox};
+		
+		% Tuning voltage connection
+		\draw[->] (ps.east) -- node[above] {$V_{\mathrm{tune}}$} (vco.west);
+		\draw[->] (ps.east) -- node[below] {(0--16\,V)} (vco.west);
+		
+		% RF output connection
+		\draw[->] (vco.east) -- node[above] {RF Out} node[below] {\small 50\,\(\Omega\) coax} (sa.west);
+		
+		
+		% Ground symbols for supply and VCO
+		\draw (ps.south) node[ground]{};
+		\draw (vco.south) node[ground]{};
+		
+	\end{circuitikz}
+	\caption{Measurement setup with a spectrum analyser for the ZOS-100 oscillator.}
+	\label{fig:antenna_measurement_setup}
+\end{figure}
 
 \subsubsection{Formulas and Calculations}
 To determine the tuning sensitivity of the oscillator, the following formula is used:
@@ -69,15 +98,44 @@ The following table summarizes the measured frequencies and power levels from th
 
 The results demonstrate that the fundamental frequency of the VCO ZOS-100+ shifts according to the applied control voltage, yielding a measured tuning range from $54.750$ MHz up to $84.450$ MHz (at a 10V control voltage). Across this tuning range, the oscillator maintains a relatively stable output power, fluctuating only slightly between $9.005$ dBm and $9.962$ dBm. Additionally, the broadband measurement clearly displays multiple expected harmonic frequencies occurring alongside the fundamental peak.
 
+\newpage
 \subsection{Task 2: Analyze another RF Oscillator}
 
 \subsubsection{Task Description}
 The objective of this task is to analyze the spectrum of another selected RF oscillator from the hardware inventory. This includes determining the frequencies and power levels of the most powerful spurious emissions (spurii) and evaluating whether these frequencies are harmonics of the fundamental frequency. (Note: The bonus measurement for phase noise was not conducted and is excluded from this report).
 
 \subsubsection{Schematic}
-(Placeholder: Insert a basic block diagram here showing the Keysight Fieldfox Spectrum Analyzer connected to the unknown RF oscillator).
+Following schematic shows the oscillator connected to a spectrum analyser and a DC power supply.
+\begin{figure}[htbp]
+	\centering
+	\begin{circuitikz}[>=Latex, thick]
+		
+		% Power supply block
+		\node[draw, rectangle, minimum width=3.3cm, minimum height=1.4cm, align=center, fill=white!10] (ps) at (0,2.5) {\textbf{DC Power Supply}};
+		
+		% VCO block
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=2.0cm, align=center, fill=white!10] (vco) at (5,2.5) {\textbf{RF Oscillator}};
+		
+		% Spectrum analyzer block
+		\node[draw, rectangle, minimum width=4.2cm, minimum height=2.0cm, align=center, fill=white!10] (sa) at (11,2.5) {\textbf{Spectrum Analyzer}\\\small Keysight Fieldfox};
+		
+		% Tuning voltage connection
+		\draw[->] (ps.east) -- node[above] {$V_{\mathrm{tune}}$} (vco.west);
+		\draw[->] (ps.east) -- node[below] {(0--16\,V)} (vco.west);
+		
+		% RF output connection
+		\draw[->] (vco.east) -- node[above] {RF Out} node[below] {\small 50\,\(\Omega\) coax} (sa.west);
+		
+		
+		% Ground symbols for supply and VCO
+		\draw (ps.south) node[ground]{};
+		\draw (vco.south) node[ground]{};
+		
+	\end{circuitikz}
+	\caption{Measurement setup with a spectrum analyser for the ZOS-100 oscillator.}
+	\label{fig:antenna_measurement_setup_2}
+\end{figure}
 
-\newpage
 \subsubsection{Formulas and Calculations}
 To determine if a spurious emission is a harmonic, its frequency must be an integer multiple of the fundamental frequency ($f_1$):
 
@@ -104,8 +162,8 @@ The provided data explicitly identifies two specific frequency peaks. Because th
     \label{tab:unknown_rf_oscillator}
 \end{table}
 
+\newpage
 \subsubsection{Curves \& diagrams}
-
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_342_5MHz.png}
@@ -132,7 +190,25 @@ The wideband spectrum of the unknown RF oscillator displays multiple spurious em
 The objective of this task is to analyze the performance of a double-balanced RF mixer. This involves applying Local Oscillator (LO) and Intermediate Frequency (IF) signals to the mixer, and observing the wideband output spectrum to determine the wanted and unwanted frequency products.
 
 \subsubsection{Schematic}
-(Placeholder: Insert a basic block diagram here showing the signal sources connected to the LO and IF ports of the double-balanced RF mixer, and the RF output port connected to the Keysight Fieldfox Spectrum Analyzer).
+\begin{figure}[htbp]
+	\centering
+	\begin{circuitikz}[>=Latex, thick]
+		
+		\node[draw, rectangle, minimum width=3.4cm, minimum height=1.4cm, align=center, fill=white!10] (lo) at (0,4) {\textbf{LO Source}};
+		\node[draw, rectangle, minimum width=3.4cm, minimum height=1.4cm, align=center, fill=white!10] (ifsrc) at (0,1) {\textbf{IF Source}};
+		
+		\node[draw, rectangle, minimum width=4.2cm, minimum height=2.0cm, align=center, fill=white!10] (mix) at (5,2.5) {\textbf{Double-Balanced RF Mixer}};
+		\node[draw, rectangle, minimum width=4.2cm, minimum height=2.0cm, align=center, fill=white!10] (sa) at (11,2.5) {\textbf{Spectrum Analyzer}\\\small Keysight Fieldfox};
+		
+		\draw[->] (lo.east) -- node[above] {LO} (mix.north west);
+		\draw[->] (ifsrc.east) -- node[below] {IF} (mix.south west);
+		
+		\draw[->] (mix.east) -- node[above] {Output} node[below] {\small 50\,\(\Omega\) coax} (sa.west);
+		
+	\end{circuitikz}
+	\caption{Measurement setup for the double-balanced RF mixer.}
+	\label{fig:mixer_measurement_setup}
+\end{figure}
 
 \subsubsection{Formulas and Calculations}
 For a standard RF mixer, the output frequency products ($f_{\text{RF}}$) are mathematically defined by the sum and difference of the Local Oscillator ($f_{\text{LO}}$) and Intermediate Frequency ($f_{\text{IF}}$) input signals:
@@ -143,6 +219,7 @@ For a standard RF mixer, the output frequency products ($f_{\text{RF}}$) are mat
 
 Please note: Because the exact $f_{\text{LO}}$ and $f_{\text{IF}}$ frequencies generated during the lab were not recorded in the output file, you will need to retrieve these values from your lab notes to calculate the theoretical expected $f_{\text{RF}}$ frequencies.
 
+\newpage
 \subsubsection{Measurement results}
 
 The data file contains a single prominent measurement for the mixer output. Because the applied LO and IF frequencies are missing, the ``adjusted'' and ``calculated'' columns currently contain placeholders.
@@ -186,7 +263,39 @@ The primary objective of this task is to utilize a Vector Network Analyzer (VNA)
 (Note: While the lab guidelines requested the determination of specific cable parameters such as attenuation and velocity factor, the explicit calculated data for these parameters is not present in the provided output file. Therefore, this section will concentrate comprehensively on the Smith chart impedance measurements recorded for the various termination configurations).
 
 \subsubsection{Schematic}
-(Placeholder: Insert a block diagram showing the Keysight Fieldfox VNA connected to the coaxial cable, which is then connected to various terminations (e.g., $50\,\Omega$, $75\,\Omega$, short) directly or via a BNC Coax-Tee/Power Divider).
+\begin{figure}[htbp]
+	\centering
+	\begin{circuitikz}[>=Latex, thick]
+		
+		% Main blocks
+		\node[draw, rectangle, minimum width=4.6cm, minimum height=1.8cm, align=center, fill=white!10] (vna) at (0,2.5) {\textbf{Keysight FieldFox VNA}\\\small Port 1 / Smith Chart};
+		
+		% Main cable as a wire
+		\draw[->] (vna.east) -- (5,2.5) node[midway, above] {S11 / Reflection};
+		
+		% Calibration reference
+		\node[draw, dashed, rectangle, minimum width=4.2cm, minimum height=1.0cm, align=center] (cal) at (0,-1.5) {\small Calibration reference:\\ open / short at cable end};
+		\draw[->, dashed] (vna.south) -- (cal.north);
+		
+		% Right-side load spine
+		\draw (4.2,2.5) -- (5.0,2.5);
+		
+		% Terminations aligned vertically
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=1.1cm, align=center, fill=white!10] (l1) at (8.2,4.2) {\textbf{50\,\(\Omega\) Termination}};
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=1.1cm, align=center, fill=white!10] (l2) at (8.2,2.8) {\textbf{75\,\(\Omega\) Termination}};
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=1.1cm, align=center, fill=white!10] (l3) at (8.2,1.4) {\textbf{BNC Coax-Tee}\\\small Two-Load Setup};
+		\node[draw, rectangle, minimum width=3.8cm, minimum height=1.1cm, align=center, fill=white!10] (l4) at (8.55,0.0) {\textbf{Resistive Power Divider}\\\small Two-Load Setup};
+		
+		% Branches
+		\draw (5.0,2.5) -- (5.0,4.2) -- (6.3,4.2) -- (l1.west);
+		\draw (5.0,2.5) -- (5.0,2.8) -- (6.3,2.8) -- (l2.west);
+		\draw (5.0,2.5) -- (5.0,1.4) -- (6.3,1.4) -- (l3.west);
+		\draw (5.0,2.5) -- (5.0,0.0) -- (6.3,0.0) -- (l4.west);
+		
+	\end{circuitikz}
+	\caption{VNA measurement setup for terminations, coaxial cable, and combined loads.}
+	\label{fig:vna_termination_setup}
+\end{figure}
 
 \subsubsection{Formulas and Calculations}
 The measurements rely on the fundamental relationship between the load impedance ($Z$) and the characteristic impedance of the system ($Z_w$, which is $50\,\Omega$ in this RF system). The reflection coefficient ($\rho$) at the load is defined as:
@@ -278,7 +387,22 @@ Finally, Figure 2.5 highlights the impedance transformation effect of coaxial ca
 The objective is to measure the return losses ($S_{11}$, $S_{22}$) and transmission losses ($S_{21}$, $S_{12}$) of a radio link using antennas.
 
 \subsubsection{Schematic}
-(Placeholder: Insert a block diagram showing the Vector Network Analyzer connected to the single and dual antenna setups in the lab environment).
+\begin{figure}[htbp]
+	\centering
+	\begin{circuitikz}[>=Latex, thick]
+		
+		\node[draw, rectangle, minimum width=4.7cm, minimum height=2.0cm, align=center, fill=white!10] (vna) at (0,2.5) {\textbf{Keysight FieldFox VNA}\\\small Port 1 / Port 2};
+		
+		\node[draw, rectangle, minimum width=3.6cm, minimum height=1.4cm, align=center, fill=white!10] (ant1) at (5,4) {\textbf{Antenna 1}};
+		\node[draw, rectangle, minimum width=3.6cm, minimum height=1.4cm, align=center, fill=white!10] (ant2) at (12,4) {\textbf{Antenna 2}};
+		
+		\draw[->] (vna.east) -- (5.0,2.5) -- (5.0,3.3);
+		\draw[->, dashed] (ant1.east) -- node[above] {Free-space radio link} (ant2.west);
+		
+	\end{circuitikz}
+	\caption{Measurement setup for radio link parameter analysis using antennas.}
+	\label{fig:radio_link_setup}
+\end{figure}
 
 \subsubsection{Formulas and Calculations}
 The VNA measures the S-parameters directly in decibels (dB), representing the logarithmic ratio of the reflected or transmitted wave to the incident wave.
@@ -298,15 +422,15 @@ The following tables summarize the S-parameter log-magnitude peak values extract
 \begin{table}[htbp]
     \centering
     \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{|l|l|l|l|}
+    \begin{tabular}{|l|l|l|}
         \hline
-        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
-        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} & \textbf{Expected ideal / dB} \\ \hline
-        $972.335$ & $S_{21}$ & $-27.53$ & $-$ \\ \hline
-        $970.928$ & $S_{22}$ & $-26.55$ & $-$ \\ \hline
-        $989.511$ & $S_{11}$ & $-15.34$ & $-$ \\ \hline
-        $989.511$ & $S_{21}$ & $-72.27$ & $-$ \\ \hline
-        $989.511$ & $S_{22}$ & $-10.35$ & $-$ \\ \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} \\ \hline
+        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} \\ \hline\hline
+        $972.335$ & $S_{21}$ & $-27.53$ \\ \hline
+        $970.928$ & $S_{22}$ & $-26.55$ \\ \hline
+        $989.511$ & $S_{11}$ & $-15.34$ \\ \hline
+        $989.511$ & $S_{21}$ & $-72.27$ \\ \hline
+        $989.511$ & $S_{22}$ & $-10.35$ \\ \hline
     \end{tabular}
     \end{adjustbox}
     \caption{Measured S-Parameters for the Dual Antenna Setup}
@@ -316,12 +440,12 @@ The following tables summarize the S-parameter log-magnitude peak values extract
 \begin{table}[htbp]
     \centering
     \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{|l|l|l|l|}
+    \begin{tabular}{|l|l|l|}
         \hline
-        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} & \textbf{Calculated} \\ \hline
-        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} & \textbf{Expected ideal / dB} \\ \hline
-        $260.132$ & $S_{11}$ & $-33.26$ & $-$ \\ \hline
-        $260.132$ & $S_{12}$ & $-26.99$ & $-$ \\ \hline
+        \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} \\ \hline
+        \textbf{Frequency / MHz} & \textbf{Parameter} & \textbf{Magnitude / dB} \\ \hline\hline
+        $260.132$ & $S_{11}$ & $-33.26$ \\ \hline
+        $260.132$ & $S_{12}$ & $-26.99$ \\ \hline
     \end{tabular}
     \end{adjustbox}
     \caption{Measured S-Parameters for the One Antenna Setup}
