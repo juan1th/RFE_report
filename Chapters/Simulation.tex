@@ -39,23 +39,24 @@ The following table summarizes the measured frequencies and power levels from th
     \item As mandated by the report guidelines, ensure that the columns clearly separate adjusted, measured, and calculated values.
 \end{itemize}
 
+\newpage
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_1.png}
     \caption{Broadband measurement of the VCO ZOS-100+ output showing the fundamental frequency peak at 75.000 MHz (9.368 dBm) along with multiple visible harmonics.}
     \label{fig:vco_broadband}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_2.png}
     \caption{Spectrum analyzer measurement of the VCO ``aux out'' displaying a fundamental frequency of 54.750 MHz with an output power of 9.962 dBm.}
     \label{fig:vco_aux_out}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_3.png}
     \caption{Spectrum analyzer measurement of the VCO at a control voltage of 10V, showing a fundamental frequency of 84.450 MHz with an output power of 9.005 dBm.}
@@ -76,6 +77,7 @@ The objective of this task is to analyze the spectrum of another selected RF osc
 \subsubsection{Schematic}
 (Placeholder: Insert a basic block diagram here showing the Keysight Fieldfox Spectrum Analyzer connected to the unknown RF oscillator).
 
+\newpage
 \subsubsection{Formulas and Calculations}
 To determine if a spurious emission is a harmonic, its frequency must be an integer multiple of the fundamental frequency ($f_1$):
 
@@ -104,14 +106,14 @@ The provided data explicitly identifies two specific frequency peaks. Because th
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_342_5MHz.png}
     \caption{Spectrum analyzer measurement of the unknown RF oscillator from 0 Hz to 1 GHz, displaying multiple frequency peaks with a specific marker placed at a spurious emission of 342.500 MHz (-27.50 dBm).}
     \label{fig:unknown_osc_342_5MHz}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_867_5MHz.png}
     \caption{Spectrum analyzer measurement of the unknown RF oscillator, highlighting a higher-frequency spurious emission at 867.500 MHz with a measured power level of -33.51 dBm.}
@@ -161,7 +163,7 @@ The data file contains a single prominent measurement for the mixer output. Beca
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/mixer_output_63_075MHz.png}
     \caption{Spectrum analyzer measurement of the double-balanced RF mixer output, showing a single specific marker placed at a prominent frequency product of 63.075 MHz with a power level of -11.78 dBm.}
@@ -219,35 +221,35 @@ The following table summarizes the real and imaginary impedance components extra
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_75ohm_load_post_cal.png}
     \caption{Smith chart measurement of a $75\,\Omega$ termination after VNA calibration, showing a marker at $50.875$ MHz with a measured impedance of $74.3\,\Omega + j0.3\,\Omega$.}
     \label{fig:vna_75ohm_load_post_cal}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_short_load_post_cal.png}
     \caption{Smith chart measurement of a short circuit termination after calibration, verifying the short with a reading of $-0.3\,\Omega + j0.7\,\Omega$ at $50.875$ MHz.}
     \label{fig:vna_short_load_post_cal}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_1by2_termination.png}
     \caption{Smith chart measurement of the ``One by 2'' termination setup, displaying an impedance of $50.2\,\Omega + j1.3\,\Omega$ at $50.875$ MHz.}
     \label{fig:vna_1by2_termination}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_2by2_termination.png}
     \caption{Smith chart measurement of the ``Two by 2'' termination setup, displaying an impedance of $24.8\,\Omega + j1.8\,\Omega$ at $50.875$ MHz.}
     \label{fig:vna_2by2_termination}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_load_short_with_cable.png}
     \caption{Smith chart measurement showing the profound impedance transformation ($1.3\,\text{k}\Omega - j1.1\,\text{k}\Omega$ at $48.923$ MHz) when a short load is measured through an uncalibrated or specific length of connected coaxial cable.}
@@ -328,35 +330,35 @@ The following tables summarize the S-parameter log-magnitude peak values extract
 
 \subsubsection{Curves \& diagrams}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s21_972mhz.png}
     \caption{Log-magnitude plot of the transmission loss ($S_{21}$) for the dual antenna setup, showing a marker at $972.335$ MHz with a value of $-27.53$ dB.}
     \label{fig:dual_antennae_s21_972mhz}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s22_970mhz.png}
     \caption{Log-magnitude plot of the return loss ($S_{22}$) for the dual antenna setup, showing a marker at $970.928$ MHz with a value of $-26.55$ dB.}
     \label{fig:dual_antennae_s22_970mhz}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s21_989mhz.png}
     \caption{Log-magnitude plot of the transmission loss ($S_{21}$) for the dual antenna setup, showing a significant signal drop to $-72.27$ dB at $989.511$ MHz.}
     \label{fig:dual_antennae_s21_989mhz}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/one_antenna_s11_260mhz.png}
     \caption{Log-magnitude plot of the return loss ($S_{11}$) for the single antenna setup, showing a distinct resonance peak of $-33.26$ dB at $260.132$ MHz.}
     \label{fig:one_antenna_s11_260mhz}
 \end{figure}
 
-\begin{figure}[htpb]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/one_antenna_s12_260mhz.png}
     \caption{Log-magnitude plot of the transmission ($S_{12}$) for the single antenna setup, measured at $-26.99$ dB at $260.132$ MHz.}
