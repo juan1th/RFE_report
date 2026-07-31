@@ -88,12 +88,12 @@ Since there are 4 antennas, and each is sourced with equal phase:
 \end{gather}
 
 \begin{enumerate}
-	\item Using \cite{script} [page 72], one can represent the array/group characteristic in such a form:
+	\item Using \cite{lec-script} [page 72], one can represent the array/group characteristic in such a form:
 	\begin{gather}
 		G(\varphi,\vartheta) = \frac{\sin(uN)}{N\sin(u)} \label{group_char}
 	\end{gather}
 	
-	\item The value of '$u$' must be calculated now.\\ From \cite{script} [page 73], one can deduce:
+	\item The value of '$u$' must be calculated now.\\ From \cite{lec-script} [page 73], one can deduce:
 	\begin{gather}
 		u = \frac{\delta_0}{2} - \pi\cdot\frac{d}{\lambda}\cdot\mathrm{cos}\varphi\cdot\mathrm{sin}\vartheta \nonumber \\
 		\mathrm{where,}\quad
@@ -120,7 +120,7 @@ Since there are 4 antennas, and each is sourced with equal phase:
 	
 	\item Following is the calculation for the total radiation pattern:
 	\begin{itemize}
-		\item One can assume the single dipole element factor to be at a constant 1 for the horizontal polarisation, this gives:
+		\item One can assume the single dipole element factor to be at a constant 1 for the horizontal polarisation, this gives the following computation of the total radiation pattern equation found in \cite{lec-script}:
 		\begin{gather}
 			F_{\mathrm{tot}} = F(\varphi, \vartheta)\cdot G(\varphi, \vartheta) = 1\cdot G(\varphi, \vartheta) \nonumber \\
 			\boxed {F_{\mathrm{tot-horz}} = G(\varphi, \vartheta)}			\label{horizontal_pattern}
@@ -147,7 +147,7 @@ For a single standard half-wave dipole, the theoretical gain is approximately:
 	G_{\mathrm{single}} \approx 1.64 \qquad \Leftrightarrow \qquad 2.15\mathrm{\ dBi} \nonumber
 \end{gather}
 
-When $N$ identical antennas are arranged in a linear array and fed with equal phase, the radiation fields add up in the main beam direction. This increases the effective current from $I_0$ to $N \cdot I_0$, resulting in a power gain factor of $N$. For the used 4-antenna array ($N=4$), the theoretical group gain is:
+When $N$ identical antennas are arranged in a linear array and fed with equal phase, the radiation fields add up in the main beam direction. This increases the effective current from $I_0$ to $N \cdot I_0$, resulting in a power gain factor of $N$. For the used 4-antenna array ($N=4$), the theoretical group gain is, according to \cite{lec-script}:
 \begin{gather}
 	G_{\mathrm{group\_theory}} = N \cdot G_{\mathrm{single}} \nonumber \\
 	G_{\mathrm{group\_theory}} = 4 \cdot 1.64 = 6.56 \label{eq:gain_linear}
@@ -185,7 +185,7 @@ By comparing $G_{\mathrm{group\_measured}}$ to the theoretical $8.17\mathrm{\ dB
 
 \subsubsection{\textbf{Calculation of the directivity of the group:}}
 Directivity indicates the power increase in the main beam direction compared to the average
-power radiated in all directions \cite{script}.\\
+power radiated in all directions \cite{lec-script}.\\
 The calculation of directivity for the horizontally polarised antenna array is:
 \begin{gather}
 	D_{\mathrm{horz}} = \frac{\Phi_{\mathrm{max}}}{\Phi_i}	\nonumber \\
@@ -205,10 +205,10 @@ The calculation of directivity for the vertically polarised antenna array is:
 \subsubsection{\textbf{Calculation of the distance dependence of the received power:}}
 
 For plotting the distance dependence of the received power one must understand the distance dependence of the received power. \\
-According to the theory \cite{script}, the received power in the far field follows the inverse-square law. Meaning that the electromagnetic field strength decreases with $1/r$, while the radiated power decreases with $1/r^2$.
+According to the theory \cite{lec-script}, the received power in the far field follows the inverse-square law. Meaning that the electromagnetic field strength decreases with $1/r$, while the radiated power decreases with $1/r^2$.
 
 \paragraph{Calculation formula:}
-The received power can be calculated as:
+The received power can be (using \cite{friis-script}) calculated as:
 \begin{gather}
 	P_r = P_t \cdot G_t \cdot G_r \cdot \left(\frac{\lambda}{4\pi r}\right)^2 \label{eq:friis}
 \end{gather}
@@ -244,13 +244,13 @@ The term
 \end{gather}
 represents the free-space loss. \\Hence, the calculation of r is essential before calculation of the free space loss itself.
 
-Rearranging Friis equation gives:
+Rearranging Friis equation (cited from \cite{friis-script}) gives:
 \begin{gather}
 	P_r = P_t \cdot G_t \cdot G_r \cdot \left(\frac{\lambda}{4\pi r}\right)^2 \nonumber \\
 	r = \frac{\lambda}{4\pi}\sqrt{\frac{P_t \cdot G_t \cdot G_r}{P_r}} \label{eq:friis_r}
 \end{gather}
 
-One can consider the horn antenna as the reference measurement for the Gain ($G_r$) at 1GHz. The maximum received power ($P_r$) is -21.803 dBm, in mW it becomes $6.602 \times 10^{-3}$. The gain of the measuring antenna is assumed to be 1. $G_t$ in linear units is $6.166$.
+One can consider the horn antenna as the reference measurement for the Gain ($G_r$) at 1GHz. The maximum received power ($P_r$ for vertical polarization) is -21.803 dBm, in mW it becomes $6.602 \times 10^{-3}$. The gain of the measuring antenna is assumed to be 1. $G_t$ in linear units is $10^{7.9/10} = 6.166$.
 \begin{gather}
 	r = \frac{0.3}{4\pi}\sqrt{\frac{10 \cdot 6.166 \cdot 1}{6.602\times10^{-3}}} \nonumber \\
 	\boxed{r = 2.307\mathrm{m}} \label{eq:antenna_dist}
