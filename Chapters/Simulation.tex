@@ -54,23 +54,19 @@ The following table summarizes the measured frequencies and power levels from th
         \hline
         \textbf{Adjusted} & \multicolumn{2}{c|}{\textbf{Measured}} \\ \hline
         \textbf{Control Voltage ($V_{\text{tune}}$) / V} & \textbf{Frequency ($f$) / MHz} & \textbf{Output Power / dBm} \\ \hline
-        {[Insert Voltage]} & $54.750$ & $9.962$ \\ \hline
-        {[Insert Voltage]} & $75.000$ & $9.368$ \\ \hline
+        $10.0$ & $54.750$ & $9.962$ \\ \hline
+        $10.0$ & $75.000$ & $9.368$ \\ \hline
         $10.0$ & $84.450$ & $9.005$ \\ \hline
     \end{tabular}
     \caption{Frequency and Output Power of the VCO ZOS-100+}
     \label{tab:vco_zos100_results}
 \end{table}
 
-\textbf{Notes:}
-\begin{itemize}
-    \item Measurement at $54.750$ MHz was recorded from the ``aux out''.
-    \item As mandated by the report guidelines, ensure that the columns clearly separate adjusted, measured, and calculated values.
-\end{itemize}
+Measurement at $54.750$ MHz was recorded from the ``aux out''.
 
 \newpage
 \subsubsection{Curves \& diagrams}
-
+The following figures show the output from the fieldfox analyser for the voltage controlled oscillators at 10V and 3 different frequencies:
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/part1_image_1.png}
@@ -164,6 +160,7 @@ The provided data explicitly identifies two specific frequency peaks. Because th
 
 \newpage
 \subsubsection{Curves \& diagrams}
+The figures shown below illustrate the measurement of 2 unknown RF oscillators.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/unknown_osc_342_5MHz.png}
@@ -237,7 +234,7 @@ The data file contains a single prominent measurement for the mixer output. Beca
 \end{table}
 
 \subsubsection{Curves \& diagrams}
-
+The following figure shows the measurement of a double-balanced RF mixer output.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/mixer_output_63_075MHz.png}
@@ -302,7 +299,7 @@ The measurements rely on the fundamental relationship between the load impedance
 \end{equation}
 
 The Vector Network Analyzer displays these results on a Smith chart, which uniquely maps the complex normalized impedance plane ($z = Z / Z_w = r + jx$) to the complex reflection coefficient ($\rho$) plane.
-
+\newpage
 \subsubsection{Measurement results}
 
 The following table summarizes the real and imaginary impedance components extracted from the VNA Smith chart markers after calibration. Standard theoretical values are placed in the calculated column for comparison.
@@ -327,6 +324,7 @@ The following table summarizes the real and imaginary impedance components extra
 
 \subsubsection{Curves \& diagrams}
 
+The following figures show the output of Fieldfox analyser for measurement of different terminations:
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/vna_75ohm_load_post_cal.png}
@@ -450,7 +448,7 @@ The following tables summarize the S-parameter log-magnitude peak values extract
 \end{table}
 
 \subsubsection{Curves \& diagrams}
-
+The following figures are recorded S-parameters obtained from the fieldfox analyser for the dual antenna, as well as the single antenna setup:
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\textwidth, height=0.35\textheight, keepaspectratio]{src/figers/ex_5/dual_antennae_s21_972mhz.png}
